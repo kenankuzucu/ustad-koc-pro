@@ -168,7 +168,7 @@
       var a = localStorage.key(i);
       if (a && a.indexOf("ustad.") === 0) veri[a] = localStorage.getItem(a);
     }
-    return { uygulama: "ÜSTAD KOÇ PRO", surum: "2.0", tarih: new Date().toISOString(), veri: veri };
+    return { uygulama: "ÜSTAD KPSS-B KOÇ PRO", surum: "2.0", tarih: new Date().toISOString(), veri: veri };
   }
   function yedekMetni() {
     try { return btoa(unescape(encodeURIComponent(JSON.stringify(yedekAl())))); }

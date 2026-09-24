@@ -1,4 +1,4 @@
-/* © 2026 Kenan Kuzucu · ÜSTAD KOÇ PRO · Sınav Koçu (KPSS-B paketi) · TÜM HAKLARI SAKLIDIR.
+/* © 2026 Kenan Kuzucu · ÜSTAD KPSS-B KOÇ PRO · Sınav Koçu (KPSS-B paketi) · TÜM HAKLARI SAKLIDIR.
    5846 sayılı FSEK kapsamında korunur. İzinsiz çoğaltma, kopyalama, satış, dağıtım,
    değiştirme, tersine mühendislik ve türev eser üretimi yasaktır.
    Eser künyesi ve kullanım lisansı: uygulama içinde 'Hakkında & Telif' bölümü. */
@@ -61,7 +61,7 @@
     var kap = $(".menu-icerik");
     var h = document.createElement("div");
     h.className = "menu-baslik";
-    h.innerHTML = '<img src="tasarim/ustad-kafa.png" alt=""><b>ÜSTAD KOÇ PRO</b>';
+    h.innerHTML = '<img src="tasarim/ustad-kafa.png" alt=""><b>ÜSTAD KPSS-B KOÇ PRO</b>';
     kap.appendChild(h);
 
     var grup = document.createElement("div");
@@ -94,7 +94,7 @@
     if (b) {
       document.body.setAttribute("data-bolum", kod);
       document.body.style.setProperty("--bolum", b.renk);
-      document.title = "ÜSTAD KOÇ PRO · " + b.ad;
+      document.title = "ÜSTAD KPSS-B KOÇ PRO · " + b.ad;
     }
     menuKapat();
     window.scrollTo(0, 0);
@@ -978,7 +978,7 @@
 
   /* ═════════ 14) HAKKINDA & TELİF — eser sahibinin hakları ve kopya koruması ═════════ */
   var ESER = {
-    ad: "ÜSTAD KOÇ PRO",
+    ad: "ÜSTAD KPSS-B KOÇ PRO",
     paket: "KPSS-B (Genel Yetenek · Genel Kültür)",
     sahip: "Kenan Kuzucu",
     isletme: "ÜSTAD SALON KENAN · Selimiye Mah., Şehitkamil / Gaziantep",
@@ -1028,7 +1028,7 @@
     kap.innerHTML =
       "<div class='hk-kunye'>" +
         "<div class='hk-madalyon'><img src='tasarim/ustad-kafa.png' alt=''></div>" +
-        "<div class='panel-ad'><b>ÜSTAD KOÇ PRO</b><span>" + ESER.paket + " · Sürüm " + s + "</span></div>" +
+        "<div class='panel-ad'><b>ÜSTAD KPSS-B KOÇ PRO</b><span>" + ESER.paket + " · Sürüm " + s + "</span></div>" +
       "</div>" +
 
       "<div class='hk-telif'>" +
