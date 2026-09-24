@@ -19,3 +19,15 @@
 .ses-cubuk i { display:block; height:100%; width:0; background:var(--sesli); transition:width .3s; }
 .ses-cumle { font-size:14px; line-height:1.65; margin:8px 0 12px; padding-left:10px; border-left:3px solid var(--cizgi); }
 .ses-metin { font-size:13.5px; line-height:1.7; white-space:pre-wrap; }
+
+/* v2.9: ses teşhis kutusu */
+.ses-teshis { border:1px solid var(--cizgi); border-left:4px solid var(--sesli); border-radius:12px; padding:12px; background:var(--kart); margin:10px 0; }
+.ses-teshis h4 { margin:0 0 8px; font-size:14.5px; }
+.ses-liste { margin:0 0 8px; padding-left:18px; font-size:12.8px; line-height:1.65; }
+.ses-liste li { color:var(--metin); }
+
+/* v2.9: ses gelmiyor uyarı şeridi */
+.ses-uyari { border:1px solid #f0b4b4; border-left:5px solid #b91c1c; border-radius:12px; padding:12px; background:#fff5f5; margin:10px 0; font-size:13.5px; }
+.ses-uyari b { color:#7f1d1d; }
+.ses-uyari .ka-butonlar { margin:9px 0 6px; }
+.ses-uyari .aciklama { display:block; }

@@ -21,6 +21,22 @@
   function depoKoy(k, v) { try { localStorage.setItem("ustad." + k, JSON.stringify(v)); } catch (e) {} }
   function cinsiyet() { var c = depoAl("cinsiyet", ""); return c === "kiz" ? "kiz" : "erkek"; }
   function kopru() { try { return (window.USTAD && window.USTAD.sesListesi) ? window.USTAD : null; } catch (e) { return null; } }
+  /* Android köprüsünün ses teşhisi (Konusucu.teshis). Eski APK'larda yok → null. */
+  function kopruTeshis() {
+    var k = kopru();
+    if (!k || !k.teshis) return null;
+    try { return JSON.parse(k.teshis()); } catch (e) { return null; }
+  }
+  /* KÖPRÜ SAĞLIĞI: motor açılamıyorsa köprüyle konuşmayı DENEME (ses gelmiyordu!),
+     tarayıcı motoruna düş. Böylece "ses gelmiyor" durumu sessizlikle bitmez. */
+  function kopruKonusabilir() {
+    var k = kopru();
+    if (!k) return null;
+    var t = kopruTeshis();
+    if (t && t.hazir === false) return null;
+    return k;
+  }
+  S.kopruTeshis = kopruTeshis;
 
   /* ───────────── 1) METNİ OKUNUR HÂLE GETİR ───────────── */
   var BIRLER = ["", "bir", "iki", "üç", "dört", "beş", "altı", "yedi", "sekiz", "dokuz"];
@@ -189,7 +205,7 @@
              toplam: kuyruk ? kuyruk.cumleler.length : 0, kopru: !!kopru() };
   };
   function tekCumle(cumle, perde, hiz, ad) {
-    var k = kopru();
+    var k = kopruKonusabilir();
     if (k) {
       try { if (k.konusSesli) { k.konusSesli(cumle, perde, hiz, ad || ""); return; } } catch (e) {}
       try { k.konusTon(cumle, perde, hiz); return; } catch (e) {}
@@ -209,7 +225,7 @@
      (cümle uzunluğu / saniyedeki karakter * hız). Bu sayede duraklat/ileri/geri çalışır. */
   function cumleSoyle(cumle, perde, hiz, ad) {
     return new Promise(function (bitir) {
-      var k = kopru();
+      var k = kopruKonusabilir();
       if (k) {
         tekCumle(cumle, perde, hiz, ad);
         var ms = Math.max(700, Math.round(cumle.length / (13.5 * (hiz || 1)) * 1000) + 120);
@@ -236,6 +252,23 @@
     try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch (e) {}
   }
   S.durdur = durdur;
+  /* Ses teşhisi: Ses Stüdyosu ekranında gösterilir; Kenan "ses gelmiyor" derse buradan anlaşılır. */
+  S.teshis = function () {
+    var k = kopru(), t = kopruTeshis(), web = 0, webTr = 0;
+    try {
+      var vs = window.speechSynthesis ? (window.speechSynthesis.getVoices() || []) : [];
+      web = vs.length;
+      webTr = vs.filter(function (x) { return (x.lang || "").toLowerCase().indexOf("tr") === 0; }).length;
+    } catch (e) {}
+    var konusabilir = !!kopruKonusabilir();
+    return {
+      kopruVar: !!k, kopruHazir: t ? t.hazir !== false : null, cihazSesi: t ? t.sesSayisi : (k ? sesListesi().length : 0),
+      trPaketi: t ? !!t.dilVar : null, hata: t ? t.hata : "",
+      motor: konusabilir ? "android-tts" : "tarayici", tarayiciSesi: web, tarayiciTr: webTr,
+      seciliSes: sesAdi(cinsiyet()), perde: perdeHiz(cinsiyet()).perde, hiz: perdeHiz(cinsiyet()).hiz,
+      konusuyor: !!(kuyruk && kuyruk.devam), sesAcik: !!depoAl("ses", true)
+    };
+  };
   /** Metni cümlelere bölüp sırayla okur. gecikme: cümleler arası nefes durağı (ms). */
   S.konus = function (metin, secenek) {
     secenek = secenek || {};
@@ -312,8 +345,43 @@
     // Cihaz ses listesi geç gelebilir (TTS kurulumu ~1 sn): 3 kez yenile
     [1200, 2600, 5000].forEach(function (ms) { setTimeout(studyoYenile, ms); });
   }
+  function sesTeshisKutu() {
+    var t = S.teshis();
+    var satir = [];
+    satir.push("<b>Android köprüsü:</b> " + (t.kopruVar ? "VAR" : "yok") +
+      (t.kopruVar ? (t.kopruHazir === false ? " · ❌ motor AÇILMADI" : " · ✔ motor hazır") : ""));
+    satir.push("<b>Konuşan motor:</b> " + (t.motor === "android-tts" ? "cihazın metin okuma motoru (Android TTS)" : "tarayıcı sesi (WebView)"));
+    satir.push("<b>Cihazda bulunan Türkçe ses:</b> " + t.cihazSesi +
+      (t.trPaketi === false ? " · ❌ Türkçe ses paketi YOK" : ""));
+    satir.push("<b>Tarayıcı sesi:</b> " + t.tarayiciSesi + " (" + t.tarayiciTr + " Türkçe)");
+    satir.push("<b>Seçili ses:</b> " + (t.seciliSes || "otomatik") + " · perde " + t.perde.toFixed(2) + " · hız " + t.hiz.toFixed(2));
+    satir.push("<b>Uygulamada ses:</b> " + (t.sesAcik ? "AÇIK" : "❌ KAPALI (Ayarlar → Ses)") + (t.konusuyor ? " · şu an okuyor" : ""));
+    if (t.hata) satir.push("<b>Hata:</b> " + kacis(t.hata));
+    var uyari = "";
+    if (t.kopruVar && t.kopruHazir === false) {
+      uyari = '<p class="aciklama">⚠ Telefonunuzun metin okuma motoru açılamadı. Çözüm: <b>Ayarlar → Diller ve giriş → ' +
+        "Metin okuma (Konuşma hizmetleri) → Google</b> → dişli simgesi → <b>Türkçe ses verilerini indir</b>. " +
+        "İndirdikten sonra bu ekranda <b>🔄 Ses listesini yenile</b> düğmesine basın. Ses paketi yoksa uygulama tarayıcı sesine düşer.</p>";
+    } else if (t.kopruVar && t.trPaketi === false) {
+      uyari = '<p class="aciklama">⚠ Telefonda Türkçe ses paketi görünmüyor. <b>Ayarlar → Diller ve giriş → Metin okuma → ' +
+        "Google → Türkçe verilerini indir.</b></p>";
+    }
+    return '<div class="ses-teshis" id="sesTeshisKutu"><h4>🔎 Ses teşhisi</h4><ul class="ses-liste">' +
+      satir.map(function (x) { return "<li>" + x + "</li>"; }).join("") + "</ul>" + uyari +
+      '<div class="ka-butonlar"><button class="ka-mini" id="sesYenile">🔄 Ses listesini yenile</button>' +
+      '<button class="ka-mini" id="sesDene2">🔊 Sesi dene</button>' +
+      (t.sesAcik ? "" : '<button class="ka-dugme" id="sesAcDugme">🔊 Sesi AÇ</button>') + "</div></div>";
+  }
+  function sesYenileBagla() {
+    var y = $("#sesYenile"); if (y) y.addEventListener("click", function () { studyoKur(); studyoYenile(); S.konus("Ses listesi yenilendi.", { zorla: true }); });
+    var d2 = $("#sesDene2"); if (d2) d2.addEventListener("click", function () { S.konus(sesDenemeMetni, { zorla: true }); });
+    var ac = $("#sesAcDugme"); if (ac) ac.addEventListener("click", function () { depoKoy("ses", true); S.konus("Ses açıldı. " + sesDenemeMetni, { zorla: true }); studyoYenile(); });
+  }
   function studyoYenile() {
     var kap = $("#sesListeAlan"); if (!kap) return;
+    var tk = $("#sesTeshisKutu");
+    if (tk) { tk.outerHTML = sesTeshisKutu(); } else if (kap.parentNode) { kap.insertAdjacentHTML("beforebegin", sesTeshisKutu()); }
+    sesYenileBagla();
     var liste = sesListesi();
     var k = depoAl("sesKadin", ""), e = depoAl("sesErkek", "");
     var d = S.durum();
@@ -326,7 +394,8 @@
     if ($("#sesErkekAd")) $("#sesErkekAd").textContent = e || "otomatik";
     if (!liste.length) {
       kap.innerHTML = '<p class="aciklama">Cihazda Türkçe ses bulunamadı. Android Ayarlar → Diller ve giriş → ' +
-        'Metin okuma → Google konuşma hizmetleri → Türkçe ses verilerini indir.</p>';
+        'Metin okuma → Google konuşma hizmetleri → Türkçe ses verilerini indir. ' +
+        (kopru() ? "Köprü: " + (kopruTeshis() && kopruTeshis().hazir === false ? "motor açılmadı" : "var") : "Köprü yok (web sürümü).") + '</p>';
       return;
     }
     kap.innerHTML = "<h4>Bulunan sesler</h4>" + liste.map(function (v, i) {
@@ -415,6 +484,28 @@
   function konumAl() { return depoAl("sesliKonum", null); }
   function konumKoy(k) { depoKoy("sesliKonum", k); }
 
+  /* Ses gelmiyorsa Sesli Dersler ekranının en üstünde SEBEBİNİ söyleyen şerit. */
+  function sesliUyariSeridi() {
+    var t = S.teshis(), sorun = [], cozum = [];
+    if (!t.sesAcik) { sorun.push("uygulamada ses KAPALI"); cozum.push("Sesi AÇ"); }
+    if (t.kopruVar && t.kopruHazir === false) { sorun.push("telefonun metin okuma motoru açılmadı"); cozum.push("Ayarlar → Diller ve giriş → Metin okuma → Google → Türkçe ses verilerini indir"); }
+    if (t.kopruVar && t.kopruHazir !== false && t.cihazSesi === 0) { sorun.push("telefonda Türkçe ses paketi yok"); cozum.push("Ayarlar → Diller ve giriş → Metin okuma → Türkçe ses verilerini indir"); }
+    if (!t.kopruVar && t.tarayiciTr === 0) { sorun.push("tarayıcıda Türkçe ses yok"); cozum.push("Chrome/WebView güncelle ya da APK sürümünü kullan"); }
+    if (!sorun.length) return "";
+    return '<div class="ses-uyari" id="sesUyariSerit"><b>⚠ Ses gelmiyor gibi görünüyor:</b> ' + sorun.join(" · ") +
+      '<div class="ka-butonlar"><button class="ka-dugme" id="sesSeritAc">🔊 Sesi aç ve dene</button>' +
+      '<button class="ka-mini" id="sesSeritYenile">🔄 Ses listesini yenile</button>' +
+      '<button class="ka-mini" id="sesSeritGit">⚙️ Ses stüdyosu</button></div>' +
+      '<span class="aciklama">Çözüm: ' + cozum.join(" · ") + " — sonra bu ekrana dönüp tekrar dene.</span></div>";
+  }
+  function sesliSeritBagla() {
+    var a = $("#sesSeritAc");
+    if (a) a.addEventListener("click", function () { depoKoy("ses", true); studyoKur(); studyoYenile(); S.konus(sesDenemeMetni, { zorla: true }); sesliCiz(); });
+    var y = $("#sesSeritYenile");
+    if (y) y.addEventListener("click", function () { studyoKur(); studyoYenile(); sesliCiz(); });
+    var g = $("#sesSeritGit");
+    if (g) g.addEventListener("click", function () { if (window.USTAD_MOTOR && USTAD_MOTOR.git) USTAD_MOTOR.git("ayarlar"); });
+  }
   function sesliCiz() {
     var kap = $("#sesSesliAlan"); if (!kap) return;
     var kat = depoAl("sesliKat", "notlar");
@@ -423,7 +514,7 @@
     var konum = konumAl();
     var d = S.durum();
     var toplamDk = Math.round(parcalar.reduce(function (a, p) { return a + sureTahmini(p.metin, 1); }, 0) / 60);
-    kap.innerHTML =
+    kap.innerHTML = sesliUyariSeridi() +
       '<p class="aciklama">Dersler sesli kitap gibi okunur: kız öğrenci seçili ise kadın sesi, erkek öğrenci seçili ise erkek sesi. ' +
         'Metin okunmadan önce sayı/kısaltmalar düzeltilir; cümleler arasında nefes durağı bırakılır.</p>' +
       '<div class="ses-ust">' +
@@ -445,6 +536,7 @@
         '<span class="ka-etiket" id="sesUykuDurum">kapalı</span>' +
       "</div>" +
       '<div class="ses-liste" id="sesParcaListe"></div>';
+    sesliSeritBagla();
     $$("[data-ses-kat]").forEach(function (b) {
       b.addEventListener("click", function () { depoKoy("sesliKat", b.getAttribute("data-ses-kat")); calan = null; durdur(); sesliCiz(); });
     });
@@ -591,6 +683,53 @@
         ok("stüdyo: liste alanı", !!$("#sesListeAlan"));
         ok("stüdyo: hız ayarı", !!$("#sesHizAyar"));
         ok("stüdyo: doğal kutu", !!$("#sesDogalKutu"));
+        // v2.9 ses teşhisi ve "ses gelmiyor" koruması
+        var ts = S.teshis();
+        ok("teşhis: alanlar tam", ts && ("kopruVar" in ts) && ("motor" in ts) && ("cihazSesi" in ts) && ("tarayiciSesi" in ts), JSON.stringify(ts).slice(0, 120));
+        ok("teşhis: motor adı geçerli", ts.motor === "android-tts" || ts.motor === "tarayici", ts.motor);
+        ok("teşhis: kutu ekranda", !!$("#sesTeshisKutu"), $("#sesTeshisKutu") ? "var" : "yok");
+        ok("teşhis: yenile düğmesi", !!$("#sesYenile"));
+        ok("teşhis: ses açık/kapalı bilgisi", typeof ts.sesAcik === "boolean", String(ts.sesAcik));
+        var eskiSes2 = depoAl("ses", null);
+        depoKoy("ses", false); sesliCiz();
+        ok("uyarı şeridi: ses kapalıyken görünür", !!$("#sesUyariSerit") && /ses KAPALI/.test($("#sesUyariSerit").textContent), $("#sesUyariSerit") ? $("#sesUyariSerit").textContent.slice(0, 60) : "yok");
+        ok("uyarı şeridi: çözüm düğmeleri", !!$("#sesSeritAc") && !!$("#sesSeritYenile") && !!$("#sesSeritGit"));
+        depoKoy("ses", true); sesliCiz();
+        ok("uyarı şeridi: ses açıkken uyarı yok (tarayıcıda Türkçe ses varsa)", !$("#sesUyariSerit") || S.teshis().tarayiciTr === 0, $("#sesUyariSerit") ? "tarayıcı Türkçe sesi yok" : "uyarı yok");
+        if (eskiSes2 === null) { try { localStorage.removeItem("ustad.ses"); } catch (e) {} } else depoKoy("ses", eskiSes2);
+        var sesEski = depoAl("ses", null);
+        depoKoy("ses", false);
+        var sessizKonustu = false, gercekKopru2 = window.USTAD;
+        window.USTAD = { sesListesi: function () { return "[]"; }, teshis: function () { return JSON.stringify({ hazir: true, dilVar: true, motor: "android-tts", sesSayisi: 1, hata: "" }); },
+                         konusSesli: function () { sessizKonustu = true; }, konusTon: function () { sessizKonustu = true; }, sus: function () {} };
+        S.konus("Ses kapalıyken okunmamalı.", { gecikme: 0 });
+        ok("kural: ses kapalıysa okumaz", sessizKonustu === false);
+        S.konus("Zorla okunmalı.", { zorla: true, gecikme: 0 });
+        ok("kural: 'zorla' ses kapalı olsa da okur", sessizKonustu === true);
+        S.durdur(); window.USTAD = gercekKopru2;
+        if (sesEski === null) { try { localStorage.removeItem("ustad.ses"); } catch (e) {} } else depoKoy("ses", sesEski);
+        // SAHTE köprü: motor açılmadı diyorsa köprüyle KONUŞMAYI denememeli, tarayıcıya düşmeli
+        var gercekUstad = window.USTAD, konusan = [], webSayac = 0;
+        var gercekSpeak = window.speechSynthesis ? window.speechSynthesis.speak : null;
+        window.USTAD = { sesListesi: function () { return "[]"; }, teshis: function () { return JSON.stringify({ hazir: false, dilVar: false, motor: "android-tts", sesSayisi: 0, hata: "motor acilamadi" }); },
+                         konusSesli: function () { konusan.push("kopru"); }, konusTon: function () { konusan.push("kopru"); }, sus: function () {} };
+        if (window.speechSynthesis) window.speechSynthesis.speak = function () { webSayac++; };
+        var eskiCins = depoAl("cinsiyet", null), eskiSes = depoAl("ses", null);
+        depoKoy("ses", true);
+        S.konus("Ses denemesi bir iki uc.", { zorla: true, gecikme: 0 });
+        ok("koruma: motor açılmadıysa köprü kullanılmaz", konusan.length === 0, konusan.length + " köprü çağrısı");
+        ok("koruma: tarayıcı motoruna düşer", webSayac >= 1, webSayac + " tarayıcı çağrısı");
+        S.durdur();
+        window.USTAD = { sesListesi: function () { return "[]"; }, teshis: function () { return JSON.stringify({ hazir: true, dilVar: true, sorun: "", motor: "android-tts", sesSayisi: 2, hata: "" }); },
+                         konusSesli: function () { konusan.push("kopru"); }, konusTon: function () { konusan.push("kopru"); }, sus: function () {} };
+        konusan = []; webSayac = 0;
+        S.konus("Ses denemesi bir iki uc.", { zorla: true, gecikme: 0 });
+        ok("koruma: motor hazırsa köprü kullanılır", konusan.length >= 1, konusan.length + " köprü çağrısı");
+        S.durdur();
+        window.USTAD = gercekUstad;
+        if (window.speechSynthesis && gercekSpeak) window.speechSynthesis.speak = gercekSpeak;
+        if (eskiCins === null) { try { localStorage.removeItem("ustad.cinsiyet"); } catch (e) {} } else depoKoy("cinsiyet", eskiCins);
+        if (eskiSes === null) { try { localStorage.removeItem("ustad.ses"); } catch (e) {} } else depoKoy("ses", eskiSes);
         var kap = document.createElement("div");
         kap.id = "sesTestSonuc";
         kap.style.cssText = "position:fixed;inset:0;background:#fff;color:#111;z-index:99999;padding:16px;overflow:auto;font:13px/1.7 monospace";
