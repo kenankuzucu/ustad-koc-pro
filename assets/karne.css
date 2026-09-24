@@ -1,0 +1,110 @@
+/* © 2026 Kenan Kuzucu · ÜSTAD KOÇ PRO · Haftalık Karne bölümü stilleri · TÜM HAKLARI SAKLIDIR (5846 FSEK).
+   Bölümün kendi rengi: var(--karne) / var(--karne2) (#166534 koyu yeşil). Tema değişse de bu renk sabittir.
+   Sınıf öneki: `kn-` · Ortak sınıflar (.kart .sayfa-baslik .ka-dugme .ka-mini .ka-etiket .oyun-tablo
+   .aciklama .rakam) burada yeniden TANIMLANMAZ, yalnızca kullanılır.
+   Grafik, kütüphanesiz elle çizilen SVG'dir; renkler tema değişkenlerinden gelir (gece modu uyumlu). */
+
+/* ── bölüm başlığı ve kartı kendi renginde ── */
+[data-bolum="karne"] .kart { border-top:4px solid var(--karne); }
+[data-bolum="karne"] .sayfa-baslik { color:var(--karne); }
+
+/* ── bölüm iskeleti ── */
+.kn-bolum { border-top:1px solid var(--cizgi); padding-top:14px; margin-top:16px; }
+.kn-bolum.kn-ilk, .kn-bolum:first-child { border-top:0; padding-top:0; margin-top:0; }
+.kn-baslik { margin:0 0 9px; font-size:15.5px; color:var(--karne); letter-spacing:.2px; }
+.kn-not { color:var(--soluk); font-size:12px; line-height:1.6; }
+.kn-soluk { color:var(--soluk); }
+.kn-sayi { color:var(--soluk); font-size:12.5px; margin:8px 0 0; font-variant-numeric:tabular-nums; }
+.kn-anahtar { display:inline-block; font-size:10.5px; color:var(--soluk); background:rgba(0,0,0,.045);
+  border:1px solid var(--cizgi); border-radius:999px; padding:0 6px; margin-left:4px; }
+.kn-arti { color:var(--karne); font-weight:700; }
+.kn-yeni { background:var(--karne); color:#fff; border-color:var(--karne); margin-left:4px; font-size:10px; }
+
+/* ── 1) dönem seçimi ── */
+.kn-donem { display:flex; flex-wrap:wrap; gap:8px; margin:2px 0 4px; }
+.kn-donem .ka-mini { cursor:pointer; font-size:12.5px; }
+.kn-donem .ka-mini.kn-secili { background:linear-gradient(160deg, var(--karne), var(--karne2)); color:#fff;
+  border-color:var(--karne); box-shadow:0 4px 12px rgba(22,101,52,.28); }
+.kn-donem .ka-mini:focus-visible { outline:2px solid var(--karne); outline-offset:2px; }
+
+/* ── 2) KARNE KUTUSU (büyük, kendi renginde) ── */
+.kn-karne { background:linear-gradient(155deg, var(--karne), var(--karne2)); color:#fff; border-radius:var(--r);
+  padding:14px 14px 12px; box-shadow:0 10px 26px rgba(20,83,45,.3); }
+.kn-karne-ust { display:flex; justify-content:space-between; align-items:baseline; gap:10px; flex-wrap:wrap;
+  border-bottom:1px solid rgba(255,255,255,.28); padding-bottom:8px; margin-bottom:12px; }
+.kn-karne-ust b { font-size:16.5px; letter-spacing:.2px; }
+.kn-karne-ust span { font-size:11.5px; opacity:.88; }
+.kn-kutular { display:grid; grid-template-columns:repeat(4, 1fr); gap:9px; }
+.kn-kutu { background:rgba(255,255,255,.13); border:1px solid rgba(255,255,255,.22); border-radius:12px;
+  padding:9px 6px 8px; text-align:center; }
+.kn-kutu b { display:block; font-size:clamp(16px,4.6vw,23px); line-height:1.15; font-variant-numeric:tabular-nums; }
+.kn-kutu span { display:block; font-size:9.4px; letter-spacing:.1em; opacity:.92; margin-top:3px; }
+.kn-kutu i { display:block; font-style:normal; font-size:10.2px; opacity:.8; margin-top:2px; }
+.kn-oyunlar { margin:11px 0 0; font-size:12.5px; opacity:.95; }
+.kn-oyunlar b { font-variant-numeric:tabular-nums; }
+.kn-oyunlar.kn-soluk { opacity:.75; }
+
+/* ── 3) tablolar (kalem dökümü · konu gelişimi · yanlış konular · önceki karneler) ── */
+.kn-tablo { margin:6px 0 8px; }
+.kn-tablo th, .kn-tablo td { font-size:12.6px; }
+.kn-tablo .rakam, .kn-tablo td[class*="rakam"] { font-variant-numeric:tabular-nums; }
+.kn-tablo tr.kn-toplam td { border-top:2px solid var(--karne); font-weight:700; color:var(--karne); }
+.kn-tablo tbody tr:hover td { background:rgba(22,101,52,.05); }
+
+/* ── 4) haftalık grafik (elle çizilen SVG) ── */
+.kn-grafik-kap { overflow-x:auto; -webkit-overflow-scrolling:touch; }
+.kn-grafik { width:100%; height:auto; display:block; background:rgba(22,101,52,.05);
+  border:1px solid var(--cizgi); border-radius:13px; padding:6px 4px; }
+.kn-izgara { stroke:var(--cizgi); stroke-width:1; stroke-dasharray:4 5; }
+.kn-eksen { fill:var(--soluk); font-size:11px; font-variant-numeric:tabular-nums; }
+.kn-taban { stroke:var(--soluk); stroke-width:1.2; opacity:.55; }
+.kn-sutun { fill:var(--karne); opacity:.92; }
+.kn-sutun.kn-bos { fill:var(--soluk); opacity:.22; }
+.kn-sutun.kn-bugun { fill:var(--karne2); opacity:1; }
+.kn-sutun-deger { fill:var(--karne2); font-size:11.5px; font-weight:700; font-variant-numeric:tabular-nums; }
+.kn-sutun-deger.kn-soluk { fill:var(--soluk); font-weight:400; }
+.kn-gun { fill:var(--metin); font-size:11.5px; }
+.kn-gun.kn-bugun-yazi { fill:var(--karne); font-weight:700; }
+.kn-gun-alt { fill:var(--soluk); font-size:9.6px; }
+
+/* ── 7) otomatik yorum + düğmeler ── */
+.kn-yorum { border:1px solid var(--cizgi); border-left:4px solid var(--karne); border-radius:12px;
+  background:rgba(22,101,52,.06); padding:11px 13px; }
+.kn-yorum p { margin:0; font-size:14px; line-height:1.75; }
+.kn-butonlar { margin-top:10px; }
+.kn-butonlar .ka-dugme { background:linear-gradient(160deg, var(--karne), var(--karne2)); }
+.kn-butonlar .ka-dugme.ka-ikincil { background:var(--kart); color:var(--metin); border:1px solid var(--cizgi); }
+
+/* ── boş durum: açık zeminli ve okunabilir ── */
+.kn-bos { border:1px dashed var(--karne); border-radius:14px; padding:14px 16px; background:rgba(22,101,52,.08); }
+.kn-bos h4 { margin:0 0 6px; font-size:14.5px; color:var(--karne); }
+.kn-bos p { margin:4px 0 8px; font-size:13.5px; line-height:1.7; }
+.kn-adimlar { margin:6px 0 10px 18px; padding:0; font-size:13.5px; line-height:1.8; }
+.kn-bos code { background:rgba(0,0,0,.08); border-radius:6px; padding:1px 6px; font-size:12.4px; }
+.kn-bos-yazi { color:var(--soluk); font-size:13px; margin:4px 0; line-height:1.65; }
+
+/* ── gece modu: karne kutusu zaten koyu, kenarlar yumuşasın ── */
+body.gece-mod .kn-yorum, html[data-renk="gece"] .kn-yorum { background:rgba(22,101,52,.22); }
+body.gece-mod .kn-bos, html[data-renk="gece"] .kn-bos { background:rgba(22,101,52,.24); }
+body.gece-mod .kn-grafik, html[data-renk="gece"] .kn-grafik { background:rgba(255,255,255,.04); }
+body.gece-mod .kn-anahtar, html[data-renk="gece"] .kn-anahtar { background:rgba(255,255,255,.07); }
+
+/* ── duyarlı ── */
+@media (max-width:600px) {
+  .kn-kutular { grid-template-columns:repeat(2, 1fr); }
+  .kn-kutu b { font-size:21px; }
+  .kn-donem .ka-mini { flex:1 1 44%; text-align:center; }
+  .kn-tablo th, .kn-tablo td { font-size:12px; padding:6px 6px; }
+  .kn-anahtar { display:none; }
+}
+
+/* ── yazdırma: karne kâğıda tam sığsın, düğmeler çıkmasın ── */
+@media print {
+  .kn-butonlar, .kn-donem, .ust, .menu, .menu-perde, .menu-dugme { display:none !important; }
+  .ekran:not(.acik) { display:none !important; }
+  .icerik { padding:0 !important; max-width:none !important; }
+  #karneAlan .kart { box-shadow:none !important; border:0 !important; }
+  .kn-karne, .kn-kutu, .kn-sutun, .kn-yorum, .kn-bos {
+    -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .kn-bolum { page-break-inside:avoid; }
+}

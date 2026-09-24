@@ -29,6 +29,10 @@
     { kod: "defter",     ad: "Yanlış Defterim", simg: "📕", renk: "var(--defter)",    renk2: "#b91c1c" },
     { kod: "minitest",   ad: "Mini Test",       simg: "⏱️", renk: "var(--minitest)",  renk2: "#0369a1" },
     { kod: "danaliz",    ad: "Deneme Analizi",  simg: "📈", renk: "var(--danaliz)",   renk2: "#a16207" },
+    { kod: "sesdene",    ad: "Sesli Deneme",    simg: "🎧", renk: "var(--sesdene)",   renk2: "#4338ca" },
+    { kod: "ezber",      ad: "Ezber Kartları",  simg: "🧠", renk: "var(--ezber)",     renk2: "#a21caf" },
+    { kod: "rozet",      ad: "Seri & Rozet",    simg: "🔥", renk: "var(--rozet)",     renk2: "#ea580c" },
+    { kod: "karne",      ad: "Haftalık Karne",  simg: "🏆", renk: "var(--karne)",     renk2: "#166534" },
     { kod: "notlar",     ad: "Ders Notları",    simg: "📚", renk: "var(--notlar)",     renk2: "#7c3aed" },
     { kod: "istatistik", ad: "İstatistik",      simg: "📊", renk: "var(--istatistik)", renk2: "#1d6fe0" },
     { kod: "ayarlar",    ad: "Ayarlar",         simg: "⚙️", renk: "var(--ayarlar)",    renk2: "#556070" },
@@ -129,6 +133,10 @@
     if (window.DEFTER && window.DEFTER.bolumAc) window.DEFTER.bolumAc(kod);
     if (window.MINITEST && window.MINITEST.bolumAc) window.MINITEST.bolumAc(kod);
     if (window.DANALIZ && window.DANALIZ.bolumAc) window.DANALIZ.bolumAc(kod);
+    if (window.SESDENE && window.SESDENE.bolumAc) window.SESDENE.bolumAc(kod);
+    if (window.EZBER && window.EZBER.bolumAc) window.EZBER.bolumAc(kod);
+    if (window.ROZET && window.ROZET.bolumAc) window.ROZET.bolumAc(kod);
+    if (window.KARNE && window.KARNE.bolumAc) window.KARNE.bolumAc(kod);
     // Bölüm bağlantısı (derin link): index.html#sayim gibi
     try { if (history.replaceState) history.replaceState(null, "", "#" + kod); } catch (e) {}
   }
