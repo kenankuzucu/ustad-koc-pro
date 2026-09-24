@@ -1,0 +1,40 @@
+══════════════════════════════════════════════════════════════════
+  ÜSTAD KOÇ PRO — GITHUB YEDEK BİLGİSİ
+  (Tarih: 24 Eylül 2026)
+══════════════════════════════════════════════════════════════════
+
+DEPO (ÖZEL / PRIVATE)
+  https://github.com/kenankuzucu/ustad-koc-pro
+  Sadece senin hesabın görebilir. Telif koruması için public DEĞİL.
+
+SON COMMIT
+  19ce7d7 — "ÜSTAD KOÇ PRO v2.2 — 38 özellik (koc.js + koc2.js + koc3.js) + APK arşivi"
+  Doğrulandı: yerel commit = uzak commit · yerel 117 dosya = uzak 117 dosya
+
+DEPODA NE VAR
+  index.html, assets/ (motor.js, deneme.js, stil.css, koc.js, koc2.js, koc3.js, koc.css)
+  icerik/ (120 özgün soru, 20 not, haber beslemesi, üretim JSON'ları)
+  android-kabuk/ (MainActivity.java, Konusucu.java, manifest, res, derleme betiği)
+  apk/ (3 sürüm) · ekran-goruntuleri/ · tasarim/ · OKU-BENI.md · TELIF-VE-HAKLAR.md
+
+APK ARŞİVİ (depodaki apk/ klasörü — uzaktan indirilip sha256 ile doğrulandı)
+  ustad-koc-pro-v2.0.apk   1.096.322 bayt   sha256 ddb0ffd9e8dfaf…
+  ustad-koc-pro-v2.1.apk   1.116.935 bayt   sha256 525962190112c6…
+  ustad-koc-pro-v2.2.apk   1.137.549 bayt   sha256 39b778aa221a70…
+
+  v1.0 – v1.9 sürümleri AYRI depoda duruyor (sade ÜSTAD KPSS-B ürünü):
+  https://github.com/kenankuzucu/ustad-motor   (commit 80735aa)
+
+GERİ YÜKLEME (yeni bilgisayarda)
+  git clone https://github.com/kenankuzucu/ustad-koc-pro.git
+  (özel depo → GitHub kullanıcı adı + kişisel erişim token'ı ister)
+
+YENİ YEDEK ALMAK (tek komut)
+  bash "C:/Users/kenan/OneDrive/Desktop/USTAD-MOTOR-2/araclar/koc-pro-yedek.sh" "kısa açıklama"
+
+ÇALIŞMA KLASÖRLERİ (bu bilgisayarda)
+  KOÇ PRO  : C:\Users\kenan\OneDrive\Desktop\USTAD-MOTOR-2      (aktif geliştirme)
+  v1.9 sade: C:\Users\kenan\OneDrive\Desktop\USTAD-MOTOR        (DOKUNULMAZ — git temiz)
+
+  © 2026 Kenan Kuzucu · Tüm hakları saklıdır. 5846 sayılı FSEK kapsamında korunur.
+══════════════════════════════════════════════════════════════════
