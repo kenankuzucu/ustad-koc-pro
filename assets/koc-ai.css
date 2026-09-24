@@ -1,0 +1,38 @@
+/* © 2026 Kenan Kuzucu · ÜSTAD KOÇ PRO · ÜSTAD KOÇ AI stilleri · TÜM HAKLARI SAKLIDIR. */
+
+.kai-ust { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin:2px 0 12px; }
+.kai-koc { display:flex; flex-direction:column; gap:2px; }
+.kai-koc b { font-size:16px; }
+.kai-koc span { font-size:11.5px; color:var(--soluk); }
+.kai-rozet { margin-left:auto; background:linear-gradient(160deg, var(--kocai), var(--kocai2)); color:#fff;
+  border-radius:999px; padding:5px 13px; font-size:13px; font-weight:700; }
+.kai-kutular { display:grid; grid-template-columns:repeat(auto-fit,minmax(118px,1fr)); gap:9px; margin:10px 0; }
+.kai-kutu { background:linear-gradient(160deg, var(--kocai), var(--kocai2)); color:#fff; border-radius:12px;
+  padding:10px 8px; text-align:center; box-shadow:0 6px 14px rgba(15,118,110,.22); }
+.kai-kutu b { display:block; font-size:19px; font-variant-numeric:tabular-nums; }
+.kai-kutu span { font-size:10px; letter-spacing:.09em; opacity:.9; }
+.kai-uyari { border:1px solid var(--cizgi); border-left:4px solid #d97706; border-radius:10px; padding:9px 12px;
+  background:var(--kart); font-size:13px; margin:10px 0; }
+.kai-iki { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:12px; }
+.kai-blok { border:1px solid var(--cizgi); border-left:4px solid var(--kocai); border-radius:12px; padding:12px;
+  background:var(--kart); margin:10px 0; }
+.kai-blok h4 { margin:0 0 9px; font-size:15px; }
+.kai-gorev { display:flex; gap:9px; align-items:flex-start; padding:9px 10px; border:1px solid var(--cizgi);
+  border-radius:10px; margin-bottom:7px; background:rgba(0,0,0,.02); }
+.kai-gorev.tamam { opacity:.6; }
+.kai-gorev.tamam .kai-gorev-ic b { text-decoration:line-through; }
+.kai-tik { width:30px; height:30px; flex:0 0 30px; border-radius:9px; border:1px solid var(--cizgi);
+  background:var(--kart); color:var(--kocai); font-size:15px; font-weight:700; cursor:pointer; }
+.kai-gorev-ic { flex:1 1 auto; display:flex; flex-direction:column; gap:3px; }
+.kai-gorev-ic b { font-size:13.5px; }
+.kai-gorev-ic span { font-size:12px; color:var(--soluk); line-height:1.5; }
+.kai-form { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin:10px 0; }
+.kai-form input { flex:1 1 220px; padding:9px 11px; border:1px solid var(--cizgi); border-radius:10px;
+  background:var(--kart); color:var(--metin); font-size:13.5px; }
+.kai-sohbet { max-height:260px; overflow:auto; padding-right:4px; }
+.kai-mesaj { border-radius:11px; padding:9px 11px; margin-bottom:8px; font-size:13.5px; line-height:1.55;
+  border:1px solid var(--cizgi); background:rgba(0,0,0,.02); }
+.kai-mesaj b { display:block; font-size:11.5px; color:var(--kocai); margin-bottom:3px; }
+.kai-mesaj.ben { border-left:4px solid var(--kocai); }
+.kai-mesaj.koc { border-left:4px solid #7c3aed; background:rgba(124,58,237,.06); }
+.kai-liste { margin:0; padding-left:18px; font-size:13px; line-height:1.7; }
