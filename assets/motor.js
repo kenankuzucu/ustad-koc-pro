@@ -22,6 +22,8 @@
     { kod: "puan",       ad: "Net & Puan",      simg: "🧮", renk: "var(--puan)",      renk2: "#b45309" },
     { kod: "guncel",     ad: "2026 Güncel Bilgiler", simg: "📰", renk: "var(--guncel)", renk2: "#0e7490" },
     { kod: "cikmis",     ad: "Çıkmış Sorular",  simg: "📚", renk: "var(--cikmis)",    renk2: "#c2410c" },
+    { kod: "sesli",      ad: "Sesli Dersler",   simg: "🎧", renk: "var(--sesli)",     renk2: "#1d4ed8" },
+    { kod: "oyun",       ad: "Eğitici Oyunlar", simg: "🎮", renk: "var(--oyun)",      renk2: "#be185d" },
     { kod: "notlar",     ad: "Ders Notları",    simg: "📚", renk: "var(--notlar)",     renk2: "#7c3aed" },
     { kod: "istatistik", ad: "İstatistik",      simg: "📊", renk: "var(--istatistik)", renk2: "#1d6fe0" },
     { kod: "ayarlar",    ad: "Ayarlar",         simg: "⚙️", renk: "var(--ayarlar)",    renk2: "#556070" },
@@ -110,6 +112,10 @@
     if (kod === "hakkinda") hakkinda();
     // KPSS ARAÇLAR eklentisi (v2.4): geri sayım / net-puan / güncel bilgiler / çıkmış sorular
     if (window.KPSS_ARACLAR && window.KPSS_ARACLAR.bolumAc) window.KPSS_ARACLAR.bolumAc(kod);
+    // SES MOTORU + SESLİ DERSLER (v2.5)
+    if (window.KPSS_SES && window.KPSS_SES.bolumAc) window.KPSS_SES.bolumAc(kod);
+    // EĞİTİCİ OYUNLAR (v2.5)
+    if (window.KPSS_OYUN && window.KPSS_OYUN.bolumAc) window.KPSS_OYUN.bolumAc(kod);
     // Bölüm bağlantısı (derin link): index.html#sayim gibi
     try { if (history.replaceState) history.replaceState(null, "", "#" + kod); } catch (e) {}
   }
@@ -138,6 +144,9 @@
   function konus(metin) {
     if (!Depo.al("ses", true)) return;
     try { window.__sonKonusma = metin; } catch (e) {}
+    /* v2.5: konuşma artık SES MOTORUNA devredilir (metni okunur hâle getirir, cümle cümle
+       nefes duraklarıyla okur, kız öğrenciye kadın / erkek öğrenciye erkek sesini seçer). */
+    if (window.KPSS_SES && window.KPSS_SES.konus) { try { window.KPSS_SES.konus(metin); return; } catch (e) {} }
     var kadin = (cinsiyet() === "kiz");
     // Cinsiyet etiketli ses yoksa perde (pitch) farkı cinsiyet hissini verir: kadın daha ince, erkek daha kalın
     var pitch = kadin ? 1.32 : 0.78;

@@ -1,0 +1,21 @@
+/* © 2026 Kenan Kuzucu · ÜSTAD KPSS-B KOÇ PRO · ses motoru + sesli dersler stilleri · TÜM HAKLARI SAKLIDIR. */
+
+.ses-ust { display:flex; flex-wrap:wrap; gap:6px; margin:6px 0 10px; }
+.ses-satir { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin:9px 0; font-size:13.5px; }
+.ses-satir input[type=range] { width:170px; }
+.ses-liste { margin:10px 0; }
+.ses-liste h4 { margin:14px 0 8px; }
+.ses-ses { display:flex; flex-wrap:wrap; align-items:center; gap:8px; padding:9px 11px; border:1px solid var(--cizgi);
+  border-left:4px solid var(--sesli); border-radius:10px; background:var(--kart); margin-bottom:7px; }
+.ses-ses b { flex:1 1 200px; font-size:13px; word-break:break-all; }
+.ses-dugme-grup { display:flex; gap:6px; margin-left:auto; flex-wrap:wrap; }
+.ses-parca { display:flex; flex-wrap:wrap; align-items:center; gap:8px; padding:9px 11px; border:1px solid var(--cizgi);
+  border-left:4px solid var(--sesli); border-radius:10px; background:var(--kart); margin-bottom:7px; }
+.ses-parca b { flex:1 1 220px; font-size:13.5px; }
+.ses-oynatici { border:1px solid var(--cizgi); border-left:4px solid var(--sesli); border-radius:12px; padding:12px;
+  background:var(--kart); margin:12px 0; }
+.ses-oynatici h4 { margin:0 0 6px; }
+.ses-cubuk { height:8px; border-radius:999px; background:rgba(0,0,0,.08); overflow:hidden; margin:8px 0; }
+.ses-cubuk i { display:block; height:100%; width:0; background:var(--sesli); transition:width .3s; }
+.ses-cumle { font-size:14px; line-height:1.65; margin:8px 0 12px; padding-left:10px; border-left:3px solid var(--cizgi); }
+.ses-metin { font-size:13.5px; line-height:1.7; white-space:pre-wrap; }

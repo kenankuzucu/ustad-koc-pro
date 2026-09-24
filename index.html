@@ -5,11 +5,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="surum" content="2.4">
+<meta name="surum" content="2.5">
 <title>ÜSTAD KPSS-B KOÇ PRO · Sınav Koçu</title>
 <link rel="stylesheet" href="assets/stil.css">
 <link rel="stylesheet" href="assets/koc.css">
 <link rel="stylesheet" href="assets/kpss-araclar.css">
+<link rel="stylesheet" href="assets/ses.css">
+<link rel="stylesheet" href="assets/oyunlar.css">
 </head>
 <body>
 
@@ -211,6 +213,18 @@
     <div class="kart" id="kaCikmisAlan"></div>
   </section>
 
+  <!-- Sesli Dersler (v2.5) -->
+  <section id="ekran-sesli" class="ekran" data-bolum="sesli">
+    <h2 class="sayfa-baslik">🎧 Sesli Dersler</h2>
+    <div class="kart" id="sesSesliAlan"></div>
+  </section>
+
+  <!-- Eğitici Oyunlar (v2.5) -->
+  <section id="ekran-oyun" class="ekran" data-bolum="oyun">
+    <h2 class="sayfa-baslik">🎮 Eğitici Oyunlar</h2>
+    <div class="kart" id="oyunAlan"></div>
+  </section>
+
   <!-- İSTATİSTİK -->
   <section id="ekran-istatistik" class="ekran" data-bolum="istatistik">
     <h2 class="sayfa-baslik">📊 İstatistik</h2>
@@ -235,6 +249,8 @@
       <p class="aciklama">Girişte “Hoş geldin …” sesli okunur (cihazın Türkçe sesi kullanılır).</p>
       <label class="cip"><input type="checkbox" id="sesAc" checked><span>Açık</span></label>
     </div>
+    <!-- Ses stüdyosu (v2.5): kadın/erkek sesi seçimi + doğallık ayarı -->
+    <div class="kart" id="sesStudyosu" data-kuruldu="0"></div>
     <div class="kart">
       <h3>Deneme Sınavı</h3>
       <p class="aciklama">Açıkken denemede de testlerdeki gibi doğru/yanlış <b>anında</b> gösterilir ve cevap kilitlenir.
@@ -305,5 +321,7 @@
 <script src="assets/koc2.js"></script>
 <script src="assets/koc3.js"></script>
 <script src="assets/kpss-araclar.js"></script>
+<script src="assets/ses.js"></script>
+<script src="assets/oyunlar.js"></script>
 </body>
 </html>

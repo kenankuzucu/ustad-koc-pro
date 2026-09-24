@@ -1,0 +1,41 @@
+/* © 2026 Kenan Kuzucu · ÜSTAD KPSS-B KOÇ PRO · eğitici oyunlar stilleri · TÜM HAKLARI SAKLIDIR. */
+
+.oyun-ust { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin:4px 0 12px; }
+.oyun-puan { display:grid; grid-template-columns:repeat(auto-fit,minmax(110px,1fr)); gap:10px; margin:10px 0; }
+.oyun-kutu { background:linear-gradient(160deg, var(--oyun), var(--oyun2)); color:#fff; border-radius:13px;
+  padding:11px 8px; text-align:center; box-shadow:0 6px 15px rgba(190,24,93,.22); }
+.oyun-kutu b { display:block; font-size:22px; font-variant-numeric:tabular-nums; }
+.oyun-kutu span { font-size:10.5px; letter-spacing:.1em; opacity:.92; }
+.oyun-secim { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:10px; margin:10px 0; }
+.oyun-kart { border:1px solid var(--cizgi); border-radius:13px; padding:12px; background:var(--kart); cursor:pointer;
+  text-align:left; color:var(--metin); font-size:13.5px; }
+.oyun-kart:hover { border-color:var(--oyun); }
+.oyun-kart b { display:block; margin-bottom:4px; font-size:14.5px; }
+.oyun-kart span { color:var(--soluk); font-size:12px; }
+.oyun-soru { border:1px solid var(--cizgi); border-left:4px solid var(--oyun); border-radius:13px; padding:13px;
+  background:var(--kart); }
+.oyun-soru h4 { margin:0 0 8px; font-size:15px; line-height:1.5; }
+.oyun-sik { display:block; width:100%; text-align:left; padding:10px 12px; margin-bottom:7px; border-radius:10px;
+  border:1px solid var(--cizgi); background:var(--kart); color:var(--metin); font-size:13.5px; cursor:pointer; }
+.oyun-sik.dogru { background:#12a150; border-color:#12a150; color:#fff; }
+.oyun-sik.yanlis { background:#dc2626; border-color:#dc2626; color:#fff; }
+.oyun-sik.soluk { opacity:.55; }
+.oyun-sure { height:9px; border-radius:999px; background:rgba(0,0,0,.08); overflow:hidden; margin:8px 0 12px; }
+.oyun-sure i { display:block; height:100%; background:var(--oyun); width:100%; transition:width 1s linear; }
+.oyun-geri { border-radius:10px; padding:9px 12px; margin-top:9px; font-size:13.5px; border-left:4px solid var(--soluk);
+  background:rgba(0,0,0,.03); }
+.oyun-geri.iyi { border-left-color:#12a150; }
+.oyun-geri.kotu { border-left-color:#dc2626; }
+.oyun-bitti { border:1px solid var(--cizgi); border-left:4px solid var(--oyun); border-radius:13px; padding:14px; background:var(--kart); }
+.oyun-bitti h4 { margin:0 0 8px; font-size:17px; }
+.oyun-tablo { width:100%; border-collapse:collapse; margin:16px 0; }
+.oyun-tablo th, .oyun-tablo td { padding:7px 9px; border-bottom:1px solid var(--cizgi); text-align:left; font-size:13px; }
+.oyun-tablo th { color:var(--soluk); font-size:11.5px; text-transform:uppercase; letter-spacing:.05em; }
+
+/* eşleştirme tahtası */
+.oyun-tahta { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:9px; margin:12px 0; }
+.oyun-pul { min-height:76px; border:1px solid var(--cizgi); border-radius:12px; background:var(--kart); color:var(--metin);
+  display:flex; align-items:center; justify-content:center; text-align:center; padding:9px; font-size:12.5px; cursor:pointer; }
+.oyun-pul.kapali { background:linear-gradient(160deg, var(--oyun), var(--oyun2)); color:transparent; }
+.oyun-pul.acik { border-color:var(--oyun); }
+.oyun-pul.eslesti { background:#12a150; border-color:#12a150; color:#fff; }

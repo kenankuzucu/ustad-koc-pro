@@ -10,6 +10,7 @@ const path = require("path");
 const PORT = process.env.CDP_PORT || 9333;
 const PROJE = path.resolve(__dirname, "..");
 const SAYFA = "file:///" + PROJE.replace(/\\/g, "/") + "/index.html";
+const ONBELLEK = "?v=" + Date.now();   // tarayıcı önbelleğini atla
 const CIKTI = path.join(PROJE, "ekran-goruntuleri");
 const BOLUMLER = process.argv.slice(2);
 if (!BOLUMLER.length) { console.error("Kullanım: node araclar/ekran-cek.js sayim puan guncel cikmis"); process.exit(2); }
@@ -51,12 +52,14 @@ async function main() {
   };
 
   await gonder("Page.enable");
+  await gonder("Network.enable");
+  await gonder("Network.setCacheDisabled", { cacheDisabled: true });
   await gonder("Runtime.enable");
   await gonder("Emulation.setDeviceMetricsOverride", { width: 1280, height: 1150, deviceScaleFactor: 1, mobile: false });
 
   let ilk = true;
   for (const bolum of BOLUMLER) {
-    await gonder("Page.navigate", { url: SAYFA + "#" + bolum });
+    await gonder("Page.navigate", { url: SAYFA + ONBELLEK + "#" + bolum });
     await bekle(ilk ? 3500 : 2200);
     if (ilk) {
       const r = await js(`(() => {
@@ -74,7 +77,7 @@ async function main() {
       console.log("tanıtım: " + a);
       await bekle(900);
       // Kapı kapandığında uygulama "ana" bölümüne döner; istenen bölüme yeniden gidilir
-      await gonder("Page.navigate", { url: SAYFA + "#" + bolum });
+      await gonder("Page.navigate", { url: SAYFA + ONBELLEK + "#" + bolum });
       await bekle(1800);
       ilk = false;
     }
