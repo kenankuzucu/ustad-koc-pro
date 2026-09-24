@@ -324,7 +324,8 @@
           baslik: k.baslik, alt: k.alt, kaynak: k.kaynak, hedef: k.hedef,
           etiket: g.etiket, alan: al.alan,
           on: al.on, arka: al.arka,
-          alinti: (al.on ? "… " : "") + vurgula(al.ham, kels) + (al.arka ? " …" : "")
+          alinti: (al.on ? "… " : "") + vurgula(al.ham, kels) +
+                  (al.arka && !/…$/.test(al.ham) ? " …" : "")
         });
       });
       if (sec.length) {

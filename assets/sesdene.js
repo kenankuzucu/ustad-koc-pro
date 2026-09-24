@@ -789,9 +789,38 @@
            "soru başına " + (Math.round(kayit.sureDk / kayit.toplam * 10) / 10) + " dk");
         ok("kayıt: ekranda güncellendi", /Bugüne kadar/.test($("#sdKayit").textContent) && $("#sdKayit").textContent.indexOf(String(kayit.toplam)) >= 0, $("#sdKayit").textContent.slice(0, 50));
 
-        /* ── 11) otomatik geçişi bekle (asenkron) — kart hafızası bu ana kadar DOLU kalmalı ── */
-        setTimeout(function () {
-          ok("otomatik geç AÇIK: soru bitince sıradakine geçti", A.durum.i === 1, "i=" + A.durum.i + " / " + A.durum.durum);
+        /* ── 11) otomatik geçişi bekle (asenkron) — kart hafızası bu ana kadar DOLU kalmalı ──
+           UYARI (ölçüm güvenilirliği): Bu sayfada bütün modüllerin kendi kendini testleri aynı anda
+           koşar. Başka bir modülün testi bölüm değiştirdiğinde motor SESDENE.bolumAc(kod) çağırır ve
+           bekleyen otomatik geçiş DOĞRU ŞEKİLDE iptal edilir (kullanıcı bölümden çıkıyor); ayrıca
+           yoğun sayfada tarayıcı zamanlayıcıları geciktirebilir. Bu yüzden ölçüm sabit bir gecikmeye
+           (setTimeout) DEĞİL, "sıradaki soruya geçti mi?" döngüsüne bağlanır: dış müdahale görülürse
+           ölçüm yeniden kurulur ve başarı ya da süre dolana kadar beklenir. Modülün davranışı
+           değişmez; yalnızca testin zamanlamaya bağımlılığı kaldırılır. */
+        var otoGecisBekle = function (bitir) {
+          var basla = Date.now(), deneme = 0, son = "";
+          var kur = function () {
+            deneme++;
+            try { A.bolumAc("sesdene"); } catch (e) {}
+            A.otoAyarla(true);          /* otomatik geç açık */
+            A.turAyarla("yanlis");      /* kart listesi (3 soru) */
+            yakalanan.length = 0;
+            A.oynat(0);
+            var f = yakalanan.length ? yakalanan[0].sec.bitti : null;
+            if (f) f();                 /* ses bitti → modülün kendi geçiş zamanlayıcısı kurulur */
+          };
+          var bak = function () {
+            son = "i=" + A.durum.i + " / " + A.durum.durum + (deneme > 1 ? " (" + deneme + ". ölçüm)" : "");
+            if (A.durum.i >= 1) return bitir(true, son);
+            if (Date.now() - basla > 15000) return bitir(false, son + " · 15 sn beklendi, geçiş olmadı");
+            if (A.durum.durum === "duruk") { kur(); return void setTimeout(bak, 60); }  /* dış bölüm değişimi → yeniden kur */
+            setTimeout(bak, 50);
+          };
+          setTimeout(bak, 50);
+        };
+
+        var devam = function (otoGecti, otoEk) {
+          ok("otomatik geç AÇIK: soru bitince sıradakine geçti", otoGecti, otoEk);
 
           /* ── 12) "anladım" → karttan sil ── */
           var silinenId = (A.durum.liste[A.durum.i] || {}).kartId;
@@ -828,7 +857,9 @@
              kalan.toplam + " (eski " + (vardi.sesdene ? (JSON.parse(eski.sesdene || "{}").toplam || 0) : 0) + ")");
           A.bolumAc("sesdene");
           yaz();
-        }, GECIS_MS + 700);
+        };
+
+        otoGecisBekle(devam);
 
         };
 

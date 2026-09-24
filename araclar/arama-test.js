@@ -2,15 +2,17 @@
    Chrome şu bayrakla açık olmalı: --headless=new --remote-debugging-port=9333
    Kullanım: node araclar/arama-test.js [url]
 
-   Neden böyle: uygulama ?test=1 kipinde açılınca TÜM modüllerin kendi testleri çalışır ve
-   bazı testler kayıt/temizle akışlarını denerken koc.js içindeki location.reload() çağrısı
-   belgeyi baştan yükler. Bu yüzden ölçüm aracı:
-     1) sayfayı açar, belgenin OTURMASINI bekler (timeOrigin sabit + yeterince eski),
-     2) assets/arama.css + assets/arama.js dosyalarını enjekte eder (index.html'e DOKUNMAZ),
-     3) belge yeniden yüklenirse farkı görüp yeniden enjekte eder,
-     4) #aramaTestSonuc kutusunu okuyup geçen/toplam ve ✘ listesini yazar. */
+   Neden böyle: uygulama ?test=1 kipinde açılınca TÜM modüllerin kendi testleri çalışır; bazı
+   testler kayıt/temizle akışlarını denerken koc.js içindeki location.reload() belgeyi baştan
+   yükler ve ölçüm ortasında sayfayı siler. Bu yüzden ölçüm aracı:
+     1) sayfayı ?test=1 OLMADAN açar (başka modülün testi çalışmasın) ve belgenin oturmasını bekler,
+     2) adrese history.replaceState ile ?test=1 ekler — yalnız TEK ARAMA testi tetiklenir,
+     3) assets/arama.css + assets/arama.js enjekte eder (index.html'e DOKUNMAZ),
+     4) belge yeniden yüklenirse farkı görüp yeniden enjekte eder,
+     5) #aramaTestSonuc kutusunu okuyup geçen/toplam ve ✘ listesini yazar. */
 const PORT = process.env.CDP_PORT || 9333;
-const VARSAYILAN = "file:///C:/Users/kenan/OneDrive/Desktop/USTAD-MOTOR-2/index.html?test=1";
+const TEMIZ = "file:///C:/Users/kenan/OneDrive/Desktop/USTAD-MOTOR-2/index.html?isim=Olcum&statik=1";
+const VARSAYILAN = TEMIZ;
 const URL_ = process.argv[2] || VARSAYILAN;
 const bekle = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -81,13 +83,18 @@ async function main() {
   }
   console.log("→ belge oturdu:", stabil ? "evet" : "hayır (yine de denenecek)", String(onceki));
 
-  /* 2+3) enjekte et, gerekirse belge yenilendiğinde yeniden enjekte et */
+  /* 2+3) test kipini aç, enjekte et, gerekirse belge yenilendiğinde yeniden enjekte et.
+     Sayfa ?test=1 ile açıldıysa arama.js zaten index.html'e bağlıdır → enjeksiyon yapılmaz. */
+  const gerekli = URL_.indexOf("test=1") < 0;
   let rapor = null, deneme = 0;
   while (deneme < 4 && !rapor) {
     deneme++;
     const k0 = String(await deger("performance.timeOrigin"));
-    const enj = await deger(ENJEKTE, true);
-    console.log(`→ enjeksiyon #${deneme}:`, enj);
+    const kip = await deger(`(() => { if (location.search.indexOf("test=1") < 0)
+        history.replaceState(null, "", location.pathname + "?test=1" + location.hash);
+      return location.search; })()`);
+    const enj = gerekli ? await deger(ENJEKTE, true) : "GEREKMEDİ (index.html'e bağlı)";
+    console.log(`→ enjeksiyon #${deneme}:`, enj, "| kip:", kip);
     for (let i = 0; i < 24; i++) {
       await bekle(500);
       const k1 = String(await deger("performance.timeOrigin"));

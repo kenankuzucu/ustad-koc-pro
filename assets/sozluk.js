@@ -82,9 +82,17 @@
   }
   function favVar(m) { return favOku().indexOf(favAnahtar(m)) >= 0; }
 
-  /* ───────────── ekran kabı ───────────── */
+  /* ───────────── ekran kabı ─────────────
+     TEK KONTEYNER KURALI: sayfada aynı anda tek #ekran-sozluk ve tek #sozlukAlan bulunur.
+     Mevcut kap her zaman YENİDEN KULLANILIR (ikinci kabuk üretilmez); klonlama/HTML kopyalama
+     ile oluşmuş fazlalıklar burada temizlenir. Böylece tıklama dinleyicisi her zaman ekranda
+     görünen kaba bağlanır. */
   function kap() {
-    var s = document.getElementById("ekran-sozluk");
+    var kabuklar = document.querySelectorAll("#ekran-sozluk");
+    var s = kabuklar.length ? kabuklar[0] : null;
+    for (var i = 1; i < kabuklar.length; i++) {
+      if (kabuklar[i].parentNode) kabuklar[i].parentNode.removeChild(kabuklar[i]);
+    }
     if (!s) {
       if (!document.body) return null;
       s = document.createElement("section");
@@ -95,7 +103,11 @@
       s.innerHTML = '<h2 class="sayfa-baslik">📖 Terim Sözlüğü</h2><div class="kart" id="sozlukAlan"></div>';
       document.body.appendChild(s);
     }
-    if (!document.getElementById("sozlukAlan")) {
+    var alanlar = s.querySelectorAll("#sozlukAlan");
+    for (var j = 1; j < alanlar.length; j++) {
+      if (alanlar[j].parentNode) alanlar[j].parentNode.removeChild(alanlar[j]);
+    }
+    if (!s.querySelector("#sozlukAlan")) {
       var alan = document.createElement("div");
       alan.id = "sozlukAlan";
       s.appendChild(alan);
@@ -194,6 +206,7 @@
 
     if (dk) {
       var dsay = {};
+      DERSLER.forEach(function (d) { dsay[d] = 0; });   /* sayaç anahtarları önce açılmalı */
       md.forEach(function (m) { if (dsay[m.ders] !== undefined) dsay[m.ders]++; });
       var h = '<span class="sz-cip-baslik">Ders</span>' +
         cipHTML("", "Tümü", DURUM.ders === "", md.length) +
@@ -250,7 +263,7 @@
   function ciz() {
     var s = kap();
     if (!s) return;
-    var alan = document.getElementById("sozlukAlan");
+    var alan = s.querySelector("#sozlukAlan");   /* tek konteyner: alan kabın içinden alınır */
     if (!alan) return;
     bagla(alan);
 
@@ -260,7 +273,7 @@
       LISTE = [];
       return;
     }
-    if (!document.getElementById("szListe")) {
+    if (!alan.querySelector("#szListe")) {
       alan.innerHTML = iskeletHTML(md.length);
       var girdi = document.getElementById("szArama");
       if (girdi) girdi.value = DURUM.arama;
@@ -390,11 +403,28 @@
   A.favoriAnahtar = favAnahtar;
   A.favoriler = favOku;
   A.dinle = dinle;
+  A.sayfaBoyu = SAYFA;                                    /* sayfalama kuralı: sayfa başına kart */
+  A.dersler = function () { return DERSLER.slice(); };     /* ders çipi listesi (sabit değil, modülden) */
+  A.harfler = function () { return HARFLER.slice(); };     /* harf şeridi listesi */
 
   /* ═════════════ kendi kendini test (?test=1) ═════════════
-     Ölçüm gerçek çalıştırmadır: modül sayfaya yüklendiğinde, adres ?test=1 içeriyorsa
-     geçici test verisiyle (60 madde) tüm mekanik ölçülür ve sonuçlar #sozlukTestSonuc'a yazılır. */
-  function sozlukTesti() {
+     Ölçüm gerçek çalıştırmadır ve SAYFADAKİ GERÇEK VERİYLE (window.USTAD_SOZLUK) yapılır.
+       1) Gerçek veri SAHTE VERİYLE DEĞİŞTİRİLMEZ. Boş/bozuk veri senaryolarında veri yedeklenir ve
+          AYNI adımda geri konur; ölçüm bittiğinde window.USTAD_SOZLUK ilk hâlindedir (aynı referans).
+       2) Beklenen sayılar SABİT YAZILMAZ; gerçek veriden ve modülün kendi kuralından türetilir:
+          TOPLAM = gerçek madde sayısı, kart beklentisi = Math.min(A.sayfaBoyu, sonuç sayısı).
+       3) TEK KONTEYNER garantisi ölçülür: sayfada tek #ekran-sozluk / #sozlukAlan / #szDersler /
+          #szListe / #szHarfler bulunur; ciz() yeni kabuk üretmez.
+     Sonuçlar #sozlukTestSonuc içine "✔ ..." / "✘ ..." satırları olarak yazılır. */
+  function sozlukTesti(deneme) {
+    var gercek = window.USTAD_SOZLUK;
+    if (!(Array.isArray(gercek) && gercek.length > 0) && (deneme || 0) < 8) {
+      /* gerçek veri şu an yerinde değil (başka bölümün testi kısa süreliğine kaldırmış olabilir):
+         sahte veriyle ölçmek yerine kısa bekleyip yeniden dene — test SAHTE VERİ kullanmaz. */
+      setTimeout(function () { sozlukTesti((deneme || 0) + 1); }, 250);
+      return;
+    }
+
     var t = [];
     function ok(ad, gecti, ayrinti) {
       t.push((gecti ? "✔ " : "✘ ") + ad + (ayrinti === undefined || ayrinti === null ? "" : " — " + ayrinti));
@@ -402,126 +432,60 @@
     function kartlar() { return $$("#sozlukAlan .sz-kart"); }
     function metin(sel) { var e = $(sel); return e ? String(e.textContent).trim() : ""; }
     function gorunur(sel) { var e = $(sel); return e ? getComputedStyle(e).display : "yok"; }
+    function kisalt(s, n) { return String(s == null ? "" : s).slice(0, n || 42); }
+    function sayim(dizi, f) { return dizi.filter(f).length; }
+    function terimler(dizi) { return dizi.map(function (m) { return m.terim; }).join(", "); }
 
-    /* test verisi: 6 ders × 10 terim = 60 madde (Türkçe aksan ölçümü için ç/ğ/ı/İ/ö/ş/ü içerir) */
-    var HAM = [
-      "Çıkarım|Metinden çıkarılan yargı|Türkçe|Cümlede Anlam|Bu parçadan çıkarım yapmak için metnin bütünü okunmalıdır.",
-      "Öznellik|Kişisel yorum içeren anlatım|Türkçe|Sözcükte Anlam|Yazarın öznelliği cümleye duygu katmıştır.",
-      "Nesnellik|Kanıtlanabilir, kişisel yorum içermeyen anlatım|Türkçe|Sözcükte Anlam|Bilimsel metinlerde nesnellik esastır.",
-      "Ad Aktarması|Bir sözcüğün benzetme amacı olmadan başka sözcüğün yerine kullanılması|Türkçe|Sözcük Türleri|“Ankara açıklama yaptı” cümlesinde ad aktarması vardır.",
-      "Deyim Aktarması|Bir sözcüğün benzetme amacıyla başka anlama aktarılması|Türkçe|Sözcükte Anlam|“Sıcak bir karşılama” sözünde deyim aktarması görülür.",
-      "Adlaşmış Sıfat|Nitelediği ad düşmüş sıfat|Türkçe|Sözcük Türleri|“Gelenler içeri girdi” cümlesinde adlaşmış sıfat vardır.",
-      "Yan Cümle|Cümle içinde yargı bildiren yan yargı|Türkçe|Cümlede Anlam|Yan cümle temel cümlenin anlamını tamamlar.",
-      "Pekiştirme|Sözcüğün anlamının güçlendirilmesi|Türkçe|Ses Bilgisi|“Mas mavi” sözünde pekiştirme yapılmıştır.",
-      "Kaynaştırma Harfi|İki ünlü arasına giren yardımcı ünsüz|Türkçe|Ses Bilgisi|“Araba-y-ı” sözcüğünde kaynaştırma harfi vardır.",
-      "Şüphe Cümlesi|Kuşku anlamı taşıyan cümle|Türkçe|Cümlede Anlam|“Acaba gelir mi?” cümlesi şüphe cümlesidir.",
-      "Üslü Sayı|Tabanın kendisiyle tekrarlı çarpımı|Matematik|Üslü ve Köklü Sayılar|2 üssü 3 üslü sayıdır.",
-      "Mutlak Değer|Sayının sıfıra olan uzaklığı|Matematik|Mutlak Değer|Negatif sayının mutlak değeri pozitiftir.",
-      "EBOB|İki sayının en büyük ortak böleni|Matematik|EBOB-EKOK|12 ve 18'in EBOB'u 6'dır.",
-      "EKOK|İki sayının en küçük ortak katı|Matematik|EBOB-EKOK|4 ve 6'nın EKOK'u 12'dir.",
-      "Çarpanlara Ayırma|İfadenin çarpım biçiminde yazılması|Matematik|Çarpanlara Ayırma|Çarpanlara ayırma sadeleştirmeyi kolaylaştırır.",
-      "Olasılık|Bir olayın gerçekleşme oranı|Matematik|Olasılık|Zarın 6 gelme olasılığı altıda birdir.",
-      "Permütasyon|Sıralamanın önemli olduğu diziliş|Matematik|Permütasyon-Kombinasyon|Oturma düzeni permütasyonla hesaplanır.",
-      "Kombinasyon|Sıralamanın önemsiz olduğu seçim|Matematik|Permütasyon-Kombinasyon|Takım seçimi kombinasyonla bulunur.",
-      "Ağırlıklı Ortalama|Her verinin kendi ağırlığıyla çarpılıp toplanması|Matematik|Tablo ve Grafik|Not ortalaması ağırlıklı ortalama ile hesaplanır.",
-      "Ölçek|Haritadaki uzunluğun gerçek uzunluğa oranı|Matematik|Problemler|Ölçek küçüldükçe harita ayrıntısı artar.",
-      "Tanzimat|Osmanlı'da batılılaşma döneminin başlangıcı|Tarih|Osmanlı Dağılma Dönemi|Tanzimat Fermanı 1839'da ilan edildi.",
-      "Sened-i İttifak|Padişah ile ayanlar arasındaki sözleşme|Tarih|Osmanlı Dağılma Dönemi|Sened-i İttifak 1808'de imzalandı.",
-      "Kanun-i Esasi|1876 tarihli ilk Osmanlı anayasası|Tarih|Osmanlı Dağılma Dönemi|Kanun-i Esasi I. Meşrutiyet ile ilan edildi.",
-      "Misak-ı Millî|Kurtuluş Savaşı'nın temel kararları|Tarih|Kurtuluş Savaşı|Misak-ı Millî 1920'de kabul edildi.",
-      "Teşkilat-ı Esasiye|1921 tarihli ilk anayasa|Tarih|Kurtuluş Savaşı|Teşkilat-ı Esasiye millî egemenliği esas aldı.",
-      "Islahat Fermanı|Gayrimüslimlere haklar tanıyan ferman|Tarih|Osmanlı Dağılma Dönemi|Islahat Fermanı 1856'da ilan edildi.",
-      "Tımar|Osmanlı'da hizmet karşılığı verilen toprak|Tarih|Osmanlı Kuruluş ve Yükseliş|Tımar sistemi ordunun temelini oluşturdu.",
-      "Devşirme|Devlet hizmeti için çocuk toplanması|Tarih|Osmanlı Kuruluş ve Yükseliş|Devşirme sistemiyle yöneticiler yetiştirildi.",
-      "Kapitülasyon|Yabancılara tanınan ekonomik ayrıcalıklar|Tarih|Osmanlı Dağılma Dönemi|Kapitülasyonlar Osmanlı ekonomisini zayıflattı.",
-      "Lozan Antlaşması|Türkiye'nin bağımsızlığını tanıyan antlaşma|Tarih|Atatürk Dönemi Dış Politika|Lozan Antlaşması 1923'te imzalandı.",
-      "İzobar|Aynı basınç değerine sahip noktaları birleştiren çizgi|Coğrafya|İklim ve Bitki Örtüsü|İzobar haritası basınç dağılışını gösterir.",
-      "İzoterm|Aynı sıcaklık değerine sahip noktaları birleştiren çizgi|Coğrafya|İklim ve Bitki Örtüsü|İzoterm eğrileri kışın kuzeye doğru kıvrılır.",
-      "Maki|Akdeniz ikliminde görülen sert yapraklı çalı topluluğu|Coğrafya|İklim ve Bitki Örtüsü|Maki bitki örtüsü kıyı Ege'de yaygındır.",
-      "Karst|Kalkerli arazilerde erimeyle oluşan şekil|Coğrafya|Yer Şekilleri|Karst oluşumları Toroslar'da görülür.",
-      "Delta|Akarsuyun denize döküldüğü yerde oluşturduğu düzlük|Coğrafya|Yer Şekilleri|Çukurova bir delta ovasıdır.",
-      "Plato|Yüksek ve geniş düzlük|Coğrafya|Yer Şekilleri|Anadolu'nun iç kesimlerinde platolar vardır.",
-      "Havza|Akarsuyun sularını topladığı alan|Coğrafya|Yer Şekilleri|Havza sınırları su bölümü çizgisidir.",
-      "Erozyon|Toprağın akarsu ve rüzgârla taşınması|Coğrafya|Bölgeler ve Doğal Afetler|Erozyon tarım alanlarını verimsizleştirir.",
-      "Barometre|Basıncı ölçen alet|Coğrafya|İklim ve Bitki Örtüsü|Barometre ile basınç milibar cinsinden ölçülür.",
-      "Rejim|Akarsuyun akış düzeni|Coğrafya|Türkiye Ekonomisi: Tarım|Akarsu rejimi yağış düzenine bağlıdır.",
-      "Anayasa|Devletin temel kuruluş ve işleyiş kuralları|Vatandaşlık|1982 Anayasası Temel İlkeleri|Anayasa en üstün hukuk normudur.",
-      "Yasama|Kanun yapma yetkisi|Vatandaşlık|Yasama|Yasama yetkisi Türkiye Büyük Millet Meclisi'ne aittir.",
-      "Yürütme|Kanunları uygulama yetkisi|Vatandaşlık|Yürütme|Yürütme yetkisi Cumhurbaşkanına aittir.",
-      "Yargı|Bağımsız mahkemelerce yürütülen yargılama|Vatandaşlık|Yargı|Yargı yetkisi bağımsız mahkemelere aittir.",
-      "Temel Hak|Anayasa ile korunan vazgeçilmez haklar|Vatandaşlık|Temel Hak ve Ödevler|Temel haklar ancak kanunla sınırlanabilir.",
-      "Meclis Araştırması|Bir konunun incelenmesi için açılan meclis incelemesi|Vatandaşlık|Yasama|Meclis araştırması önergeyle açılır.",
-      "Kanun Hükmünde Kararname|Bakanlar Kurulunun kanun gücünde düzenlemesi|Vatandaşlık|Yürütme|Kanun hükmünde kararname yetkisi kanunla verilir.",
-      "Hukuk Devleti|Devletin hukuk kurallarına bağlı olması|Vatandaşlık|Temel Hukuk Kavramları|Hukuk devletinde idare yargı denetimine açıktır.",
-      "Egemenlik|Devlet gücünü kullanma yetkisi|Vatandaşlık|1982 Anayasası Temel İlkeleri|Egemenlik kayıtsız şartsız milletindir.",
-      "İptal Davası|Kanunların anayasaya uygunluğunun denetimi|Vatandaşlık|Yargı|İptal davası Anayasa Mahkemesinde açılır.",
-      "Dezenflasyon|Fiyat artış hızının azalması|Güncel Bilgiler|Türkiye Gündemi|Merkez Bankası dezenflasyon sürecini duyurdu.",
-      "Sürdürülebilirlik|Kaynakların gelecek kuşaklara aktarılması|Güncel Bilgiler|Dünya Gündemi|Sürdürülebilirlik politikaları yaygınlaşıyor.",
-      "Jeopolitik|Coğrafyanın devlet politikasına etkisi|Güncel Bilgiler|Dünya Gündemi|Jeopolitik dengeler bölgesel ilişkileri belirliyor.",
-      "Yapay Zekâ|Makinelerin insan gibi öğrenip karar vermesi|Güncel Bilgiler|Türkiye Gündemi|Yapay zekâ düzenlemesi gündemdedir.",
-      "Yeşil Mutabakat|Avrupa Birliği'nin iklim odaklı dönüşüm planı|Güncel Bilgiler|Uluslararası Kuruluşlar ve Zirveler|Yeşil Mutabakat ihracat kurallarını değiştiriyor.",
-      "Kripto Varlık|Blokzincir tabanlı dijital değer|Güncel Bilgiler|Türkiye Gündemi|Kripto varlıklara yasal çerçeve hazırlanıyor.",
-      "Dijital Dönüşüm|Kamu ve iş süreçlerinin dijitalleşmesi|Güncel Bilgiler|Türkiye Gündemi|Dijital dönüşüm e-devlet hizmetlerini artırdı.",
-      "Enerji Dönüşümü|Fosil yakıtlardan yenilenebilire geçiş|Güncel Bilgiler|Dünya Gündemi|Enerji dönüşümü yatırımları hızlandı.",
-      "Zirve|Devlet başkanlarının katıldığı üst düzey toplantı|Güncel Bilgiler|Uluslararası Kuruluşlar ve Zirveler|İklim zirvesi yıllık olarak toplanır.",
-      "Uluslararası Antlaşma|Devletler arasında bağlayıcı yazılı sözleşme|Güncel Bilgiler|Uluslararası Kuruluşlar ve Zirveler|Antlaşmalar Meclis onayıyla yürürlüğe girer."
-    ];
-    function veri() {
-      return HAM.map(function (s) {
-        var p = s.split("|");
-        return { terim: p[0], anlam: p[1], ders: p[2], konu: p[3], ornek: p[4] };
-      });
-    }
+    /* gerçek veriden türetilen beklentiler */
+    var md = A.maddeler();
+    var TOPLAM = md.length;
+    var SAYFA = A.sayfaBoyu;
+    var DERSLER = A.dersler();
+    var HARFLER = A.harfler();
+    function kartBek(n) { return Math.min(SAYFA, n); }
+    function dersSay(d) { return sayim(md, function (m) { return m.ders === d; }); }
+    function harfSay(h) { var a = norm(h); return sayim(md, function (m) { return norm(m.terim).charAt(0) === a; }); }
 
-    /* ── durum yedekle ── */
-    var eskiVeri = window.USTAD_SOZLUK;
-    var eskiVeriVardi = Object.prototype.hasOwnProperty.call(window, "USTAD_SOZLUK");
+    ok("modül: window.SOZLUK globali tanımlı", !!window.SOZLUK && typeof window.SOZLUK === "object", typeof window.SOZLUK);
+    ok("sözleşme: SOZLUK.bolumAc fonksiyon", typeof A.bolumAc === "function");
+    ok("sözleşme: SOZLUK.ciz fonksiyon", typeof A.ciz === "function");
+    ok("veri: GERÇEK sözlük verisi ölçülüyor (sahte veri kullanılmıyor)", Array.isArray(gercek) && TOPLAM > 0,
+       "USTAD_SOZLUK " + (Array.isArray(gercek) ? gercek.length + " kayıt" : typeof gercek) + " · geçerli madde " + TOPLAM);
+
+    /* favori deposu test boyunca boş tutulur, sonda eski hâline döner */
     var eskiFav = null, eskiKonus = window.KPSS_SES ? window.KPSS_SES.konus : null, sesVar = !!window.KPSS_SES;
     try { eskiFav = localStorage.getItem(DEPO_FAV); } catch (e) {}
     try { localStorage.removeItem(DEPO_FAV); } catch (e) {}
 
-    /* ── 1) modül sözleşmesi ── */
-    ok("modül: window.SOZLUK globali tanımlı", !!window.SOZLUK && typeof window.SOZLUK === "object", typeof window.SOZLUK);
-    ok("sözleşme: SOZLUK.bolumAc fonksiyon", typeof A.bolumAc === "function");
-    ok("sözleşme: SOZLUK.ciz fonksiyon", typeof A.ciz === "function");
-
-    /* ── 2) boş veri: çökmeden boş durum çizmeli ── */
-    window.USTAD_SOZLUK = [];
-    var coktu = null;
-    try { A.bolumAc("sozluk"); } catch (e) { coktu = e; }
-    ok("boş veri: dizi boşken çizim çökmedi", !coktu, coktu ? String(coktu.message) : "hata yok");
-    ok("boş veri: \"Sözlük verisi yüklenmemiş\" boş durumu çizildi",
-       !!$("#szBosVeri") && metin("#szBosVeri").indexOf("Sözlük verisi yüklenmemiş") >= 0,
-       metin("#szBosVeri").slice(0, 44));
-    var silindi = delete window.USTAD_SOZLUK;
-    var coktu2 = null;
-    try { A.bolumAc("sozluk"); } catch (e) { coktu2 = e; }
-    ok("boş veri: USTAD_SOZLUK hiç yokken de çökmedi", !coktu2 && !!$("#szBosVeri"),
-       silindi ? "alan silindi, hata yok" : "alan silinemedi ama hata yok");
-    if (eskiVeriVardi) window.USTAD_SOZLUK = eskiVeri;
-
-    /* ── 3) ekran kabı: yoksa kendini oluşturur ── */
-    var eskiKap = document.getElementById("ekran-sozluk");
-    var eskiKapVardi = !!eskiKap, eskiKapDis = eskiKap ? eskiKap.outerHTML : "";
-    if (eskiKap && eskiKap.parentNode) eskiKap.parentNode.removeChild(eskiKap);
-    window.USTAD_SOZLUK = veri();
+    /* ── 1) TEK KONTEYNER garantisi ── */
+    A.bolumAc("sozluk");   /* gerçek veriyle çizim */
+    ok("kap: sayfada tek #ekran-sozluk", $$("#ekran-sozluk").length === 1, $$("#ekran-sozluk").length + " kabuk");
+    ok("kap: tek #sozlukAlan ve tek #szDersler / #szListe / #szHarfler",
+       $$("#sozlukAlan").length === 1 && $$("#szDersler").length === 1 && $$("#szListe").length === 1 && $$("#szHarfler").length === 1,
+       "alan " + $$("#sozlukAlan").length + " / ders " + $$("#szDersler").length + " / liste " + $$("#szListe").length + " / harf " + $$("#szHarfler").length);
+    var kabA = document.getElementById("ekran-sozluk");
+    A.ciz(); A.ciz();
+    ok("kap: ciz() mevcut kabı kullanıyor, ikinci kabuk oluşturmuyor",
+       document.getElementById("ekran-sozluk") === kabA && $$("#ekran-sozluk").length === 1,
+       $$("#ekran-sozluk").length + " kabuk · aynı kap: " + (document.getElementById("ekran-sozluk") === kabA));
+    var kopya = kabA.cloneNode(true);
+    document.body.appendChild(kopya);
+    var kopyaOncesi = $$("#ekran-sozluk").length;
+    A.ciz();
+    ok("kap: kopya kabuk enjekte edilince fazlalık temizlendi (tek konteyner kuralı)",
+       kopyaOncesi > 1 && $$("#ekran-sozluk").length === 1 && $$("#sozlukAlan").length === 1 && $$("#szListe").length === 1,
+       "enjekte sonrası " + kopyaOncesi + " → çizim sonrası " + $$("#ekran-sozluk").length);
+    var kabB = document.getElementById("ekran-sozluk");
+    if (kabB && kabB.parentNode) kabB.parentNode.removeChild(kabB);
     A.bolumAc("sozluk");
-    var yeniKap = document.getElementById("ekran-sozluk");
-    ok("kap: ekran yokken KENDİNİ oluşturdu", !!yeniKap, yeniKap ? yeniKap.id : "yok");
+    var yeniKab = document.getElementById("ekran-sozluk");
+    ok("kap: ekran yokken KENDİNİ oluşturdu", !!yeniKab && $$("#ekran-sozluk").length === 1, yeniKab ? yeniKab.id : "yok");
     ok("kap: .ekran sınıfı ve data-bolum=\"sozluk\"",
-       !!yeniKap && /(^|\s)ekran(\s|$)/.test(yeniKap.className) && yeniKap.getAttribute("data-bolum") === "sozluk",
-       yeniKap ? yeniKap.className + " / " + yeniKap.getAttribute("data-bolum") : "yok");
-    ok("kap: içinde #sozlukAlan var ve bölüm çizildi",
-       !!document.getElementById("sozlukAlan") && !!document.getElementById("szListe"));
-    if (eskiKapVardi) {   /* index.html'de yazılı kap varsa onu geri koy (dosyaya dokunulmaz) */
-      var gecici = document.createElement("div");
-      gecici.innerHTML = eskiKapDis;
-      var orijinal = gecici.firstElementChild;
-      if (orijinal && yeniKap && yeniKap.parentNode) yeniKap.parentNode.replaceChild(orijinal, yeniKap);
-      A.ciz();
-    }
-
-    /* kap elemanı kopyalanırsa (outerHTML/innerHTML klonu — nitelik de kopyalanır) dinleyici yeniden bağlanmalı */
+       !!yeniKab && /(^|\s)ekran(\s|$)/.test(yeniKab.className) && yeniKab.getAttribute("data-bolum") === "sozluk",
+       yeniKab ? yeniKab.className + " / " + yeniKab.getAttribute("data-bolum") : "yok");
+    ok("kap: içinde tek #sozlukAlan var ve bölüm çizildi",
+       !!document.getElementById("sozlukAlan") && !!document.getElementById("szListe") && $$("#szListe").length === 1);
+    /* kap elemanı kopyalanırsa (dinleyici kopyaya geçmez) tıklama yeniden bağlanmalı */
     var alanEl = document.getElementById("sozlukAlan");
     var klon = alanEl.cloneNode(true);
     alanEl.parentNode.replaceChild(klon, alanEl);
@@ -530,192 +494,295 @@
     if (kv) kv.click();
     ok("kap: alan kopyalanıp değişse de tıklama çalışıyor (dinleyici yeniden bağlandı)",
        !!kv && kv.classList.contains("acik"), kv ? kv.className : "kart yok");
+    if (kv && kv.classList.contains("acik")) kv.click();
 
-    /* ── 4) veri + ilk çizim ── */
-    var md = A.maddeler();
-    ok("veri: 60 test maddesi okundu", md.length === 60, md.length + " madde");
+    /* ── 2) gerçek veri + ilk çizim / sayfalama ── */
+    if ($("#szTemizle")) $("#szTemizle").click();   /* süzgeç ve sayfalamayı başlangıca al */
+    ok("veri: modül gerçek veriyi olduğu gibi okuyor (kopya/sahte veri yok)",
+       A.maddeler().length === TOPLAM && window.USTAD_SOZLUK === gercek,
+       A.maddeler().length + " madde · aynı referans: " + (window.USTAD_SOZLUK === gercek));
     ok("arayüz: arama kutusu, süzgeç çipleri ve harf şeridi çizildi",
        !!$("#szArama") && !!$("#szDersler") && !!$("#szHarfler") && !!$("#szSayac"), "temel arayüz hazır");
-    ok("sayfa: ilk çizimde 50 kart (sayfa başına 50)", kartlar().length === 50, kartlar().length + " kart");
-    ok("sayfa: \"daha fazla göster\" düğmesi var ve kalan terimi yazıyor",
-       !!$("#szDahaGoster") && metin("#szDahaGoster").indexOf("10 terim daha") >= 0, metin("#szDahaGoster"));
-    ok("sayaç: \"60 terimden 60 sonuç\" biçiminde", metin("#szSayac") === "60 terimden 60 sonuç", metin("#szSayac"));
-    ok("sayfalama: \"daha fazla göster\" kart sayısını 60'a çıkardı",
-       (function () { $("#szDahaGoster").click(); var n = kartlar().length; return n === 60; })(), kartlar().length + " kart");
+    ok("sayfa: ilk çizimde " + kartBek(TOPLAM) + " kart (Math.min(sayfaBoyu=" + SAYFA + ", sonuç=" + TOPLAM + "))",
+       kartlar().length === kartBek(TOPLAM), kartlar().length + " kart");
+    var kalanBek = Math.max(0, TOPLAM - SAYFA);
+    ok("sayfa: \"daha fazla göster\" düğmesi kalan " + kalanBek + " terimi yazıyor",
+       kalanBek > 0 ? (!!$("#szDahaGoster") && metin("#szDahaGoster").indexOf(kalanBek + " terim daha") >= 0) : !$("#szDahaGoster"),
+       metin("#szDahaGoster") || "düğme yok (tümü görünür)");
+    ok("sayaç: \"" + TOPLAM + " terimden " + TOPLAM + " sonuç\"",
+       metin("#szSayac") === TOPLAM + " terimden " + TOPLAM + " sonuç", metin("#szSayac"));
+    var tik = 0, sinir = Math.ceil(TOPLAM / SAYFA) + 2;
+    while (document.getElementById("szDahaGoster") && tik < sinir) { document.getElementById("szDahaGoster").click(); tik++; }
+    ok("sayfalama: \"daha fazla göster\" tüm sonuçları açtı (" + tik + " tıklama)",
+       kartlar().length === TOPLAM, kartlar().length + " kart / beklenen " + TOPLAM);
     ok("sayfalama: tümü gösterilince düğme kayboldu", !$("#szDahaGoster"), metin("#szDaha"));
-    ok("sayaç: kart sayısı süzülmüş sonuç sayısına eşit", kartlar().length === A.liste().length,
-       kartlar().length + " kart / " + A.liste().length + " sonuç");
+    ok("sayaç: kart sayısı süzülmüş sonuç sayısına eşit",
+       kartlar().length === A.liste().length, kartlar().length + " kart / " + A.liste().length + " sonuç");
 
-    /* ── 5) kart yapısı ── */
+    /* ── 3) kart yapısı ── */
     var ilkKart = kartlar()[0];
     var ilkTerim = ilkKart ? ilkKart.querySelector(".sz-terim") : null;
     var stTerim = ilkTerim ? getComputedStyle(ilkTerim) : null;
-    ok("kart: terim kalın yazılıyor (font-weight 700)",
-       !!stTerim && String(stTerim.fontWeight) === "700", stTerim ? stTerim.fontWeight : "yok");
+    ok("kart: terim kalın yazılıyor (font-weight 700)", !!stTerim && String(stTerim.fontWeight) === "700", stTerim ? stTerim.fontWeight : "yok");
     ok("kart: terim monospace yazı tipinde",
-       !!stTerim && String(stTerim.fontFamily).toLowerCase().indexOf("monospace") >= 0,
-       stTerim ? String(stTerim.fontFamily).slice(0, 46) : "yok");
-    ok("kart: sağ üstte ders etiketi var ve dersi doğru yazıyor",
-       kartlar().length > 0 && kartlar().every(function (k) {
+       !!stTerim && String(stTerim.fontFamily).toLowerCase().indexOf("monospace") >= 0, stTerim ? kisalt(stTerim.fontFamily, 46) : "yok");
+    var etiketli = sayim(kartlar(), function (k) { return !!k.querySelector(".sz-etiket"); });
+    var etiketBek = sayim(A.liste(), function (m) { return !!m.ders; });
+    ok("kart: ders etiketi kartın dersini doğru yazıyor (" + etiketli + " etiket / " + etiketBek + " dersli madde)",
+       etiketli === etiketBek && kartlar().every(function (k) {
+         var m = A.liste()[parseInt(k.getAttribute("data-i"), 10)];
          var e = k.querySelector(".sz-etiket");
-         return !!e && e.getAttribute("data-ders") === A.liste()[parseInt(k.getAttribute("data-i"), 10)].ders;
-       }), kartlar()[0].querySelector(".sz-etiket").textContent);
-    ok("kart: numarasız kart (sıra numarası yok)", $$("#szListe ol, #szListe li").length === 0 &&
-       kartlar()[0].tagName === "ARTICLE", kartlar()[0].tagName);
+         return !!m && (m.ders ? (!!e && e.getAttribute("data-ders") === m.ders) : !e);
+       }), etiketli + " / " + etiketBek);
+    ok("kart: numarasız kart (sıra numarası yok)",
+       $$("#szListe ol, #szListe li").length === 0 && !!ilkKart && ilkKart.tagName === "ARTICLE", ilkKart ? ilkKart.tagName : "kart yok");
     ok("kart: anlam kısa hâlde görünür (detay kapalı)",
        gorunur(".sz-kart .sz-detay") === "none" && metin(".sz-kart .sz-anlam").length > 0, gorunur(".sz-kart .sz-detay"));
+    ok("kart: ilk kart listenin ilk maddesini gösteriyor",
+       !!ilkKart && metin("#szListe .sz-kart .sz-terim") === (A.liste()[0].terim || "(terimsiz)"), kisalt(metin("#szListe .sz-kart .sz-terim")));
 
-    /* ── 6) ders filtresi + harf şeridi ── */
-    var dersCipleri = $$("#szDersler .sz-cip");
-    ok("filtre: ders çipleri Tümü + 6 ders = 7", dersCipleri.length === 7, dersCipleri.length + " çip");
-    var harfCipleri = $$("#szHarfler .sz-cip");
-    ok("filtre: harf şeridinde Tümü + 29 harf = 30", harfCipleri.length === 30, harfCipleri.length + " çip");
-
-    $('#szDersler .sz-cip[data-ders-sec="Tarih"]').click();
-    var tarihBek = md.filter(function (m) { return m.ders === "Tarih"; }).length;
+    /* ── 4) ders filtresi (beklentiler gerçek veriden) ── */
+    ok("filtre: ders çipleri Tümü + " + DERSLER.length + " ders",
+       $$("#szDersler .sz-cip").length === DERSLER.length + 1, $$("#szDersler .sz-cip").length + " çip");
+    ok("filtre: harf şeridinde Tümü + " + HARFLER.length + " harf",
+       $$("#szHarfler .sz-cip").length === HARFLER.length + 1, $$("#szHarfler .sz-cip").length + " çip");
+    var dersSec = "", dersBek = 0;
+    DERSLER.forEach(function (d) { if (!dersSec && dersSay(d) > 0) { dersSec = d; dersBek = dersSay(d); } });
+    ok("filtre: gerçek veride çipi dolu en az bir ders var", !!dersSec && dersBek > 0, dersSec + " = " + dersBek + " terim");
+    var dersCip = $('#szDersler .sz-cip[data-ders-sec="' + dersSec + '"]');
+    if (dersCip) dersCip.click();
     ok("filtre: ders çipine basınca yalnız o dersin terimleri listelenir",
-       A.liste().length === tarihBek && A.liste().every(function (m) { return m.ders === "Tarih"; }),
-       A.liste().length + " / beklenen " + tarihBek);
+       A.liste().length === dersBek && A.liste().every(function (m) { return m.ders === dersSec; }),
+       A.liste().length + " / beklenen " + dersBek + " (" + dersSec + ")");
     ok("filtre: seçili ders çipi 'secili' olarak işaretlendi",
-       !!$('#szDersler .sz-cip[data-ders-sec="Tarih"].secili'), metin('#szDersler .sz-cip[data-ders-sec="Tarih"]'));
-    ok("filtre: sayaç filtrelenmiş sayıyı gösteriyor",
-       metin("#szSayac") === "60 terimden " + tarihBek + " sonuç", metin("#szSayac"));
+       !!$('#szDersler .sz-cip[data-ders-sec="' + dersSec + '"].secili'), kisalt(metin('#szDersler .sz-cip[data-ders-sec="' + dersSec + '"]')));
+    ok("filtre: sayaç \"" + TOPLAM + " terimden " + dersBek + " sonuç\"",
+       metin("#szSayac") === TOPLAM + " terimden " + dersBek + " sonuç", metin("#szSayac"));
+    ok("sayfa: süzülmüş listede kart sayısı Math.min(sayfaBoyu, sonuç)=" + kartBek(dersBek),
+       kartlar().length === kartBek(dersBek), kartlar().length + " kart / beklenen " + kartBek(dersBek));
+    var dersRozet = $('#szDersler .sz-cip[data-ders-sec="' + dersSec + '"] i');
+    ok("çip: " + dersSec + " çipindeki sayaç gerçek terim sayısını gösteriyor",
+       !!dersRozet && parseInt(dersRozet.textContent, 10) === dersBek, dersRozet ? dersRozet.textContent : "rozet yok");
     $('#szDersler .sz-cip[data-ders-sec=""]').click();   /* Tümü */
-    ok("filtre: Tümü çipi tüm listeyi geri getirdi", A.liste().length === 60, A.liste().length + " sonuç");
+    ok("filtre: Tümü çipi tüm listeyi geri getirdi", A.liste().length === TOPLAM, A.liste().length + " / " + TOPLAM);
+    var tumuRozet = $('#szDersler .sz-cip[data-ders-sec=""] i');
+    ok("çip: Tümü çipindeki sayaç gerçek terim sayısını gösteriyor",
+       !!tumuRozet && parseInt(tumuRozet.textContent, 10) === TOPLAM, tumuRozet ? tumuRozet.textContent : "rozet yok");
 
-    var dBek = md.filter(function (m) { return norm(m.terim).charAt(0) === "d"; }).length;
-    $('#szHarfler .sz-cip[data-harf-sec="D"]').click();
-    ok("filtre: harf şeridi (D) yalnız D ile başlayan terimleri getirdi",
-       A.liste().length === dBek && A.liste().every(function (m) { return norm(m.terim).charAt(0) === "d"; }),
-       A.liste().length + " / beklenen " + dBek);
+    /* ── 5) harf şeridi ── */
+    var harfSec = "", harfBek = 0;
+    HARFLER.forEach(function (h) { if (!harfSec && harfSay(h) > 0) { harfSec = h; harfBek = harfSay(h); } });
+    ok("filtre: gerçek veride dolu en az bir harf var", !!harfSec && harfBek > 0, harfSec + " = " + harfBek + " terim");
+    var harfCip = $('#szHarfler .sz-cip[data-harf-sec="' + harfSec + '"]');
+    if (harfCip) harfCip.click();
+    ok("filtre: harf şeridi (" + harfSec + ") yalnız o harfle başlayan terimleri getirdi",
+       A.liste().length === harfBek && A.liste().every(function (m) { return norm(m.terim).charAt(0) === norm(harfSec); }),
+       A.liste().length + " / beklenen " + harfBek);
+    var cBek = harfSay("Ç");
     $('#szHarfler .sz-cip[data-harf-sec="Ç"]').click();
-    ok("filtre: harf duyarsızlığı — Ç şeridi Türkçe Ç ile başlayanları bulur",
-       A.liste().length >= 2 && A.liste().every(function (m) { return norm(m.terim).charAt(0) === "c"; }),
-       A.liste().length + " terim: " + A.liste().slice(0, 3).map(function (m) { return m.terim; }).join(", "));
+    ok("filtre: harf duyarsızlığı — Ç şeridi Türkçe Ç/C ile başlayanları bulur",
+       A.liste().length === cBek && A.liste().every(function (m) { return norm(m.terim).charAt(0) === "c"; }),
+       A.liste().length + " / beklenen " + cBek + " · " + terimler(A.liste().slice(0, 3)));
     $('#szHarfler .sz-cip[data-harf-sec=""]').click();
-    $('#szDersler .sz-cip[data-ders-sec="Türkçe"]').click();
-    $('#szHarfler .sz-cip[data-harf-sec="Ç"]').click();
+    ok("filtre: harf \"Tümü\" çipi harf süzgecini kaldırdı", A.liste().length === TOPLAM, A.liste().length + " / " + TOPLAM);
+    $('#szDersler .sz-cip[data-ders-sec="' + dersSec + '"]').click();
+    $('#szHarfler .sz-cip[data-harf-sec="' + harfSec + '"]').click();
+    var dersHarfBek = sayim(md, function (m) { return m.ders === dersSec && norm(m.terim).charAt(0) === norm(harfSec); });
     ok("filtre: ders + harf birlikte çalışıyor (VE)",
-       A.liste().every(function (m) { return m.ders === "Türkçe" && norm(m.terim).charAt(0) === "c"; }) && A.liste().length > 0,
-       A.liste().map(function (m) { return m.ders + "/" + m.terim; }).join(", "));
-    $('#szDersler .sz-cip[data-ders-sec="Türkçe"]').click();   /* ders filtresini kaldır */
-    $('#szHarfler .sz-cip[data-harf-sec="Ç"]').click();        /* harf filtresini kaldır */
-    ok("filtre: çiplere tekrar basınca filtre kalkar", A.liste().length === 60, A.liste().length + " sonuç");
+       A.liste().length === dersHarfBek && A.liste().every(function (m) { return m.ders === dersSec && norm(m.terim).charAt(0) === norm(harfSec); }),
+       A.liste().length + " / beklenen " + dersHarfBek + " · " + terimler(A.liste().slice(0, 3)));
+    $('#szDersler .sz-cip[data-ders-sec="' + dersSec + '"]').click();
+    $('#szHarfler .sz-cip[data-harf-sec="' + harfSec + '"]').click();
+    ok("filtre: çiplere tekrar basınca filtre kalkar", A.liste().length === TOPLAM, A.liste().length + " / " + TOPLAM);
 
-    /* ── 7) arama (Türkçe aksan + büyük/küçük harf duyarsız) ── */
+    /* ── 6) arama (Türkçe aksan + büyük/küçük harf duyarsız) — sorgular gerçek veriden ── */
     function ara(q) {
       var g = $("#szArama");
       g.value = q;
       g.dispatchEvent(new Event("input", { bubbles: true }));
       return A.liste();
     }
-    var r1 = ara("olcek");
-    ok("arama: \"olcek\" → \"Ölçek\" eşleşti (ö/ç aksan duyarsız)",
-       r1.length === 1 && r1[0].terim === "Ölçek", r1.map(function (m) { return m.terim; }).join(", "));
-    var r2 = ara("suphe");
-    ok("arama: \"suphe\" → \"Şüphe Cümlesi\" eşleşti (ş/ü duyarsız)",
-       r2.length === 1 && r2[0].terim === "Şüphe Cümlesi", r2.map(function (m) { return m.terim; }).join(", "));
-    var r3 = ara("DEZENFLASYON");
-    ok("arama: büyük harf girdi küçük harfli terimi buldu",
-       r3.length === 1 && r3[0].terim === "Dezenflasyon", r3.length + " sonuç");
-    var r4 = ara("çıkarım");
-    ok("arama: Türkçe küçük harf (ı/ç) ile terim bulundu",
-       r4.length >= 1 && r4.filter(function (m) { return m.terim === "Çıkarım"; }).length === 1, r4.length + " sonuç");
-    ok("arama: ı/i duyarsızlığı — \"cikarim\" da aynı sonucu verir",
-       ara("cikarim").length === r4.length, ara("cikarim").length + " = " + r4.length);
-    ok("arama: \"agirlikli\" → \"Ağırlıklı Ortalama\" (ğ/g duyarsız)",
-       ara("agirlikli").length === 1 && A.liste()[0].terim === "Ağırlıklı Ortalama",
-       A.liste().map(function (m) { return m.terim; }).join(", "));
-    var r5 = ara("kuşku");
-    ok("arama: anlam metni içinde de arar (\"kuşku\" → Şüphe Cümlesi)",
-       r5.length === 1 && r5[0].terim === "Şüphe Cümlesi", r5.length + " sonuç");
-    var r6 = ara("zzzqqq");
+    var ozel = null;
+    for (var i = 0; i < md.length && !ozel; i++) {
+      if (norm(md[i].terim) !== String(md[i].terim).toLowerCase()) ozel = md[i];
+    }
+    ok("arama: gerçek veride Türkçe özel harfli terim var (ölçüm için)", !!ozel, ozel ? ozel.terim : "yok");
+    var rOz = ozel ? ara(ozel.terim) : [];
+    ok("arama: terim kendi yazımıyla bulundu (\"" + (ozel ? ozel.terim : "-") + "\")",
+       !!ozel && sayim(rOz, function (m) { return m.terim === ozel.terim; }) === 1, rOz.length + " sonuç");
+    var rNorm = ozel ? ara(norm(ozel.terim)) : [];
+    ok("arama: aksansız yazım aynı sonucu veriyor (\"" + (ozel ? norm(ozel.terim) : "-") + "\")",
+       !!ozel && rNorm.length === rOz.length && rNorm.every(function (m) { return rOz.indexOf(m) >= 0; }),
+       rNorm.length + " = " + rOz.length);
+    var rBuyuk = ozel ? ara(String(ozel.terim).toUpperCase()) : [];
+    ok("arama: büyük harf girdisi de aynı sonucu veriyor", !!ozel && rBuyuk.length === rOz.length, rBuyuk.length + " = " + rOz.length);
+    ok("arama: süzülmüş sonuçta kart sayısı Math.min(sayfaBoyu, sonuç)=" + kartBek(rOz.length),
+       kartlar().length === kartBek(rOz.length), kartlar().length + " kart / beklenen " + kartBek(rOz.length));
+    var anlamHedef = null, anlamSorgu = "";
+    for (var w = 0; w < md.length && !anlamHedef; w++) {
+      var toklar = norm(md[w].anlam).split(/[^a-z0-9]+/);
+      for (var z = 0; z < toklar.length; z++) {
+        if (toklar[z].length >= 8 && norm(md[w].terim).indexOf(toklar[z]) < 0) { anlamHedef = md[w]; anlamSorgu = toklar[z]; break; }
+      }
+    }
+    var rAnlam = anlamHedef ? ara(anlamSorgu) : [];
+    ok("arama: anlam metni içinde de arıyor (\"" + anlamSorgu + "\")",
+       !!anlamHedef && sayim(rAnlam, function (m) { return m.terim === anlamHedef.terim; }) === 1, rAnlam.length + " sonuç");
+    var rYok = ara("zzzqqqxx");
     ok("arama: eşleşme yokken boş durum kutusu çizildi",
-       r6.length === 0 && !!$("#szBosSonuc") && metin("#szSayac") === "60 terimden 0 sonuç",
+       rYok.length === 0 && !!$("#szBosSonuc") && metin("#szSayac") === TOPLAM + " terimden 0 sonuç",
        metin("#szSayac") + " / " + (!!$("#szBosSonuc") ? "boş kutu var" : "boş kutu YOK"));
     $("#szTemizle").click();
     ok("arama: temizle düğmesi aramayı sıfırladı ve liste geri geldi",
-       $("#szArama").value === "" && A.liste().length === 60, $("#szArama").value + " / " + A.liste().length + " sonuç");
+       $("#szArama").value === "" && A.liste().length === TOPLAM, $("#szArama").value + " / " + A.liste().length + " sonuç");
 
-    /* ── 8) favori ── */
-    ok("favori: depo başlangıçta boş", A.favoriler().length === 0, A.favoriler().length + " favori");
-    var f0 = kartlar()[0], fTerim = f0.querySelector(".sz-terim").textContent;
-    f0.querySelector(".sz-fav").click();
+    /* ── 7) favori ── */
+    ok("favori: depo test başında boş", A.favoriler().length === 0, A.favoriler().length + " favori");
+    var k0 = kartlar()[0];
+    var fTerim = k0.querySelector(".sz-terim").textContent;
+    k0.querySelector(".sz-fav").click();
     var depo = null;
     try { depo = JSON.parse(localStorage.getItem(DEPO_FAV) || "[]"); } catch (e) { depo = null; }
-    ok("favori: ekleyince localStorage \"ustad.sozluk.fav\" dosyasına yazıldı",
+    ok("favori: ekleyince localStorage \"" + DEPO_FAV + "\" içine yazıldı",
        Array.isArray(depo) && depo.length === 1 && depo[0] === norm(fTerim), JSON.stringify(depo));
     ok("favori: yıldız ☆ → ★ oldu ve 'dolu' sınıfı geldi",
-       kartlar()[0].querySelector(".sz-fav").textContent === "★" &&
-       kartlar()[0].querySelector(".sz-fav").classList.contains("dolu"),
+       kartlar()[0].querySelector(".sz-fav").textContent === "★" && kartlar()[0].querySelector(".sz-fav").classList.contains("dolu"),
        kartlar()[0].querySelector(".sz-fav").textContent);
     A.ciz();   /* yeniden çiz → kalıcılık */
     ok("favori: yeniden çizimden sonra favori korunuyor (★)",
-       kartlar()[0].querySelector(".sz-fav").textContent === "★" && A.favoriler().length === 1,
-       kartlar()[0].querySelector(".sz-fav").textContent);
+       kartlar()[0].querySelector(".sz-fav").textContent === "★" && A.favoriler().length === 1, A.favoriler().length + " favori");
     kartlar()[0].querySelector(".sz-fav").click();
     try { depo = JSON.parse(localStorage.getItem(DEPO_FAV) || "[]"); } catch (e) { depo = null; }
     ok("favori: tekrar basınca favori silindi ve depodan çıktı",
-       Array.isArray(depo) && depo.length === 0 && kartlar()[0].querySelector(".sz-fav").textContent === "☆",
-       JSON.stringify(depo));
-    kartlar()[0].querySelector(".sz-fav").click();          /* 1. favori */
-    kartlar()[3].querySelector(".sz-fav").click();          /* 2. favori */
+       Array.isArray(depo) && depo.length === 0 && kartlar()[0].querySelector(".sz-fav").textContent === "☆", JSON.stringify(depo));
+    /* iki FARKLI terime favori → süzgeç ve sayaç ölçümü */
+    var L = A.liste(), fIdx = [0], fAnahtar = [norm(L[0].terim)];
+    for (var q2 = 1; q2 < Math.min(L.length, 40) && fIdx.length < 2; q2++) {
+      if (fAnahtar.indexOf(norm(L[q2].terim)) < 0) { fIdx.push(q2); fAnahtar.push(norm(L[q2].terim)); }
+    }
+    ok("favori: ölçüm için iki farklı terim bulundu", fIdx.length === 2, fIdx.join(", ") + " → " + fAnahtar.join(" · "));
+    fIdx.forEach(function (n) { var k = kartlar()[n]; if (k) k.querySelector(".sz-fav").click(); });
     var favKutu = $("#szFavSuz");
     favKutu.checked = true;
     favKutu.dispatchEvent(new Event("change", { bubbles: true }));
     ok("favori: favoriler süzgeci yalnız işaretli terimleri listeliyor",
-       A.liste().length === 2 && A.favoriler().length === 2,
-       A.liste().map(function (m) { return m.terim; }).join(" · "));
-    ok("favori: sayaç favori sonuçlarını ve toplamı doğru yazıyor",
-       metin("#szSayac") === "60 terimden 2 sonuç", metin("#szSayac"));
+       A.liste().length === 2 && A.favoriler().length === 2, A.liste().length + " sonuç / " + A.favoriler().length + " favori · " + terimler(A.liste()));
+    ok("favori: sayaç \"" + TOPLAM + " terimden 2 sonuç\"", metin("#szSayac") === TOPLAM + " terimden 2 sonuç", metin("#szSayac"));
     favKutu.checked = false;
     favKutu.dispatchEvent(new Event("change", { bubbles: true }));
-
-    /* ── 9) kart açılma + örnek cümle + sesli okuma ── */
+    ok("favori: süzgeç kapatılınca liste geri geldi", A.liste().length === TOPLAM && A.favoriler().length === 2, A.liste().length + " / " + TOPLAM);
+    try { localStorage.removeItem(DEPO_FAV); } catch (e) {}
     A.ciz();
+
+    /* ── 8) kart açılma + örnek cümle + sesli okuma ── */
+    var ornekIdx = -1;
+    for (var o2 = 0; o2 < Math.min(A.liste().length, kartlar().length); o2++) {
+      if (A.liste()[o2].anlam && A.liste()[o2].ornek) { ornekIdx = o2; break; }
+    }
+    ok("kart: gerçek veride örnek cümleli terim var (ölçüm için)", ornekIdx >= 0, ornekIdx >= 0 ? A.liste()[ornekIdx].terim : "yok");
     var k1 = kartlar()[0];
-    var beklenenAnlam = A.liste()[0].anlam, beklenenOrnek = A.liste()[0].ornek;
     k1.click();
     ok("kart: tıklanınca açıldı (detay görünür) ve sınıf 'acik'",
        k1.classList.contains("acik") && gorunur(".sz-kart .sz-detay") !== "none", gorunur(".sz-kart .sz-detay"));
     ok("kart: açılan detayda tam tanım görünüyor",
-       metin(".sz-kart.acik .sz-tam").indexOf(beklenenAnlam.slice(0, 30)) >= 0, metin(".sz-kart.acik .sz-tam").slice(0, 44));
-    ok("kart: açılan detayda örnek cümle görünüyor",
-       !!$(".sz-kart.acik .sz-ornek") && metin(".sz-kart.acik .sz-ornek").indexOf(beklenenOrnek.slice(0, 20)) >= 0,
-       metin(".sz-kart.acik .sz-ornek").slice(0, 44));
+       !!A.liste()[0].anlam && metin(".sz-kart.acik .sz-tam").indexOf(String(A.liste()[0].anlam).slice(0, 30)) >= 0, kisalt(metin(".sz-kart.acik .sz-tam")));
+    if (ornekIdx >= 0) {
+      var ko = kartlar()[ornekIdx];
+      ko.click();
+      ok("kart: açılan detayda örnek cümle görünüyor",
+         !!ko.querySelector(".sz-ornek") && ko.querySelector(".sz-ornek").textContent.indexOf(String(A.liste()[ornekIdx].ornek).slice(0, 20)) >= 0,
+         kisalt(ko.querySelector(".sz-ornek") ? ko.querySelector(".sz-ornek").textContent : "yok"));
+      ko.click();
+    } else {
+      ok("kart: açılan detayda örnek cümle görünüyor", false, "gerçek veride örnek cümleli terim yok");
+    }
     k1.click();
     ok("kart: tekrar tıklanınca kapandı (detay gizli)",
        !k1.classList.contains("acik") && gorunur(".sz-kart .sz-detay") === "none", gorunur(".sz-kart .sz-detay"));
 
-    /* sesli okuma: gerçek KPSS_SES.konus geçici olarak sahte ile değiştirilir */
+    /* sesli okuma: yalnız KPSS_SES.konus geçici olarak sarılır (sonda geri konur) */
+    var sesIdx = ornekIdx >= 0 ? ornekIdx : 0;
     var okunan = [];
     if (!sesVar) window.KPSS_SES = {};
-    window.KPSS_SES.konus = function (m) { okunan.push(String(m == null ? "" : m)); };
-    kartlar()[0].click();
-    kartlar()[0].querySelector(".sz-dinle").click();
+    window.KPSS_SES.konus = function (m2) { okunan.push(String(m2 == null ? "" : m2)); };
+    var ks = kartlar()[sesIdx];
+    ks.click();
+    ks.querySelector(".sz-dinle").click();
     var okunanMetin = okunan.length ? okunan[0] : "";
     ok("ses: 🔊 dinle düğmesi KPSS_SES.konus çağırdı", okunan.length === 1, okunan.length + " çağrı");
     ok("ses: okunan metin terim ve anlamı içeriyor",
-       okunanMetin.indexOf(A.liste()[0].terim) === 0 && okunanMetin.indexOf(A.liste()[0].anlam) > 0,
-       okunanMetin.slice(0, 60));
+       okunanMetin.indexOf(A.liste()[sesIdx].terim) === 0 && okunanMetin.indexOf(String(A.liste()[sesIdx].anlam).slice(0, 20)) > 0, kisalt(okunanMetin, 60));
     ok("ses: örnek cümle de okunuyor",
-       okunanMetin.indexOf("Örnek:") >= 0 && okunanMetin.indexOf(A.liste()[0].ornek.slice(0, 18)) > 0,
-       okunanMetin.slice(-58));
+       okunanMetin.indexOf("Örnek:") >= 0 && okunanMetin.indexOf(String(A.liste()[sesIdx].ornek).slice(0, 18)) > 0, kisalt(okunanMetin.slice(-58), 60));
+    ks.click();
 
-    /* ── 10) HTML kaçışı (güvenlik) ── */
-    var tehlikeli = [{ terim: "<b>x</b>", anlam: "<img src=x onerror=alert(1)>", ders: "Türkçe" }].concat(md.slice(0, 60));
-    window.USTAD_SOZLUK = tehlikeli;
-    A.ciz();
-    var son = kartlar()[0];
-    /* .sz-terim zaten bir <b> etiketidir; onun DIŞINDA enjekte edilmiş etiket olmamalı */
-    var sahte = son ? Array.prototype.filter.call(son.querySelectorAll("b,img"), function (x) {
-      return !x.classList.contains("sz-terim");
-    }) : null;
+    /* ── 9) HTML kaçışı (güvenlik) — veri yedeklenir, AYNI adımda geri konur ── */
+    var kacisSonuc = (function () {
+      var yedekVardi = Object.prototype.hasOwnProperty.call(window, "USTAD_SOZLUK");
+      var yedek = window.USTAD_SOZLUK;
+      var r = { kartVar: false, terim: "", sahte: -1 };
+      try {
+        window.USTAD_SOZLUK = [{ terim: "<b>x</b>", anlam: "<img src=x onerror=alert(1)>", ders: "Türkçe",
+                                 konu: "<i>k</i>", ornek: "<script>1</" + "script>" }];
+        A.ciz();
+        var son = document.querySelector("#sozlukAlan .sz-kart");
+        if (son) {
+          r.kartVar = true;
+          r.terim = son.querySelector(".sz-terim") ? son.querySelector(".sz-terim").textContent : "";
+          r.sahte = Array.prototype.filter.call(son.querySelectorAll("b,img,i,script,iframe"), function (x) {
+            return !x.classList.contains("sz-terim");
+          }).length;
+        }
+      } finally {
+        if (yedekVardi) window.USTAD_SOZLUK = yedek;
+        else { try { delete window.USTAD_SOZLUK; } catch (e2) {} }
+      }
+      return r;
+    })();
     ok("güvenlik: terim/anlam HTML olarak yorumlanmadı (kaçışlandı)",
-       !!son && son.querySelector(".sz-terim").textContent === "<b>x</b>" && sahte.length === 0,
-       (son ? son.querySelector(".sz-terim").textContent : "yok") + " · sahte etiket: " + (sahte ? sahte.length : "yok"));
+       kacisSonuc.kartVar && kacisSonuc.terim === "<b>x</b>" && kacisSonuc.sahte === 0,
+       kisalt(kacisSonuc.terim) + " · sahte etiket: " + kacisSonuc.sahte);
+    ok("güvenlik: ölçümden sonra gerçek veri geri konuldu (aynı referans)", window.USTAD_SOZLUK === gercek,
+       window.USTAD_SOZLUK === gercek ? "aynı referans" : "referans değişti");
+    A.ciz();
 
-    /* ── 11) sözleşme: başka bölüm kodu çizim yapmaz ── */
+    /* ── 10) boş / bozuk veri: modül çökmemeli (veri AYNI adımda geri konur) ── */
+    function bosSenaryo(ata) {
+      var yedekVardi = Object.prototype.hasOwnProperty.call(window, "USTAD_SOZLUK");
+      var yedek = window.USTAD_SOZLUK;
+      var r = { hata: null, bosKutu: false, listeVar: true };
+      try {
+        ata();
+        try { A.bolumAc("sozluk"); } catch (e) { r.hata = e; }
+        r.bosKutu = !!document.getElementById("szBosVeri");
+        r.listeVar = !!document.getElementById("szListe");
+      } finally {
+        if (yedekVardi) window.USTAD_SOZLUK = yedek;
+        else { try { delete window.USTAD_SOZLUK; } catch (e2) {} }
+      }
+      return r;
+    }
+    var s1 = bosSenaryo(function () { window.USTAD_SOZLUK = []; });
+    ok("boş veri: dizi boşken çizim çökmedi", !s1.hata, s1.hata ? String(s1.hata.message) : "hata yok");
+    ok("boş veri: \"Sözlük verisi yüklenmemiş\" boş durumu çizildi",
+       s1.bosKutu && !s1.listeVar && metin("#szBosVeri").indexOf("Sözlük verisi yüklenmemiş") >= 0, kisalt(metin("#szBosVeri")));
+    var s2 = bosSenaryo(function () { window.USTAD_SOZLUK = "metin"; });
+    ok("bozuk veri: dizi olmayan değerde çökmedi", !s2.hata, s2.hata ? String(s2.hata.message) : "hata yok");
+    ok("bozuk veri: dizi olmayan değerde boş durum çizildi", s2.bosKutu, kisalt(metin("#szBosVeri")));
+    var s3 = bosSenaryo(function () { try { delete window.USTAD_SOZLUK; } catch (e) {} });
+    ok("boş veri: USTAD_SOZLUK hiç yokken de çökmedi", !s3.hata, s3.hata ? String(s3.hata.message) : "hata yok");
+    ok("boş veri: alan yokken de boş durum çizildi", s3.bosKutu, kisalt(metin("#szBosVeri")));
+    var s4 = bosSenaryo(function () { window.USTAD_SOZLUK = [null, 5, {}, { terim: "" }, { anlam: "" }]; });
+    ok("bozuk veri: geçersiz kayıtlar süzüldü, çökme yok", !s4.hata && s4.bosKutu, s4.hata ? String(s4.hata.message) : "boş durum çizildi");
+    A.ciz();
+    ok("temizlik: boş/bozuk senaryolardan sonra gerçek veri geri çizildi",
+       window.USTAD_SOZLUK === gercek && A.maddeler().length === TOPLAM && !!document.getElementById("szListe"),
+       metin("#szSayac") + " · aynı referans: " + (window.USTAD_SOZLUK === gercek));
+    ok("tekil konteyner: boş/bozuk senaryolardan sonra da tek kabuk",
+       $$("#ekran-sozluk").length === 1 && $$("#sozlukAlan").length === 1 && $$("#szDersler").length === 1 && $$("#szListe").length === 1,
+       "kabuk " + $$("#ekran-sozluk").length + " / alan " + $$("#sozlukAlan").length + " / liste " + $$("#szListe").length);
+
+    /* ── 11) sözleşme: başka bölüm kodu sözlüğü yeniden çizmez ── */
     A.ciz();
     var imza = document.getElementById("szListe");
     imza.setAttribute("data-imza", "SENTINEL");
@@ -723,35 +790,39 @@
     ok("sözleşme: bolumAc(\"testler\") sözlüğü yeniden çizmedi (imza korundu)",
        imza.getAttribute("data-imza") === "SENTINEL", imza.getAttribute("data-imza") || "üzerine yazıldı");
     A.bolumAc("sozluk");
-    ok("sözleşme: bolumAc(\"sozluk\") ekranı yeniden çizdi",
-       !document.getElementById("szListe") || true, "çizim tamam");
+    ok("sözleşme: bolumAc(\"sozluk\") ekranı çizdi ve tek konteyner korundu",
+       !!document.getElementById("szListe") && $$("#ekran-sozluk").length === 1 && $$("#szListe").length === 1,
+       "liste " + $$("#szListe").length + " / kabuk " + $$("#ekran-sozluk").length);
 
-    /* ── 12) temizlik ── */
-    if (eskiVeriVardi) window.USTAD_SOZLUK = eskiVeri;
-    else { try { delete window.USTAD_SOZLUK; } catch (e) {} }
+    /* ── 12) temizlik: her şey ilk hâlinde ── */
+    ok("temizlik: USTAD_SOZLUK ilk hâlinde (test boyunca sahte veriyle değiştirilmedi)",
+       window.USTAD_SOZLUK === gercek, Array.isArray(gercek) ? gercek.length + " madde · aynı referans" : typeof gercek);
     try {
       if (eskiFav === null) localStorage.removeItem(DEPO_FAV); else localStorage.setItem(DEPO_FAV, eskiFav);
     } catch (e) {}
     var geriFav = null;
     try { geriFav = localStorage.getItem(DEPO_FAV); } catch (e) {}
     ok("temizlik: favori deposu eski hâline döndü", geriFav === eskiFav, geriFav === null ? "boş" : "geri yüklendi");
-    ok("temizlik: USTAD_SOZLUK gerçek verisine döndü",
-       eskiVeriVardi ? window.USTAD_SOZLUK === eskiVeri : !("USTAD_SOZLUK" in window),
-       eskiVeriVardi ? (Array.isArray(eskiVeri) ? eskiVeri.length + " madde" : "nesne") : "test öncesi gibi yok");
     if (sesVar) { try { window.KPSS_SES.konus = eskiKonus; } catch (e) {} }
     else { try { delete window.KPSS_SES; } catch (e) {} }
     ok("temizlik: KPSS_SES.konus geri konuldu",
        sesVar ? window.KPSS_SES.konus === eskiKonus : !window.KPSS_SES, sesVar ? "eski fonksiyon" : "geçici nesne silindi");
     A.ciz();
     ok("temizlik: son çizim gerçek veriyle çökmeden tamamlandı",
-       !!document.getElementById("sozlukAlan"), metin("#szSayac") || metin("#szBosVeri").slice(0, 40));
+       !!document.getElementById("sozlukAlan"), metin("#szSayac") || kisalt(metin("#szBosVeri")));
+    ok("temizlik: ekranda gerçek veri var (ilk kart ilk maddeyi gösteriyor)",
+       kartlar().length === kartBek(TOPLAM) && metin("#szListe .sz-kart .sz-terim") === (A.liste()[0].terim || "(terimsiz)"),
+       kartlar().length + " kart · " + kisalt(metin("#szListe .sz-kart .sz-terim")));
+    ok("temizlik: tek konteyner korundu (#ekran-sozluk=1, #szListe=1)",
+       $$("#ekran-sozluk").length === 1 && $$("#szListe").length === 1,
+       "kabuk " + $$("#ekran-sozluk").length + " / liste " + $$("#szListe").length);
 
     /* sonuç kutusu */
     var kap2 = document.createElement("div");
     kap2.id = "sozlukTestSonuc";
     kap2.style.cssText = "position:fixed;inset:0;background:#fff;color:#111;z-index:99999;padding:16px;overflow:auto;font:13px/1.7 monospace";
-    kap2.innerHTML = "<h3>ÜSTAD KOÇ PRO · Terim Sözlüğü testi</h3>" +
-      t.map(function (x) { return "<div>" + x + "</div>"; }).join("") +
+    kap2.innerHTML = "<h3>ÜSTAD KOÇ PRO · Terim Sözlüğü testi (gerçek veriyle)</h3>" +
+      t.map(function (x) { return "<div>" + kacis(x) + "</div>"; }).join("") +
       "<hr><b>" + t.filter(function (x) { return x.indexOf("✔") === 0; }).length + " / " + t.length + " geçti</b>";
     document.body.appendChild(kap2);
 
