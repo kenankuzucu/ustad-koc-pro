@@ -5,10 +5,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="surum" content="2.3">
+<meta name="surum" content="2.4">
 <title>ÜSTAD KPSS-B KOÇ PRO · Sınav Koçu</title>
 <link rel="stylesheet" href="assets/stil.css">
 <link rel="stylesheet" href="assets/koc.css">
+<link rel="stylesheet" href="assets/kpss-araclar.css">
 </head>
 <body>
 
@@ -186,6 +187,30 @@
     <div class="kart"><div id="notListe" class="not-liste"></div></div>
   </section>
 
+  <!-- Sınav Geri Sayımı (KPSS ARAÇLAR · v2.4) -->
+  <section id="ekran-sayim" class="ekran" data-bolum="sayim">
+    <h2 class="sayfa-baslik">⏳ Sınav Geri Sayımı</h2>
+    <div class="kart" id="kaSayimAlan"></div>
+  </section>
+
+  <!-- Net & Puan (KPSS ARAÇLAR · v2.4) -->
+  <section id="ekran-puan" class="ekran" data-bolum="puan">
+    <h2 class="sayfa-baslik">🧮 Net &amp; Puan</h2>
+    <div class="kart" id="kaPuanAlan"></div>
+  </section>
+
+  <!-- 2026 Güncel Bilgiler (KPSS ARAÇLAR · v2.4) -->
+  <section id="ekran-guncel" class="ekran" data-bolum="guncel">
+    <h2 class="sayfa-baslik">📰 2026 Güncel Bilgiler</h2>
+    <div class="kart" id="kaGuncelAlan"></div>
+  </section>
+
+  <!-- Çıkmış Sorular (KPSS ARAÇLAR · v2.4) -->
+  <section id="ekran-cikmis" class="ekran" data-bolum="cikmis">
+    <h2 class="sayfa-baslik">📚 Çıkmış Sorular (2011-2021)</h2>
+    <div class="kart" id="kaCikmisAlan"></div>
+  </section>
+
   <!-- İSTATİSTİK -->
   <section id="ekran-istatistik" class="ekran" data-bolum="istatistik">
     <h2 class="sayfa-baslik">📊 İstatistik</h2>
@@ -271,10 +296,14 @@
 <script src="icerik/sorular.js"></script>
 <script src="icerik/notlar.js"></script>
 <script src="icerik/besleme.js"></script>
+<script src="icerik/kpss-takvim.js"></script>
+<script src="icerik/kpss-guncel.js"></script>
+<script src="icerik/kpss-cikmis.js"></script>
 <script src="assets/deneme.js"></script>
 <script src="assets/motor.js"></script>
 <script src="assets/koc.js"></script>
 <script src="assets/koc2.js"></script>
 <script src="assets/koc3.js"></script>
+<script src="assets/kpss-araclar.js"></script>
 </body>
 </html>

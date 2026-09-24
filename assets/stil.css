@@ -34,6 +34,11 @@ html[data-renk="deniz"]   { --zemin:#e9f2f7; --zemin2:#dbeaf3; --kart:#fafdff; -
   --ayarlar:#556070;  --ayarlar2:#414a58;
   --hakkinda:#0f6f92; --hakkinda2:#0b5570;
   --koc:#7c3aed;      --koc2:#5b21b6;
+  /* KPSS ARAÇLAR eklentisi (v2.4) — her aracın kendi rengi */
+  --sayim:#0f766e;    --sayim2:#115e59;
+  --puan:#b45309;     --puan2:#92400e;
+  --guncel:#0e7490;   --guncel2:#155e75;
+  --cikmis:#c2410c;   --cikmis2:#9a3412;
   --r:16px;
 }
 

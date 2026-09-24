@@ -1,0 +1,89 @@
+/* © 2026 Kenan Kuzucu · ÜSTAD KPSS-B KOÇ PRO · KPSS ARAÇLAR eklentisi stilleri · TÜM HAKLARI SAKLIDIR (5846 FSEK).
+   Her araç bölümünün KENDİ rengi var: geri sayım (--sayim), net & puan (--puan),
+   güncel bilgiler (--guncel), çıkmış sorular (--cikmis). Renkler tema değişse de sabit kalır. */
+
+.ka-orta { margin:18px 0 8px; font-size:16px; }
+.ka-alt-baslik { margin:14px 0 8px; font-weight:700; color:var(--soluk); }
+
+/* ── geri sayım ── */
+.ka-sayim-kutular { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:6px 0 12px; }
+.ka-kutu { background:linear-gradient(160deg, var(--sayim), var(--sayim2)); color:#fff; border-radius:14px;
+  padding:14px 6px; text-align:center; box-shadow:0 6px 16px rgba(15,118,110,.25); }
+.ka-kutu b { display:block; font-size:30px; line-height:1.1; font-variant-numeric:tabular-nums; }
+.ka-kutu span { font-size:10.5px; letter-spacing:.12em; opacity:.9; }
+.ka-liste { margin-top:14px; }
+.ka-hedef { display:flex; align-items:center; gap:10px; padding:9px 12px; border-left:4px solid var(--sayim);
+  background:var(--kart); border-radius:10px; margin-bottom:7px; border:1px solid var(--cizgi); flex-wrap:wrap; }
+.ka-hedef.simdi { border-left-color:var(--deneme); box-shadow:0 0 0 2px rgba(220,38,38,.14); }
+.ka-hedef.gecti { opacity:.62; border-left-color:var(--soluk); }
+.ka-hedef.sonuc { border-left-color:var(--puan); }
+.ka-hedef b { flex:1 1 190px; }
+.ka-hedef span { color:var(--soluk); font-size:12.5px; }
+.ka-hedef em { margin-left:auto; font-style:normal; font-weight:700; color:var(--soluk); font-size:12.5px; }
+
+/* ── tablo ── */
+.ka-tablo { width:100%; border-collapse:collapse; margin:10px 0; font-size:13.5px; }
+.ka-tablo th, .ka-tablo td { border-bottom:1px solid var(--cizgi); padding:7px 8px; text-align:left; }
+.ka-tablo th { color:var(--soluk); font-size:11.5px; letter-spacing:.05em; text-transform:uppercase; }
+.ka-tablo td.rakam, .ka-tablo .rakam { font-variant-numeric:tabular-nums; }
+.ka-tablo tr.toplam td { border-top:2px solid var(--sayim); }
+
+/* ── net & puan ── */
+.ka-form { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; }
+.ka-test { border:1px solid var(--cizgi); border-radius:12px; padding:10px 12px; background:var(--kart); }
+.ka-test h4 { margin:0 0 8px; color:var(--puan); }
+.ka-test label, .ka-hedef-gir { display:flex; align-items:center; justify-content:space-between; gap:8px; margin:6px 0; font-size:13.5px; }
+.ka-test input, .ka-hedef-gir input, .ka-ara, #kaGFiltre { width:92px; padding:7px 9px; border:1px solid var(--cizgi);
+  border-radius:9px; background:var(--kart); color:var(--metin); font-size:14px; }
+.ka-ara { width:auto; flex:1 1 200px; }
+.ka-hedef-gir { justify-content:flex-start; margin-top:12px; }
+.ka-sonuc-izgara { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px; margin:6px 0 12px; }
+.ka-buyuk { display:block; font-size:21px; font-variant-numeric:tabular-nums; }
+.ka-etiket { display:inline-block; background:rgba(0,0,0,.05); border:1px solid var(--cizgi); border-radius:999px;
+  padding:2px 9px; font-size:11.5px; color:var(--soluk); margin:2px 3px 2px 0; }
+.ka-etiket.ka-hata, .ka-hata { color:#dc2626; }
+.ka-sonuc { border:1px solid var(--cizgi); border-radius:12px; padding:12px; background:var(--kart); margin-top:10px; }
+
+/* ── güncel bilgiler ── */
+.ka-guncel { border:1px solid var(--cizgi); border-left:4px solid var(--guncel); border-radius:11px; padding:11px 13px;
+  background:var(--kart); margin-bottom:9px; }
+.ka-guncel h4 { margin:0 0 5px; font-size:14.5px; }
+.ka-guncel p { margin:0 0 6px; font-size:13.5px; line-height:1.55; }
+.ka-guncel a { color:var(--guncel); font-size:12.5px; }
+
+/* ── çıkmış sorular ── */
+.ka-uyari { border:1px solid var(--cizgi); border-left:4px solid var(--cikmis); border-radius:11px; padding:11px 13px;
+  background:var(--kart); font-size:13px; line-height:1.55; margin-bottom:12px; }
+.ka-yillar { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px; }
+.ka-mini { padding:6px 11px; border-radius:999px; border:1px solid var(--cizgi); background:var(--kart);
+  color:var(--metin); font-size:12.5px; cursor:pointer; }
+.ka-mini.ka-secili { background:var(--cikmis); color:#fff; border-color:var(--cikmis); }
+.ka-yil-kutu { border:1px solid var(--cizgi); border-left:4px solid var(--cikmis); border-radius:12px; padding:12px;
+  background:var(--kart); margin-bottom:12px; }
+.ka-yil-kutu h4 { margin:0 0 6px; }
+.ka-etiketler { margin:6px 0; }
+.ka-soru { border:1px solid var(--cizgi); border-radius:12px; padding:13px; background:var(--kart); }
+.ka-ust { display:flex; justify-content:space-between; gap:8px; flex-wrap:wrap; }
+.ka-soru-metin { font-size:14.5px; line-height:1.6; margin:10px 0; }
+.ka-sik { display:block; width:100%; text-align:left; padding:10px 12px; margin-bottom:7px; border-radius:10px;
+  border:1px solid var(--cizgi); background:var(--kart); color:var(--metin); font-size:13.5px; cursor:pointer; }
+.ka-sik:hover { border-color:var(--cikmis); }
+.ka-sik.dogru { background:#12a150; border-color:#12a150; color:#fff; }
+.ka-sik.yanlis { background:#dc2626; border-color:#dc2626; color:#fff; }
+.ka-sik.soluk { opacity:.55; }
+.ka-geri { border-radius:10px; padding:10px 12px; margin-top:9px; font-size:13.5px; border-left:4px solid var(--soluk); background:rgba(0,0,0,.03); }
+.ka-geri.iyi { border-left-color:#12a150; }
+.ka-geri.kotu { border-left-color:#dc2626; }
+.ka-geri p { margin:6px 0 0; }
+.ka-yesil { border:1px solid var(--cizgi); border-left:4px solid #12a150; border-radius:12px; padding:12px; background:var(--kart); }
+
+/* ── düğmeler ── */
+.ka-butonlar { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin:10px 0; }
+.ka-dugme { padding:10px 15px; border-radius:11px; border:0; background:var(--bolum); color:#fff; font-size:13.5px;
+  font-weight:600; cursor:pointer; text-decoration:none; display:inline-block; }
+.ka-dugme.ka-ikincil { background:var(--kart); color:var(--metin); border:1px solid var(--cizgi); }
+
+@media (max-width:520px) {
+  .ka-sayim-kutular { grid-template-columns:repeat(2,1fr); }
+  .ka-kutu b { font-size:26px; }
+}

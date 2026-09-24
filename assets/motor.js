@@ -18,6 +18,10 @@
     { kod: "oneriyor",   ad: "ÜSTAD Öneriyor",  simg: "💡", renk: "var(--oneriyor)",   renk2: "#e08a00" },
     { kod: "testler",    ad: "Testler",         simg: "📝", renk: "var(--testler)",    renk2: "#12a150" },
     { kod: "deneme",     ad: "Deneme Sınavı",   simg: "🎯", renk: "var(--deneme)",     renk2: "#dc2626" },
+    { kod: "sayim",      ad: "Sınav Geri Sayımı", simg: "⏳", renk: "var(--sayim)",    renk2: "#0f766e" },
+    { kod: "puan",       ad: "Net & Puan",      simg: "🧮", renk: "var(--puan)",      renk2: "#b45309" },
+    { kod: "guncel",     ad: "2026 Güncel Bilgiler", simg: "📰", renk: "var(--guncel)", renk2: "#0e7490" },
+    { kod: "cikmis",     ad: "Çıkmış Sorular",  simg: "📚", renk: "var(--cikmis)",    renk2: "#c2410c" },
     { kod: "notlar",     ad: "Ders Notları",    simg: "📚", renk: "var(--notlar)",     renk2: "#7c3aed" },
     { kod: "istatistik", ad: "İstatistik",      simg: "📊", renk: "var(--istatistik)", renk2: "#1d6fe0" },
     { kod: "ayarlar",    ad: "Ayarlar",         simg: "⚙️", renk: "var(--ayarlar)",    renk2: "#556070" },
@@ -104,6 +108,10 @@
     if (kod === "ana") anaMadalyon();
     // Hakkında & Telif açılınca künye, telif ve bütünlük kontrolü tazelenir
     if (kod === "hakkinda") hakkinda();
+    // KPSS ARAÇLAR eklentisi (v2.4): geri sayım / net-puan / güncel bilgiler / çıkmış sorular
+    if (window.KPSS_ARACLAR && window.KPSS_ARACLAR.bolumAc) window.KPSS_ARACLAR.bolumAc(kod);
+    // Bölüm bağlantısı (derin link): index.html#sayim gibi
+    try { if (history.replaceState) history.replaceState(null, "", "#" + kod); } catch (e) {}
   }
 
   function menuAc() { $("#menu").classList.add("acik"); $("#menuPerde").classList.add("acik"); }
@@ -1303,7 +1311,12 @@
      });
    });
  }
-    git("ana");
+    var _ilk = (location.hash || "").replace("#", "");
+    git(BOLUMLER.some(function (b) { return b.kod === _ilk; }) ? _ilk : "ana");
+    window.addEventListener("hashchange", function () {
+      var k = (location.hash || "").replace("#", "");
+      if (BOLUMLER.some(function (b) { return b.kod === k; })) git(k);
+    });
     olcumKipi();
   });
 
