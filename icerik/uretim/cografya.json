@@ -1,0 +1,332 @@
+{
+  "ders": "Coğrafya",
+  "notlar": [
+    {
+      "baslik": "Türkiye'nin Coğrafi Konumu ve İklimi",
+      "konu": "Türkiye'nin Coğrafi Konumu, İklim ve Bitki Örtüsü",
+      "ozet": "Türkiye orta kuşakta yer alan, yükseltisi batıdan doğuya artan bir ülkedir; bu konum iklim ve bitki örtüsü çeşitliliğini doğurur.",
+      "metin": [
+        "Türkiye, kuzey yarım kürede 36°-42° kuzey enlemleri ile 26°-45° doğu boylamları arasında yer alır. Bu konum ülkeyi orta kuşakta bırakır; dört mevsim belirgin yaşanır, batı rüzgârları ile cephe sistemleri etkili olur. Kuzeyde Karadeniz, batıda Ege, güneyde Akdeniz ile çevrili olması ve Asya ile Avrupa arasında köprü oluşturması hem iklimini hem de jeopolitik önemini belirler.",
+        "Matematik konum (enlem-boylam) sıcaklık, gölge yönü ve uzunluğu, gece-gündüz süresi ile yerel saat gibi unsurları etkiler. Özel konum ise denizlere komşuluk, boğazların varlığı, yükselti ve çevredeki kara kütleleri üzerinden iklimi, ulaşımı ve ekonomik faaliyetleri biçimlendirir. En doğusu ile en batısı arasında 19 meridyen farkı bulunduğundan yerel saat farkı yaklaşık 76 dakikadır.",
+        "Yükselti batıdan doğuya doğru artar ve Türkiye'nin ortalama yükseltisi yaklaşık 1100 metre civarındadır. Yükseltinin artması sıcaklığı düşürür, kar yağışlı gün sayısını ve karın yerde kalma süresini Doğu Anadolu'da uzatır. Dağların kuzey ve güney kıyılarda doğu-batı yönünde uzanması deniz etkisinin iç kesimlere sokulmasını engeller; bu yüzden kıyılar daha yağışlı, iç kesimler karasal karakterlidir.",
+        "Türkiye'de başlıca üç iklim tipi görülür: Akdeniz kıyılarında yazları sıcak ve kurak, kışları ılık ve yağışlı Akdeniz iklimi (bitki örtüsü maki); Karadeniz kıyılarında her mevsim yağışlı Karadeniz iklimi (bitki örtüsü nemli orman); iç kesimlerde kışları soğuk, yazları sıcak karasal iklim (bitki örtüsü bozkır). Karadeniz iklimi en belirgin biçimde Doğu Karadeniz kıyılarında, Akdeniz iklimi ise kıyı şeridinde görülür; kıyıdan içeriye gidildikçe her iki iklim de karasal özellik kazanır."
+      ],
+      "pufNoktalar": [
+        "Enlem sıcaklığı, boylam yerel saati belirler. Yerel saat sorularında 1 meridyen farkı 4 dakikadır; 19 x 4 = 76 dakika.",
+        "Türkiye orta kuşakta olduğu için dört mevsim görülür; kuzeyden esen rüzgârlar soğuk, güneyden esenler sıcak getirir.",
+        "Kıyı ile iç kesim arasındaki yağış farkının temel nedeni dağların denize paralel (doğu-batı) uzanması, yani boyuna kıyı oluşudur.",
+        "Doğu Anadolu'da karın yerde kalma süresinin uzun olması enlem değil yükselti sonucudur; bu ayrım sıkça sorulur."
+      ],
+      "sinavIpucu": "ÖSYM enlem ve boylam sonuçlarını birbirine karıştırır. 'Yerel saat, gölge boyu, gece-gündüz süresi, dört mevsim' ifadelerinden hangisinin enlem, hangisinin boylam sonucu olduğunu netleştirmeden seçeneğe gitme."
+    },
+    {
+      "baslik": "Türkiye Ekonomisi: Tarım, Sanayi ve Madencilik",
+      "konu": "Türkiye Ekonomisi, Tarım, Hayvancılık, Ormancılık, Madencilik ve Enerji, Sanayi",
+      "ozet": "Türkiye ekonomisinde tarım iklim ve yükseltiye göre bölgesel farklılık gösterir; madencilik ve sanayi belirli merkezlerde yoğunlaşır.",
+      "metin": [
+        "Türkiye'de tarım; iklim, yer şekilleri, toprak ve sulama olanaklarına bağlı olarak bölgeden bölgeye değişir. Kıyı ovalarında ve sulanabilen havzalarda sulu tarım, iç kesimlerde ise daha çok tahıla dayalı kuru tarım yaygındır. Tarımsal üretim hem nüfusun beslenmesi hem de sanayiye ham madde sağlanması ve ihracat açısından belirleyicidir.",
+        "Akdeniz kıyılarında turunçgil, zeytin ve pamuk; Ege kıyılarında zeytin, üzüm ve incir; Doğu Karadeniz kıyılarında çay ve fındık; İç Anadolu'da buğday, arpa ve şeker pancarı öne çıkar. Şeker pancarı gibi ağırlık ve hacim kaybeden, taşınması ve depolanması güç ürünlerin fabrikaları ham maddeye yakın kurulur.",
+        "Hayvancılıkta küçükbaş (koyun, keçi) bozkır meralarının geniş olduğu İç Anadolu, Güneydoğu Anadolu ve Doğu Anadolu'da; büyükbaş ise gür çayırların bulunduğu Karadeniz ile Doğu Anadolu'nun sulak-yayla kesimlerinde yaygındır. Orman alanı bakımından en zengin bölge Karadeniz'dir; Güneydoğu Anadolu ve İç Anadolu'nun bozkır kesimleri ise orman bakımından en yoksuldur.",
+        "Madencilikte taş kömürü yatakları Zonguldak çevresinde yoğunlaşır; linyit Türkiye'nin birçok bölgesinde yaygın olarak çıkarılır. Bor mineralleri Eskişehir, Kütahya ve Balıkesir çevresindeki sahalarda toplanır ve Türkiye dünya bor rezervlerinin önemli bir bölümüne sahiptir. Enerjide hidroelektrik, Ege Bölgesi'nin jeotermal kaynakları, rüzgâr ve güneş enerjisi artan oranda kullanılmaktadır.",
+        "Sanayi tesisleri en çok Marmara Bölgesi'nde yoğunlaşmıştır. Bunun nedenleri arasında gelişmiş ulaşım olanakları, sermaye ve nitelikli iş gücünün burada bulunması, geniş iç ve dış pazara yakınlık ile ham maddenin kolay temin edilebilmesi yer alır. Sanayi kolları yer seçerken ham maddeye yakınlık, enerji kaynağı, ulaşım ve pazar faktörlerini birlikte değerlendirir."
+      ],
+      "pufNoktalar": [
+        "Şeker pancarı, çay gibi ürünlerde fabrika ham maddenin yanına kurulur; çünkü ürün taşınırken ağırlık/nitelik kaybeder.",
+        "Küçükbaş hayvancılık kuraklığa dayanıklıdır ve bozkır-mera ile; büyükbaş hayvancılık çayır ve sulak alanlarla ilişkilidir.",
+        "Maden sorularında emin olmadığın 'il-maden' eşleştirmelerine girme; taş kömürü-Zonguldak ve bor-Eskişehir/Kütahya/Balıkesir gibi kesin bilgilere dayan.",
+        "Sanayide yer seçimi sorularında ham maddeye yakınlık, enerji, ulaşım ve pazar faktörleri birlikte düşünülmelidir."
+      ],
+      "sinavIpucu": "Tarım ve hayvancılıkta 'hangi ürün hangi bölgede' eşleştirmesi iklim ve yer şekilleriyle kurulur. Seçeneğe gitmeden önce ürünün yetişme koşulunu (nem, sıcaklık, mera, sulama) kısaca hatırla."
+    },
+    {
+      "baslik": "Türkiye'de Nüfus ve Yerleşme",
+      "konu": "Nüfus ve Yerleşme",
+      "ozet": "Türkiye nüfusu artmakla birlikte artış hızı azalmış, kentsel nüfus oranı yükselmiştir; nüfusun dağılışını doğal ve beşeri faktörler belirler.",
+      "metin": [
+        "Türkiye nüfusu Cumhuriyet'in ilk yıllarından bu yana sürekli artmış; ancak nüfus artış hızı dönem dönem dalgalanmış ve son yıllarda azalma eğilimine girmiştir. Ortalama yaşam süresi uzamış, doğurganlık azalmış ve nüfusun yaş yapısı giderek yaşlanmaya başlamıştır. Kentsel nüfus oranı kırsal nüfusun belirgin biçimde önüne geçmiştir.",
+        "Nüfusun dağılışını etkileyen faktörler doğal (fiziki) ve beşeri olarak ikiye ayrılır. Doğal faktörler iklim, yer şekilleri, toprak verimliliği ve su kaynakları; beşeri faktörler sanayi, ulaşım, madencilik, turizm ve yönetim fonksiyonlarıdır. Bu nedenle nüfus kıyı ovalarında, sanayileşmiş merkezlerde ve ulaşımın geliştiği yerlerde yoğunlaşır; yüksek ve engebeli alanlarda seyrekleşir.",
+        "Kır ve kent nüfusu ile göç birbirini besler: kırdan kente göç, sanayi ve hizmet sektörünün geliştiği merkezlerin nüfusunu hızla artırırken kırsal alanlarda nüfus azalmasına yol açar. Kentleşme; konut, ulaşım, altyapı ve çevre sorunlarını da beraberinde getirir.",
+        "Yerleşme tipleri toplu ve dağınık yerleşme olarak ayrılır. Suyun bol ve arazinin parçalı olduğu Karadeniz kıyılarında dağınık yerleşme; suyun az olduğu İç Anadolu ve Güneydoğu Anadolu'da toplu yerleşme yaygındır. Yayla, oba, kom, mezra ve ağıl gibi adlar geçici yerleşmelere karşılık gelir ve köy ile mahalle sürekli yerleşmedir."
+      ],
+      "pufNoktalar": [
+        "Kır-kent ayrımı işlevseldir: nüfusu belirli bir büyüklüğün (yaklaşık 20.000) üzerinde olan yerleşmeler kentsel kabul edilir.",
+        "Dağınık yerleşme suyun bol ve arazinin parçalı olduğu Karadeniz'de; toplu yerleşme suyun az olduğu İç Anadolu ve Güneydoğu Anadolu'da görülür.",
+        "Yayla, oba, mezra, kom, ağıl geçici yerleşmedir; sorularda 'sürekli yerleşme' ile karıştırılır.",
+        "Nüfus dağılışı sorularında iklim, yükselti ve toprak doğal; sanayi, ulaşım ve turizm beşeri faktördür."
+      ],
+      "sinavIpucu": "Nüfus sorularında 'en fazla/en az nüfuslanan yöre' istenir. Kıyı ovaları ve Marmara sanayi bölgesi yoğun; Yıldız Dağları, Taşeli Platosu ve Hakkâri çevresi gibi yüksek-engebeli alanlar seyrektir."
+    }
+  ],
+  "sorular": [
+    {
+      "konu": "Türkiye'nin Coğrafi Konumu",
+      "zorluk": "Orta",
+      "tip": "Özellik-Sonuç İlişkisi",
+      "metin": "Türkiye, 36°-42° kuzey enlemleri ile 26°-45° doğu boylamları arasında yer alır.",
+      "soru": "Bu konum bilgisine göre aşağıdakilerden hangisi Türkiye'nin enlem özelliğinin bir sonucu değildir?",
+      "secenekler": [
+        "Dört mevsimin belirgin olarak yaşanması",
+        "Batı rüzgârlarının etkili olması",
+        "Yerel saat farkının doğu-batı yönünde ortaya çıkması",
+        "Akdeniz iklim kuşağında yer alması"
+      ],
+      "dogru": 2,
+      "aciklama": "Yerel saat farkı, doğu-batı doğrultusundaki boylam farkından doğar; enlemle ilgisi yoktur. Diğer seçenekler orta kuşakta yer almanın (enlem) sonuçlarıdır."
+    },
+    {
+      "konu": "Türkiye'nin Coğrafi Konumu",
+      "zorluk": "Kolay",
+      "tip": "Konum Bilgisi",
+      "metin": "Türkiye'nin en batısı 26° doğu, en doğusu 45° doğu boylamı üzerindedir. İki meridyen arasındaki zaman farkı 4 dakikadır.",
+      "soru": "Buna göre Türkiye'nin en doğusu ile en batısı arasındaki yerel saat farkı yaklaşık kaç dakikadır?",
+      "secenekler": [
+        "44",
+        "76",
+        "90",
+        "114"
+      ],
+      "dogru": 1,
+      "aciklama": "45 - 26 = 19 meridyen farkı vardır. 19 x 4 dakika = 76 dakika yerel saat farkı oluşur."
+    },
+    {
+      "konu": "Yer Şekilleri",
+      "zorluk": "Orta",
+      "tip": "Özellik-Sonuç İlişkisi",
+      "metin": "Türkiye'de dağlar kuzey ve güney kıyılarda denize paralel, yani doğu-batı yönünde uzanır.",
+      "soru": "Bu uzanışın doğal bir sonucu aşağıdakilerden hangisidir?",
+      "secenekler": [
+        "Akarsuların denge profiline daha kısa sürede ulaşması",
+        "Kıyıların enine kıyı tipi özelliği göstermesi",
+        "Deniz etkisinin iç kesimlere sokulamaması ve kıyı ile iç kesim arasındaki yağış farkının artması",
+        "Karstik şekillerin kıyı kesimlerinde yaygınlaşması"
+      ],
+      "dogru": 2,
+      "aciklama": "Dağların denize paralel uzanması deniz etkisini engeller; nemli hava kıyıda yağış bırakır, iç kesimler karasal ve kurak kalır. Bu düzen boyuna kıyı tipini doğurur, enine kıyıyı değil."
+    },
+    {
+      "konu": "Yer Şekilleri",
+      "zorluk": "Kolay",
+      "tip": "Eşleştirme",
+      "metin": "Türkiye'deki dağlar kıvrılma, kırılma ve volkanizma gibi farklı süreçlerle oluşmuştur.",
+      "soru": "Aşağıda verilen dağlardan hangisi volkanik kökenli değildir?",
+      "secenekler": [
+        "Ağrı Dağı",
+        "Süphan Dağı",
+        "Uludağ",
+        "Erciyes Dağı"
+      ],
+      "dogru": 2,
+      "aciklama": "Ağrı, Süphan ve Erciyes volkanik dağlardır. Uludağ ise kırılma (faylanma) sonucu yükselmiş bir horst dağıdır, volkanik değildir."
+    },
+    {
+      "konu": "İklim ve Bitki Örtüsü",
+      "zorluk": "Kolay",
+      "tip": "Bölge Bilgisi",
+      "metin": "Türkiye'de yağış rejimi bölgelere göre belirgin farklılık gösterir.",
+      "soru": "Yıllık yağışın yılın her mevsimine düzenli biçimde dağıldığı, yaz kuraklığı görülmeyen yöre aşağıdakilerden hangisidir?",
+      "secenekler": [
+        "Doğu Karadeniz kıyıları",
+        "Güneydoğu Anadolu",
+        "İç Anadolu",
+        "Akdeniz kıyıları"
+      ],
+      "dogru": 0,
+      "aciklama": "Doğu Karadeniz kıyıları her mevsim yağış alan tek yöredir. Akdeniz kıyılarında yaz kuraklığı, İç ve Güneydoğu Anadolu'da ise ilkbahar yağışları öne çıkar."
+    },
+    {
+      "konu": "İklim ve Bitki Örtüsü",
+      "zorluk": "Orta",
+      "tip": "Yorumlama",
+      "metin": "Kar yağışlı gün sayısı ve karın yerde kalma süresi Türkiye'de bölgeden bölgeye büyük fark gösterir.",
+      "soru": "Karın yerde kalma süresinin en uzun olduğu bölge aşağıdakilerden hangisidir?",
+      "secenekler": [
+        "Doğu Anadolu",
+        "Ege kıyıları",
+        "Güneydoğu Anadolu",
+        "Akdeniz kıyıları"
+      ],
+      "dogru": 0,
+      "aciklama": "Doğu Anadolu'da yükseltinin fazla olması sıcaklığı düşürür; bu nedenle kar yağışı bol, karın yerde kalma süresi en uzundur. Burada belirleyici etken enlem değil yükseltidir."
+    },
+    {
+      "konu": "İklim ve Bitki Örtüsü",
+      "zorluk": "Orta",
+      "tip": "Hangisi Değildir",
+      "metin": "Akdeniz ikliminin doğal bitki örtüsü, kuraklığa dayanıklı ve herdem yeşil çalılardan oluşan makidir.",
+      "soru": "Aşağıdakilerden hangisi maki bitki örtüsünün bir elemanı değildir?",
+      "secenekler": [
+        "Zeytin",
+        "Defne",
+        "Keçiboynuzu",
+        "Kayın"
+      ],
+      "dogru": 3,
+      "aciklama": "Zeytin, defne ve keçiboynuzu maki elemanlarıdır. Kayın ise nemli ve serin koşulları seven, Karadeniz ormanlarını oluşturan bir orman ağacıdır."
+    },
+    {
+      "konu": "Nüfus ve Yerleşme",
+      "zorluk": "Kolay",
+      "tip": "Yorumlama",
+      "metin": "Türkiye nüfusunun yapısı ve dağılışı son yıllarda belirgin değişim göstermiştir.",
+      "soru": "Türkiye nüfusuyla ilgili aşağıdaki yargılardan hangisi yanlıştır?",
+      "secenekler": [
+        "Nüfusun büyük bölümü kentsel yerleşmelerde yaşamaktadır",
+        "Nüfusun yarıdan fazlası kırsal kesimde yaşamaktadır",
+        "Nüfus artış hızı geçmiş dönemlere göre azalmıştır",
+        "Ortalama yaşam süresi geçmişe göre artmıştır"
+      ],
+      "dogru": 1,
+      "aciklama": "Türkiye'de kentsel nüfus oranı kırsal nüfusun çok üzerindedir; dolayısıyla nüfusun yarıdan fazlasının kırsalda yaşadığı yargısı yanlıştır."
+    },
+    {
+      "konu": "Nüfus ve Yerleşme",
+      "zorluk": "Kolay",
+      "tip": "Sınıflandırma",
+      "metin": "Nüfusun dağılışını etkileyen faktörler doğal (fiziki) ve beşeri faktörler olarak iki grupta incelenir.",
+      "soru": "Aşağıdakilerden hangisi nüfusun dağılışını etkileyen doğal faktörlerden biri değildir?",
+      "secenekler": [
+        "İklim özellikleri",
+        "Yer şekilleri",
+        "Sanayi ve ulaşım olanakları",
+        "Toprağın verimliliği"
+      ],
+      "dogru": 2,
+      "aciklama": "Sanayi ve ulaşım insan eliyle oluşan beşeri faktörlerdir. İklim, yer şekilleri ve toprak verimliliği doğal (fiziki) faktörlerdir."
+    },
+    {
+      "konu": "Türkiye Ekonomisi: Tarım, Hayvancılık ve Ormancılık",
+      "zorluk": "Kolay",
+      "tip": "Özellik-Sonuç İlişkisi",
+      "metin": "Bir tarım ürününün yetişme alanı, o ürünün istediği iklim ve toprak koşullarıyla sınırlıdır.",
+      "soru": "Her mevsim yağışlı, yazları serin ve nemli bir iklim isteyen, Doğu Karadeniz kıyılarında yaygın olarak yetiştirilen ürün aşağıdakilerden hangisidir?",
+      "secenekler": [
+        "Çay",
+        "Pamuk",
+        "Zeytin",
+        "Şeker pancarı"
+      ],
+      "dogru": 0,
+      "aciklama": "Çay, her mevsim yağış ve yüksek nem ister; bu koşullar Doğu Karadeniz kıyılarında sağlanır. Pamuk ve zeytin daha çok Akdeniz-Ege kıyılarının ürünleridir."
+    },
+    {
+      "konu": "Türkiye Ekonomisi: Tarım, Hayvancılık ve Ormancılık",
+      "zorluk": "Orta",
+      "tip": "Yorumlama",
+      "metin": "İç Anadolu ve Güneydoğu Anadolu'da doğal bitki örtüsü bozkırdır; yaz kuraklığı belirgindir.",
+      "soru": "Bu yörelerde küçükbaş hayvancılığın (koyun ve keçi) yaygın olmasının temel nedeni aşağıdakilerden hangisidir?",
+      "secenekler": [
+        "Yaz yağışlarının bol olması ve gür çayırların bulunması",
+        "Yükseltinin tarım yapmaya elverişli olması",
+        "Sulanan tarım alanlarının geniş yer kaplaması",
+        "Kuraklığa dayanıklı küçükbaş hayvanların bozkır meralarında otlatılabilmesi"
+      ],
+      "dogru": 3,
+      "aciklama": "Bozkır ikliminde gür çayır bulunmaz; buna karşılık koyun ve keçi kuraklığa dayanıklı olduğundan bozkır meralarında rahatça beslenir. Büyükbaş hayvancılık çayır ve sulak alan ister."
+    },
+    {
+      "konu": "Türkiye Ekonomisi: Tarım, Hayvancılık ve Ormancılık",
+      "zorluk": "Kolay",
+      "tip": "Bölge Bilgisi",
+      "metin": "Türkiye'de orman alanlarının bölgelere göre dağılışı yağış koşullarıyla yakından ilişkilidir.",
+      "soru": "Orman varlığı bakımından en zengin bölge aşağıdakilerden hangisidir?",
+      "secenekler": [
+        "Güneydoğu Anadolu",
+        "Karadeniz",
+        "İç Anadolu",
+        "Doğu Anadolu"
+      ],
+      "dogru": 1,
+      "aciklama": "Karadeniz Bölgesi her mevsim yağışlı iklimi ve nemli ortamı sayesinde orman alanı bakımından en zengin bölgedir. Güneydoğu Anadolu ve İç Anadolu'nun bozkır kesimleri orman bakımından en yoksuldur."
+    },
+    {
+      "konu": "Madencilik ve Enerji",
+      "zorluk": "Kolay",
+      "tip": "Eşleştirme",
+      "metin": "Türkiye'de maden yatakları belirli sahalarda toplanmıştır.",
+      "soru": "Türkiye'de taş kömürü yataklarıyla bilinen il aşağıdakilerden hangisidir?",
+      "secenekler": [
+        "Zonguldak",
+        "Konya",
+        "Mardin",
+        "Ağrı"
+      ],
+      "dogru": 0,
+      "aciklama": "Taş kömürü yatakları Zonguldak ve çevresinde yoğunlaşmıştır. Konya, Mardin ve Ağrı ise taş kömürü havzası olarak bilinmez."
+    },
+    {
+      "konu": "Madencilik ve Enerji",
+      "zorluk": "Orta",
+      "tip": "Bölge Bilgisi",
+      "metin": "Türkiye, yer altı sıcak su kaynakları bakımından zengin bir ülkedir ve bu kaynaklar elektrik üretiminde de kullanılır.",
+      "soru": "Jeotermal enerji potansiyelinin en yüksek olduğu bölge aşağıdakilerden hangisidir?",
+      "secenekler": [
+        "Karadeniz",
+        "İç Anadolu",
+        "Güneydoğu Anadolu",
+        "Ege"
+      ],
+      "dogru": 3,
+      "aciklama": "Ege Bölgesi'nde Denizli, Aydın, Manisa ve İzmir çevresindeki jeotermal sahalar, Türkiye'nin en yüksek potansiyelini oluşturur."
+    },
+    {
+      "konu": "Sanayi",
+      "zorluk": "Orta",
+      "tip": "Hangisi Değildir",
+      "metin": "Türkiye'de sanayi tesislerinin büyük bölümü Marmara Bölgesi'nde toplanmıştır.",
+      "soru": "Bu yoğunlaşmada aşağıdakilerden hangisi etkili olmamıştır?",
+      "secenekler": [
+        "Ulaşım olanaklarının gelişmiş olması",
+        "Sermaye ve nitelikli iş gücünün bulunması",
+        "Sanayide kullanılan ham maddelerin tamamının bölgede çıkarılması",
+        "Geniş bir iç ve dış pazara yakın olması"
+      ],
+      "dogru": 2,
+      "aciklama": "Marmara Bölgesi sanayisinin ham maddesinin tamamı bölgede çıkmaz; ham maddenin bir bölümü dışarıdan getirilir. Belirleyici olan ulaşım, sermaye, iş gücü ve pazara yakınlıktır."
+    },
+    {
+      "konu": "Ulaşım, Ticaret ve Turizm",
+      "zorluk": "Kolay",
+      "tip": "Yorumlama",
+      "metin": "Turizm mevsiminin uzunluğu, deniz suyu sıcaklığı ve güneşli gün sayısıyla yakından ilişkilidir.",
+      "soru": "Türkiye'de deniz turizmi mevsiminin en uzun sürdüğü kıyı aşağıdakilerden hangisidir?",
+      "secenekler": [
+        "Doğu Karadeniz kıyıları",
+        "Akdeniz kıyıları",
+        "Marmara kıyıları",
+        "Batı Karadeniz kıyıları"
+      ],
+      "dogru": 1,
+      "aciklama": "Akdeniz kıyıları yaz mevsiminin uzun, deniz suyu sıcaklığının yüksek ve güneşli gün sayısının fazla olduğu bir kuşaktadır; bu nedenle deniz turizmi mevsimi en uzundur."
+    },
+    {
+      "konu": "Bölgeler ve Doğal Afetler",
+      "zorluk": "Kolay",
+      "tip": "Bölge Bilgisi",
+      "metin": "Heyelan; eğim, yağış ve tabakaların durumu gibi koşulların bir araya gelmesiyle oluşur.",
+      "soru": "Türkiye'de heyelan olaylarının en sık yaşandığı bölge aşağıdakilerden hangisidir?",
+      "secenekler": [
+        "Doğu Karadeniz",
+        "Güneydoğu Anadolu",
+        "İç Anadolu",
+        "Ege"
+      ],
+      "dogru": 0,
+      "aciklama": "Doğu Karadeniz; eğimli yamaçlar, bol yağış ve killi-tabakalı zeminin birleşmesi sayesinde Türkiye'de heyelanın en sık görüldüğü bölgedir."
+    },
+    {
+      "konu": "Bölgeler ve Doğal Afetler",
+      "zorluk": "Orta",
+      "tip": "Yorumlama",
+      "metin": "Türkiye, Alp-Himalaya deprem kuşağında yer alır; ancak deprem riski yöreden yöreye değişir.",
+      "soru": "Aşağıdakilerden hangisinde deprem riski diğerlerine göre daha düşük yöreler birlikte verilmiştir?",
+      "secenekler": [
+        "Erzincan ve Bingöl çevresi",
+        "İzmir ve Manisa çevresi",
+        "Konya-Karaman ve Şanlıurfa-Mardin çevresi",
+        "Bolu ve Düzce çevresi"
+      ],
+      "dogru": 2,
+      "aciklama": "Konya-Karaman ve Şanlıurfa-Mardin çevresi, diri fay yoğunluğunun az olduğu ve deprem riskinin görece düşük olduğu yörelerdir. Diğer seçeneklerdeki yöreler aktif fay hatları üzerinde yer alır."
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+# Derleme çıktıları ve geçici dosyalar (yedeklenmez)
+build/
+*.apk.tmp
+*.idsig
+*.dex.tmp
+araclar/__pycache__/
+__pycache__/
+*.pyc

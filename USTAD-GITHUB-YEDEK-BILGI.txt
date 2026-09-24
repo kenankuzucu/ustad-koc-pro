@@ -1,0 +1,15 @@
+ÜSTAD SINAV KOÇU · KPSS-B — GITHUB YEDEĞİ
+==========================================
+Depo   : https://github.com/kenankuzucu/ustad-motor   (ÖZEL / private)
+Sürüm  : 1.9   ·  APK: apk/USTAD-KPSS-B-v1.9.apk (1.096.322 byte)
+İçerik : index.html + assets/ (motor) + icerik/ (120 soru, 20 not, haber) +
+         android-kabuk/ (MainActivity, Konusucu, AndroidManifest, res, derleme betiği) +
+         apk/ + ekran-goruntuleri/ + TELIF-VE-HAKLAR.md + OKU-BENI.md
+
+Yeni sürümü yedeklemek için:
+  bash "C:/Users/kenan/OneDrive/Desktop/USTAD-MOTOR/araclar/github-yedek.sh" "kısa açıklama"
+
+Geri yükleme (başka bilgisayarda):
+  git clone https://github.com/kenankuzucu/ustad-motor.git
+
+© 2026 Kenan Kuzucu · Tüm hakları saklıdır. 5846 sayılı FSEK kapsamında korunur.

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Uygulamanın yumuşak açık zemini (beyaz değil) -->
+    <color name="zemin">#FFEEF7F6</color>
+    <color name="zemin_koyu">#FFE2F0EE</color>
+    <color name="ana">#FF0E9F8E</color>
+    <color name="ana_koyu">#FF0A7F72</color>
+    <!-- Uyarlanabilir simge arka planı -->
+    <color name="ikon_arka">#FF0E9F8E</color>
+</resources>

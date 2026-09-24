@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<!-- © 2026 Kenan Kuzucu · ÜSTAD KOÇ PRO · Sınav Koçu (KPSS-B) · TÜM HAKLARI SAKLIDIR.
+     5846 sayılı FSEK kapsamında korunur. İzinsiz çoğaltma, kopyalama, satış ve dağıtım yasaktır. -->
+<html lang="tr" data-renk="turkuaz" data-duzen="ferah">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="surum" content="2.2">
+<title>ÜSTAD KOÇ PRO · Sınav Koçu</title>
+<link rel="stylesheet" href="assets/stil.css">
+<link rel="stylesheet" href="assets/koc.css">
+</head>
+<body>
+
+<!-- ══════════ KARŞILAMA PERDESİ (ilk giriş) ══════════ -->
+<section id="perde" class="perde">
+  <canvas id="kure" class="kure"></canvas>
+  <div class="perde-kart">
+    <img class="perde-logo" src="tasarim/ustad-logo-tam-koyu.png" alt="ÜSTAD">
+    <h1 class="perde-baslik">Hoş geldin!</h1>
+    <p class="perde-soru">Sana hangi isimle hitap etmemi istersin?</p>
+    <input id="isimKutu" class="isim-kutu" type="text" placeholder="Adın..." autocomplete="off">
+    <p class="perde-soru perde-ikinci">Tebrik ekranında kim görünsün?</p>
+    <div class="cins-satir" id="perdeCins">
+      <button class="cins-dugme" data-cins="kiz">👧 Kız öğrenci</button>
+      <button class="cins-dugme" data-cins="erkek">👦 Erkek öğrenci</button>
+    </div>
+    <div class="foto-blok" id="perdeFotoBlok">
+      <input type="file" id="perdeFoto" accept="image/*" hidden>
+      <button class="foto-sec-dugme" id="perdeFotoSec">📷 İstersen kendi fotoğrafını seç (galeri / dosyalar)</button>
+      <div class="foto-onizleme" id="perdeFotoOnizleme"></div>
+    </div>
+    <p class="perde-alt">Bu isim kalıcı belleğe kaydedilir; her girişte seni adınla karşılarım.</p>
+    <button id="isimKaydet" class="buyuk-dugme">BAŞLA</button>
+  </div>
+</section>
+
+<!-- ══════════ ÜST ŞERİT ══════════ -->
+<header class="ust">
+  <button id="menuDugme" class="menu-dugme" title="Menü">☰</button>
+  <div class="marka">
+    <img src="tasarim/ustad-kafa.png" alt="">
+    <div class="marka-yazi">
+      <b>ÜSTAD KOÇ PRO</b>
+      <span id="markaSinav">KPSS-B</span>
+    </div>
+  </div>
+  <div class="ust-sag">
+    <button id="sesDugme" class="mini-dugme" title="Sesli karşılama">🔊</button>
+    <span id="saat" class="saat">--:--</span>
+  </div>
+</header>
+
+<!-- ══════════ SOL MENÜ (hamburger) ══════════ -->
+<nav id="menu" class="menu">
+  <div class="menu-icerik"></div>
+</nav>
+<div id="menuPerde" class="menu-perde"></div>
+
+<!-- ══════════ EKRANLAR ══════════ -->
+<main id="icerik" class="icerik">
+
+  <!-- ANA SAYFA -->
+  <section id="ekran-ana" class="ekran acik" data-bolum="ana">
+    <div class="izgara-ana">
+      <div class="sol-kolon">
+        <div class="kart">
+          <div class="panel-baslik-satir">
+            <div class="panel-madalyon" id="anaMadalyon"></div>
+            <div class="panel-ad">
+              <b id="anaUstadAd">ÜSTAD</b>
+              <span id="karsilamaYazi">Hoş geldin · ÜSTAD yanınızda</span>
+            </div>
+          </div>
+          <p><b>ÜSTAD</b>, sınav hazırlığını baştan sona yöneten bir çalışma koçudur.
+             Sana özel ders programı kurar, uyumunu takip eder, eksiğini bulur ve
+             eksik kaldığın konuya seni tekrar götürür.</p>
+          <div class="ozellik-satir">
+            <div class="ozellik"><span class="simg">🗓️</span><b>Kişiye özel program</b><i>Uyanma, uyuma ve verimli saatlerine göre kurulur.</i></div>
+            <div class="ozellik"><span class="simg">💡</span><b>Eksik konu avcısı</b><i>Yanlış çözdüğün sorulardan eksiğini bulur.</i></div>
+            <div class="ozellik"><span class="simg">🔔</span><b>Ders bildirimi</b><i>Ders saatinden 5 dakika önce haber verir.</i></div>
+            <div class="ozellik"><span class="simg">⚡</span><b>Anında geri bildirim</b><i>Şıkkı işaretler işaretlemez doğru/yanlış yeşil-kırmızı bantta görünür.</i></div>
+            <div class="ozellik"><span class="simg">✅</span><b>Doğru & yanlış panelleri</b><i>Doğru, yanlış ve boş bıraktığın soruların listesi; dokununca o soru açılır.</i></div>
+            <div class="ozellik"><span class="simg">🎉</span><b>Maskotlu tebrik ekranı</b><i>Kazanınca konfetili kutlama, kazanamayınca “üzülme, başaracaksın”.</i></div>
+            <div class="ozellik"><span class="simg">📷</span><b>Kendi fotoğrafınla</b><i>İstersen maskot yerine kendi fotoğrafın madalyon olarak çıkar.</i></div>
+          </div>
+          <div class="ana-hizli">
+            <button class="ikincil-dugme" id="anaTebrik">🎬 Tebrik ekranını dene</button>
+            <button class="ikincil-dugme" id="anaFoto" data-git="ayarlar">📷 Fotoğrafımı ayarla</button>
+            <button class="ikincil-dugme yesil" data-git="testler">✅ Teste başla</button>
+          </div>
+        </div>
+        <div class="kart vurgu-kart">
+          <h3>Önce ders programını oluştur</h3>
+          <p>Uygulamanın tüm modülleri (bildirim, uyum takibi, istatistik) ders programı
+             kurulduktan sonra çalışır. 7 soruluk kısa bir anket seni tanımama yetiyor.</p>
+          <button class="buyuk-dugme" data-git="program">ŞİMDİ OLUŞTUR</button>
+        </div>
+      </div>
+      <aside class="sag-kolon">
+        <div class="kart duyuru-kart">
+          <h2 class="kart-baslik">📣 DUYURULAR</h2>
+          <div id="duyuruAkis" class="duyuru-akis"></div>
+          <p class="duyuru-dip">Başlığa dokun → haber uygulama içinde açılır.</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- DERS PROGRAMI -->
+  <section id="ekran-program" class="ekran" data-bolum="program">
+    <h2 class="sayfa-baslik">🗓️ Ders Programı</h2>
+    <div class="kart">
+      <h3>Seni tanıyalım (7 soru)</h3>
+      <form id="anket" class="anket">
+        <label>Sabah saat kaçta uyanırsın?
+          <input type="time" name="uyanma" value="07:00" required></label>
+        <label>Akşam saat kaçta uyursun?
+          <input type="time" name="uyuma" value="23:30" required></label>
+        <label>Hangi günler senin için daha verimli?</label>
+        <div class="gunler" id="gunKutu">
+          <label class="cip"><input type="checkbox" value="1" checked><span>Pzt</span></label>
+          <label class="cip"><input type="checkbox" value="2" checked><span>Sal</span></label>
+          <label class="cip"><input type="checkbox" value="3" checked><span>Çar</span></label>
+          <label class="cip"><input type="checkbox" value="4" checked><span>Per</span></label>
+          <label class="cip"><input type="checkbox" value="5" checked><span>Cum</span></label>
+          <label class="cip"><input type="checkbox" value="6"><span>Cmt</span></label>
+          <label class="cip"><input type="checkbox" value="0"><span>Paz</span></label>
+        </div>
+        <label>Günün hangi saat aralığı sana uygun?
+          <span class="cift">
+            <input type="time" name="bas" value="09:00"><input type="time" name="bit" value="22:00">
+          </span></label>
+        <label>En çok sevdiğin dersler (birden fazla seç)</label>
+        <div id="sevKutu" class="ders-cip"></div>
+        <label>Zorlandığın dersler (birden fazla seç)</label>
+        <div id="zorKutu" class="ders-cip"></div>
+        <label>Hedef puan aralığın
+          <span class="cift"><input type="number" name="puan1" value="70" min="0" max="100">
+          <input type="number" name="puan2" value="85" min="0" max="100"></span></label>
+        <label>Günde kaç saat çalışabilirsin?
+          <input type="number" name="sure" value="4" min="1" max="12" step="0.5"></label>
+        <button type="submit" class="buyuk-dugme">PROGRAMIMI HAZIRLA</button>
+      </form>
+    </div>
+    <div id="programSonuc" class="kart gizli"></div>
+  </section>
+
+  <!-- ÜSTAD ÖNERİYOR -->
+  <section id="ekran-oneriyor" class="ekran" data-bolum="oneriyor">
+    <h2 class="sayfa-baslik">💡 ÜSTAD Öneriyor</h2>
+    <div class="kart">
+      <p>Çözdüğün testlerdeki yanlışlarını konu bazında tararım. Aşağıdaki liste
+         <b>eksik kaldığın konuları</b> öncelik sırasıyla gösterir.</p>
+      <div id="eksikListe" class="eksik-liste"></div>
+    </div>
+    <div id="telafiAlan" class="kart gizli"></div>
+  </section>
+
+  <!-- TESTLER -->
+  <section id="ekran-testler" class="ekran" data-bolum="testler">
+    <h2 class="sayfa-baslik">📝 Testler</h2>
+    <div class="kart">
+      <p>Konu testleri <b>30 soru</b> ve <b>süresizdir</b>; amaç konuya hâkim olup olmadığını ölçmektir.</p>
+      <div id="testListe" class="test-liste"></div>
+    </div>
+  </section>
+
+  <!-- DENEME SINAVI -->
+  <section id="ekran-deneme" class="ekran" data-bolum="deneme">
+    <h2 class="sayfa-baslik">🎯 Deneme Sınavı</h2>
+    <div class="kart">
+      <div id="denemeBilgi" class="deneme-bilgi"></div>
+      <p class="uyari-yazi">Süre, sınava girdiğin an başlar. Süre bittiğinde 15 dakika
+         boyunca sorulara erişim kapanır.</p>
+      <!-- DENEMEYE BAŞLA düğmesi bu satırın ÜSTÜNE gelir (deneme.js panel()) -->
+      <div id="denemeArsivSatir" class="deneme-arsiv-satir">
+        <button class="arsiv-dugme" data-git="testler">📚 Deneme Arşivi ve Konu Testleri</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- DERS NOTLARI -->
+  <section id="ekran-notlar" class="ekran" data-bolum="notlar">
+    <h2 class="sayfa-baslik">📚 Ders Notları</h2>
+    <div class="kart"><div id="notListe" class="not-liste"></div></div>
+  </section>
+
+  <!-- İSTATİSTİK -->
+  <section id="ekran-istatistik" class="ekran" data-bolum="istatistik">
+    <h2 class="sayfa-baslik">📊 İstatistik</h2>
+    <div class="kart"><div id="istKutu" class="ist-kutu"></div></div>
+  </section>
+
+  <!-- AYARLAR -->
+  <section id="ekran-ayarlar" class="ekran" data-bolum="ayarlar">
+    <h2 class="sayfa-baslik">⚙️ Ayarlar</h2>
+    <div class="kart">
+      <h3>Renk Paleti</h3>
+      <p class="aciklama">Her bölümün kendi rengi var; palet tüm uygulamanın tonunu değiştirir.</p>
+      <div id="renkListe" class="renk-liste"></div>
+    </div>
+    <div class="kart">
+      <h3>Düzen</h3>
+      <p class="aciklama">Menü her zaman sol üstteki üç çizgidedir. Listeler sağda durur.</p>
+      <div id="duzenListe" class="renk-liste"></div>
+    </div>
+    <div class="kart">
+      <h3>Sesli karşılama</h3>
+      <p class="aciklama">Girişte “Hoş geldin …” sesli okunur (cihazın Türkçe sesi kullanılır).</p>
+      <label class="cip"><input type="checkbox" id="sesAc" checked><span>Açık</span></label>
+    </div>
+    <div class="kart">
+      <h3>Deneme Sınavı</h3>
+      <p class="aciklama">Açıkken denemede de testlerdeki gibi doğru/yanlış <b>anında</b> gösterilir ve cevap kilitlenir.
+         Kapatırsanız gerçek sınav provası olur: işaretlemeler gizli kalır, sonuç sınav sonunda açıklanır.</p>
+      <label class="cip"><input type="checkbox" id="anindaAc" checked><span>Anında geri bildirim</span></label>
+    </div>
+    <div class="kart">
+      <h3>Sesli Karşılama Sesi</h3>
+      <p class="aciklama">Kız öğrenci maskotunu seçtiyseniz konuşmalar <b>kadın sesiyle</b>, erkek öğrenci
+         maskotunu seçtiyseniz <b>erkek sesiyle</b> okunur. Aşağıdaki düğmeyle sesi deneyebilirsiniz.</p>
+      <button class="ikincil-dugme" id="sesDene">🔊 Sesi dinle</button>
+      <p class="aciklama" id="sesDurum" style="margin-top:8px"></p>
+    </div>
+    <div class="kart">
+      <h3>Öğrenci Profili</h3>
+      <p class="aciklama">Tebrik ekranındaki maskot ve sesli hitap bu bilgiye göre hazırlanır.</p>
+      <label class="alan-etiket">Adınız</label>
+      <input id="profilAd" class="isim-kutu" type="text" placeholder="Adınız..." autocomplete="off">
+      <p class="alan-etiket" style="margin-top:12px">Maskotunuz</p>
+      <div class="cins-satir" id="profilCins">
+        <button class="cins-dugme" data-cins="kiz">👧 Kız öğrenci</button>
+        <button class="cins-dugme" data-cins="erkek">👦 Erkek öğrenci</button>
+      </div>
+      <p class="alan-etiket" style="margin-top:14px">Kendi fotoğrafınız (isteğe bağlı)</p>
+      <p class="aciklama">Fotoğraf seçerseniz tebrik ekranında maskot yerine <b>sizin fotoğrafınız</b> madalyon olarak görünür.
+         Galeriden ya da dosya yöneticisinden seçebilirsiniz; fotoğraf yalnızca cihazınızda saklanır, hiçbir yere gönderilmez.</p>
+      <input type="file" id="profilFoto" accept="image/*" hidden>
+      <div class="foto-blok">
+        <div class="foto-onizleme" id="profilFotoOnizleme"></div>
+        <div class="foto-dugmeler">
+          <button class="ikincil-dugme" id="profilFotoSec">📷 Fotoğraf Seç / Değiştir</button>
+          <button class="ikincil-dugme" id="profilFotoKullan">📷 Fotoğrafımı kullan</button>
+          <button class="ikincil-dugme kirmizi" id="profilFotoSil">🗑 Fotoyu Sil</button>
+        </div>
+      </div>
+      <button class="ikincil-dugme" id="profilKaydet" style="margin-top:14px">💾 Profili Kaydet</button>
+      <p class="aciklama" id="profilDurum" style="margin-top:8px"></p>
+    </div>
+    <div class="kart">
+      <h3>Tebrik Ekranını Dene</h3>
+      <p class="aciklama">Testi ya da denemeyi bitirdiğinizde maskotunuz sizi kutlar ya da teselli eder.</p>
+      <button class="ikincil-dugme" id="tebrikDene">🎬 Tebrik ekranını önizle</button>
+    </div>
+  </section>
+  <!-- HAKKINDA & TELİF -->
+  <section id="ekran-hakkinda" class="ekran" data-bolum="hakkinda">
+    <h2 class="sayfa-baslik">©️ Hakkında &amp; Telif</h2>
+    <div class="kart" id="hkAlan"></div>
+  </section>
+  <!-- KOÇ PRO (v2.1 eklentisi) -->
+  <section id="ekran-koc" class="ekran" data-bolum="koc">
+    <h2 class="sayfa-baslik">🎓 KOÇ PRO</h2>
+    <div class="kart" id="kocAlan"></div>
+  </section>
+
+</main>
+
+<script src="icerik/veri.js"></script>
+<script src="icerik/sorular.js"></script>
+<script src="icerik/notlar.js"></script>
+<script src="icerik/besleme.js"></script>
+<script src="assets/deneme.js"></script>
+<script src="assets/motor.js"></script>
+<script src="assets/koc.js"></script>
+<script src="assets/koc2.js"></script>
+<script src="assets/koc3.js"></script>
+</body>
+</html>

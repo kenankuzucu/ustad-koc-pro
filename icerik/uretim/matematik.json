@@ -1,0 +1,533 @@
+{
+ "ders": "Matematik",
+ "notlar": [
+  {
+   "baslik": "Temel Kavramlar ve Sayılar",
+   "konu": "Temel Kavramlar, Sayılar",
+   "ozet": "Sayı kümeleri, basamak kavramı, ardışık sayılar ve tek-çift kuralları ile KPSS'nin en temel soru tipini kurar.",
+   "metin": [
+    "Sayma sayıları 1'den başlar ve sonsuza kadar sürer: 1, 2, 3, ... Doğal sayılar ise 0'ı da içine alır: 0, 1, 2, 3, ... Bu ayrım sınavda doğrudan kavram sorusu olarak çıkar; çünkü 'en küçük doğal sayı 0, en küçük sayma sayısı 1'dir' bilgisi birçok sorunun başlangıç noktasıdır. Tam sayılar kümesi ise negatifleri, sıfırı ve pozitifleri birlikte kapsar.",
+    "Bir sayının basamak değeri ile sayı değeri farklı şeylerdir. 4A7 sayısında A'nın sayı değeri yalnızca A iken basamak değeri 10A'dır; çözümlemede sayı 400 + 10A + 7 biçiminde yazılır. Rakamları birbirinden farklı üç basamaklı en büyük sayı 987, en küçük sayı 102'dir (sayı 0 ile başlayamaz) ve bu iki değer basamak sorularının en sık kullanılan çapalarıdır.",
+    "Ardışık tam sayılar arasındaki fark her zaman 1, ardışık tek veya ardışık çift sayılar arasındaki fark ise her zaman 2'dir. Bu yüzden 'ardışık üç çift sayının toplamı' tipi sorularda ortanca sayı, toplamın üçe bölümüdür: toplam 48 ise ortanca 16, sayılar 14, 16 ve 18'dir. Ortanca terime yönelmek denklem kurmaktan her zaman daha hızlıdır.",
+    "Tek ve çiftlik, işlemlerde kestirme sonuç verir: tek + tek = çift, tek + çift = tek, tek · tek = tek ve içinde en az bir çift çarpan bulunan her çarpım çifttir. 'Aşağıdakilerden hangisi kesinlikle çifttir?' biçimindeki seçenekli sorular bu kurallarla saniyeler içinde, hiç denklem kurmadan çözülür."
+   ],
+   "pufNoktalar": [
+    "Ardışık n tane tam sayının toplamı (ortanca terim) × n'dir; terim sayısı çift olduğunda ortanca, iki ortadaki terimin aritmetik ortalamasıdır.",
+    "Rakamları farklı üç basamaklı en büyük sayı 987, en küçük sayı 102'dir; 0 ile başlayan sayı üç basamaklı sayılmaz.",
+    "Çarpımda bir çarpan çift ise sonuç kesinlikle çifttir; toplamda tek + tek = çift, tek + çift = tek kuralı ezberlenmelidir.",
+    "Doğal sayı ile sayma sayısı arasındaki tek fark 0'dır; kavram soruları bu ayrımı test eder."
+   ],
+   "sinavIpucu": "Ardışık sayı sorularında ilk iş ortanca terime yönelmek olsun; toplamı terim sayısına bölmek, denklem kurup çözmekten çok daha hızlı ve hatasızdır."
+  },
+  {
+   "baslik": "Bölme ve Bölünebilme",
+   "konu": "Bölme ve Bölünebilme, EBOB-EKOK",
+   "ozet": "Bölme bağıntısı, bölünebilme kuralları ve EBOB-EKOK ile asal çarpanların sınavdaki kullanımı.",
+   "metin": [
+    "Bölme işleminin temeli Bölünen = Bölen × Bölüm + Kalan bağıntısıdır ve kalan her zaman bölenden küçüktür. Bir sayının 7 ile bölümünden kalan 6 ise bu sayının 6 fazlası 7 ile tam bölünür; yani kalanı 'bölen − kalan' kadar artırmak sayıyı tam bölünür yapar. Kalan sorularının neredeyse tamamı bu tek fikre dayanır.",
+    "Bölünebilme kuralları: 2 için son rakam çift, 3 için rakamlar toplamı 3'ün katı, 4 için son iki basamak 4'ün katı, 5 için son rakam 0 veya 5, 9 için rakamlar toplamı 9'un katı olmalıdır. 11 ile bölünebilmede birler basamağından başlayarak +, −, +, − biçiminde işaretli toplam alınır; sonuç 0 veya 11'in katı ise sayı 11 ile tam bölünür.",
+    "Birleşik sayılarla bölünebilme, aralarında asal çarpanlara ayırmakla kontrol edilir: 12 ile bölünebilme için 3 ve 4'e, 15 için 3 ve 5'e, 18 için 2 ve 9'a, 6 için 2 ve 3'e bakılır. Burada kritik nokta, çarpanların aralarında asal seçilmesidir; 12 = 2·6 ayrımı yanlış, 12 = 3·4 ayrımı doğrudur. Örneğin 2A4 sayısının 12 ile bölünebilmesi için A4'ün 4'ün katı (A çift) ve 6 + A'nın 3'ün katı olması gerekir; bu iki koşulu birlikte sağlayan tek rakam A = 6'dır.",
+    "Asal çarpanlara ayırma, EBOB ve EKOK'un temelidir. EBOB ortak asal çarpanlardan üssü küçük olanların, EKOK ise tüm asal çarpanlardan üssü büyük olanların çarpımıdır. İki sayının çarpımı her zaman EBOB ile EKOK'un çarpımına eşittir; bu eşitlik iki bilinmeyenli EBOB-EKOK sorularını tek adımda çözer.",
+    "Asal çarpanlara ayırma yalnızca EBOB-EKOK için değil, pozitif bölen sayısını bulmak için de kullanılır. Bir sayının pozitif bölen sayısı, asal çarpanlarının üslerinin birer fazlasının çarpımıdır: 48 = 2⁴·3 olduğundan 48'in (4+1)·(1+1) = 10 pozitif böleni vardır."
+   ],
+   "pufNoktalar": [
+    "Bölünebilme kurallarında birleşik sayıları aralarında asal çarpanlarına ayır: 12 → 3 ve 4 (2 ve 6 değil).",
+    "11 ile bölünebilme: birler basamağından başlayıp +, −, +, − işaretli toplamın 0 veya 11'in katı olması gerekir.",
+    "Pozitif bölen sayısı = asal çarpanların üslerinin (üs + 1) çarpımıdır; 48 = 2⁴·3 için 5·2 = 10 bölen vardır.",
+    "a · b = EBOB(a, b) · EKOK(a, b) eşitliği iki bilinmeyenli EBOB-EKOK sorularını tek satırda çözer.",
+    "Kalan sorularında sayıya 'bölen − kalan' eklemek onu tam bölünür yapar; şıklardan gitmek de bu tip sorularda çok hızlıdır."
+   ],
+   "sinavIpucu": "Bölünebilme sorularında önce en kısıtlayıcı kuralı (genellikle 4 veya 9) uygulayıp aday rakamları daralt; sonra diğer kuralla tek adımda ele."
+  },
+  {
+   "baslik": "Problemler",
+   "konu": "Problemler, Denklemler",
+   "ozet": "Bilinmeyen seçimi, yaş-hareket-işçi-yüzde problemlerinin tek denklemle çözümü.",
+   "metin": [
+    "Problem çözmenin ilk adımı bilinmeyeni doğru seçmektir. Sınıf mevcudu sorusunda erkek sayısına x denirse kız sayısı 3x − 4 biçiminde yazılır ve x + 3x − 4 = 40 denkleminden x = 11 bulunur. Bilinmeyen, 'istenen' değer değil, üzerine işlem yapılması en kolay olan nicelik olarak seçilmelidir; genellikle bu, küçük olandır.",
+    "Yaş problemlerinde kurulan bağıntı 'şimdiki yaş − t yıl önceki yaş' ve 'şimdiki yaş + t yıl sonraki yaş' biçimindedir. Buradaki en güçlü silah, yaş farkının hiçbir zaman değişmemesidir: iki kişinin bugünkü yaş farkı 8 ise 10 yıl sonra da 8'dir. Bu değişmezlik çoğu yaş sorusunu tek denkleme indirger.",
+    "Hareket problemlerinin temeli Yol = Hız × Zaman bağıntısıdır. 240 km'yi 3 saatte alan bir aracın hızı 240 : 3 = 80 km/sa'tir; aynı hızla 5 saatte 80 · 5 = 400 km yol alır. Problemde verilen birimleri (km, saat, m/dk) işleme başlamadan aynı birime çevirmek, en sık yapılan hataların önüne geçer.",
+    "İşçi ve havuz problemlerinde işin tamamı bir bütün, yani 1 kabul edilir ve birim zamanda yapılan iş miktarı kullanılır. 3 işçi bir işi 8 günde bitiriyorsa toplam iş 24 gün-iş'tir; 4 işçi bu işi 24 : 4 = 6 günde bitirir. İşçi sayısı ile süre ters orantılıdır, bu yüzden işçi sayısı artarken süre azalır.",
+    "Yüzde problemlerinde artış ve azalışlar birbirleriyle çarpılmaz; sırayla, tek tek uygulanır. 200 liralık bir ürüne önce %20 zam, sonra %25 indirim yapılırsa: 200 · 1,20 = 240 lira, ardından 240 · 0,75 = 180 lira olur. İşlem sırası değişse de sonuç aynıdır; ancak her adımı ayrı ayrı hesaplamak zorunludur."
+   ],
+   "pufNoktalar": [
+    "Bilinmeyeni üzerine işlem yapılması en kolay nicelik olarak seç; 'küçük olan' genellikle en iyi tercihtir.",
+    "Yaş farkı asla değişmez; bu değişmezlik yaş sorularının çözüm anahtarıdır.",
+    "İşçi sayısı artarken süre azalır: ters orantıda çarpımlar eşitlenir (3·8 = 4·6 = 24 gün-iş).",
+    "Hareket problemlerinde birimleri (km/sa, m/dk) baştan aynı birime çevir, sonra işlem yap."
+   ],
+   "sinavIpucu": "Zaman baskısı altında problem sorularını deneme yoluyla değil, tek denklem kurarak çöz; bulduğun sonucu şıklarla karşılaştırmak hem hızlı hem de güvenli bir doğrulamadır."
+  },
+  {
+   "baslik": "Oran-Orantı",
+   "konu": "Oran-Orantı",
+   "ozet": "Oran ve orantı kavramı, doğru-ters orantı ayrımı, oranı k ile genişletme yöntemi.",
+   "metin": [
+    "Oran, iki çokluğun bölme yoluyla karşılaştırılmasıdır; a/b biçiminde yazılır ve birimsizdir. Orantı ise iki oranın eşitliğidir: a/b = c/d. Bu eşitlikte içler dışlar çarpımı yapılarak a·d = b·c elde edilir ve orantı sorularının büyük kısmı bu tek satırla çözülür.",
+    "Doğru orantıda iki çokluk birlikte artar veya birlikte azalır ve bölümleri sabittir (a/b = k). Ters orantıda ise biri artarken diğeri azalır ve çarpımları sabittir (a·b = k). Alınan yol ile süre doğru orantılı, işçi sayısı ile işin bitme süresi ters orantılıdır. Hangi orantının geçerli olduğunu 'biri artarken diğeri ne olur?' sorusuyla belirlemek şarttır.",
+    "Oran sorularında verilen oranı bir k sayısı ile genişletmek en pratik yoldur. a/b = 3/4 ise a = 3k ve b = 4k yazılır; a + b = 28 verilmişse 7k = 28 olur ve k = 4 bulunur. Buradan a = 3·4 = 12 sonucuna tek adımda varılır; iki bilinmeyenli sistem kurma zahmeti tamamen ortadan kalkar.",
+    "Bir bütünün parçaları arasındaki oran verildiğinde, toplam oran terimlerinin toplamına bölünerek bir birime düşen miktar bulunur. Bir karışımda alkol/su = 2/5 ve karışım 70 litre ise 7 birim 70 litre, 1 birim 10 litre; dolayısıyla alkol 20, su 50 litredir. Aynı mantık miras paylaşımı ve karışım problemlerinde de birebir işler.",
+    "Harita ve ölçek soruları da birer oran-orantı sorusudur. 1/500.000 ölçekli haritada 4 cm'lik uzunluk gerçekte 4 · 500.000 = 2.000.000 cm, yani 20 km'dir. Bu tip sorularda 100.000 cm = 1 km dönüşümünü soru içinde yapmayı alışkanlık hâline getirmek işlem hatasını engeller."
+   ],
+   "pufNoktalar": [
+    "Oranı k ile genişlet (a = 3k, b = 4k); toplam verilmişse k'yı tek adımda bulursun.",
+    "Ters orantıda çarpımlar, doğru orantıda bölümler eşitlenir; ayrımı 'biri artarken diğeri ne olur?' sorusuyla yap.",
+    "Orantıda içler dışlar çarpımı: a/b = c/d ise a·d = b·c; bilinmeyen tek adımda çıkar.",
+    "Harita/ölçek sorularında ölçeğin paydasıyla çarpıp cm'yi km'ye çevirmeyi unutma (100.000 cm = 1 km)."
+   ],
+   "sinavIpucu": "Doğru mu ters mi orantı sorusunu ayırt etmek için iki çokluğun birlikte mi yoksa zıt yönde mi değiştiğine bak; yanlış seçim bu konuda en sık kaybedilen puandır."
+  }
+ ],
+ "sorular": [
+  {
+   "konu": "Temel Kavramlar",
+   "zorluk": "Kolay",
+   "tip": "Konu Testi",
+   "metin": "x, y, z ardışık çift doğal sayılar olup x < y < z'dir. x + y + z = 48'dir.",
+   "soru": "Buna göre x · z çarpımı kaçtır?",
+   "secenekler": [
+    "252",
+    "224",
+    "240",
+    "288"
+   ],
+   "dogru": 0,
+   "aciklama": "Ardışık üç çift sayının toplamı ortanca sayının 3 katıdır: 3y = 48, y = 16. Buradan x = 14, z = 18 ve x·z = 14·18 = 252 bulunur."
+  },
+  {
+   "konu": "Temel Kavramlar",
+   "zorluk": "Orta",
+   "tip": "Konu Testi",
+   "metin": "a ve b birer tek doğal sayıdır.",
+   "soru": "Buna göre aşağıdakilerden hangisi kesinlikle çift sayıdır?",
+   "secenekler": [
+    "a · b",
+    "a + b",
+    "a + 2b",
+    "2a + b"
+   ],
+   "dogru": 1,
+   "aciklama": "Tek + tek = çift olduğundan a + b çifttir. a·b tek, a + 2b = tek + çift = tek, 2a + b = çift + tek = tek olur."
+  },
+  {
+   "konu": "Sayılar",
+   "zorluk": "Kolay",
+   "tip": "Konu Testi",
+   "metin": "Bir doğal sayının 5 katından 3 katı çıkarıldığında 44 elde ediliyor.",
+   "soru": "Buna göre bu sayı kaçtır?",
+   "secenekler": [
+    "11",
+    "33",
+    "22",
+    "44"
+   ],
+   "dogru": 2,
+   "aciklama": "5x − 3x = 2x = 44 olduğundan x = 22'dir."
+  },
+  {
+   "konu": "Temel Kavramlar",
+   "zorluk": "Kolay",
+   "tip": "Konu Testi",
+   "metin": "Rakamları birbirinden farklı üç basamaklı sayılar inceleniyor.",
+   "soru": "Bu sayılardan en büyüğü ile en küçüğünün farkı kaçtır?",
+   "secenekler": [
+    "875",
+    "895",
+    "835",
+    "885"
+   ],
+   "dogru": 3,
+   "aciklama": "Rakamları farklı en büyük üç basamaklı sayı 987, en küçüğü 102'dir (0 ile başlayan sayı üç basamaklı olmaz). Fark: 987 − 102 = 885."
+  },
+  {
+   "konu": "Bölme ve Bölünebilme",
+   "zorluk": "Orta",
+   "tip": "Konu Testi",
+   "metin": "Üç basamaklı 2A4 doğal sayısı 12 ile tam bölünebilmektedir.",
+   "soru": "Buna göre A rakamının alabileceği değerlerin toplamı kaçtır?",
+   "secenekler": [
+    "2",
+    "6",
+    "4",
+    "8"
+   ],
+   "dogru": 1,
+   "aciklama": "12 ile bölünebilme için sayı 3 ve 4'e tam bölünmelidir. Son iki basamak A4 sayısı 4'ün katı olmalı: A ∈ {0, 2, 4, 6, 8} (04 = 4, 4'ün katıdır). Rakamlar toplamı 2 + A + 4 = 6 + A, 3'ün katı olmalı: A ∈ {0, 3, 6, 9}. Kesişim A ∈ {0, 6} olup alabileceği değerlerin toplamı 0 + 6 = 6'dır."
+  },
+  {
+   "konu": "Bölme ve Bölünebilme",
+   "zorluk": "Kolay",
+   "tip": "Konu Testi",
+   "metin": "34, 42, 51 ve 63 sayıları veriliyor.",
+   "soru": "Bu sayılardan hangisi 6 ile tam bölünür?",
+   "secenekler": [
+    "34",
+    "42",
+    "51",
+    "63"
+   ],
+   "dogru": 1,
+   "aciklama": "6 ile bölünebilme için sayı hem 2'ye hem 3'e bölünmelidir. 42 çift ve rakamları toplamı 4 + 2 = 6 (3'ün katı) olduğundan 42 = 6·7'dir. 34 tek, 51 ve 63 tek sayıdır."
+  },
+  {
+   "konu": "EBOB-EKOK",
+   "zorluk": "Kolay",
+   "tip": "Konu Testi",
+   "metin": "24 ile 36 sayılarının en büyük ortak böleni ve 12 ile 18 sayılarının en küçük ortak katı alınıp toplanıyor.",
+   "soru": "Buna göre elde edilen toplam kaçtır?",
+   "secenekler": [
+    "42",
+    "54",
+    "60",
+    "48"
+   ],
+   "dogru": 3,
+   "aciklama": "EBOB(24, 36) = 12, EKOK(12, 18) = 36'dır. Toplam: 12 + 36 = 48."
+  },
+  {
+   "konu": "Rasyonel Sayılar",
+   "zorluk": "Kolay",
+   "tip": "Konu Testi",
+   "metin": "Bir öğrenci 1/2 litre meyve suyu ile 2/3 litre suyu karıştırıyor ve karışımdan 1/6 litre içiyor.",
+   "soru": "Buna göre kalan karışım kaç litredir?",
+   "secenekler": [
+    "1",
+    "1/2",
+    "5/6",
+    "7/6"
+   ],
+   "dogru": 0,
+   "aciklama": "Paydalar 6'da eşitlenir: 1/2 + 2/3 = 3/6 + 4/6 = 7/6. İçilen kısım çıkarılır: 7/6 − 1/6 = 6/6 = 1 litre."
+  },
+  {
+   "konu": "Ondalık Sayılar",
+   "zorluk": "Kolay",
+   "tip": "Konu Testi",
+   "metin": "0,24 : 0,4 bölme işlemi veriliyor.",
+   "soru": "Bu işlemin sonucu kaçtır?",
+   "secenekler": [
+    "0,06",
+    "6",
+    "0,096",
+    "0,6"
+   ],
+   "dogru": 3,
+   "aciklama": "0,24 : 0,4 = (24/100) : (4/10) = (24/100)·(10/4) = 240/400 = 0,6'dır."
+  },
+  {
+   "konu": "Basit Eşitsizlikler",
+   "zorluk": "Zor",
+   "tip": "Konu Testi",
+   "metin": "x bir tam sayı ve −3 < x < 5'tir.",
+   "soru": "Buna göre 2x + 1 ifadesinin alabileceği kaç farklı tam sayı değeri vardır?",
+   "secenekler": [
+    "6",
+    "8",
+    "7",
+    "9"
+   ],
+   "dogru": 2,
+   "aciklama": "x ∈ {−2, −1, 0, 1, 2, 3, 4} olur. 2x + 1 değerleri −3, −1, 1, 3, 5, 7, 9 olup 7 farklı değer elde edilir."
+  },
+  {
+   "konu": "Mutlak Değer",
+   "zorluk": "Orta",
+   "tip": "Konu Testi",
+   "metin": "|x − 3| = 5 eşitliği sağlanmaktadır.",
+   "soru": "Buna göre x'in alabileceği değerlerin toplamı kaçtır?",
+   "secenekler": [
+    "8",
+    "6",
+    "10",
+    "3"
+   ],
+   "dogru": 1,
+   "aciklama": "x − 3 = 5 ise x = 8; x − 3 = −5 ise x = −2 olur. Toplam: 8 + (−2) = 6."
+  },
+  {
+   "konu": "Üslü ve Köklü Sayılar",
+   "zorluk": "Kolay",
+   "tip": "Konu Testi",
+   "metin": "2⁵ + 3³ işlemi veriliyor.",
+   "soru": "Bu işlemin sonucu kaçtır?",
+   "secenekler": [
+    "59",
+    "58",
+    "63",
+    "64"
+   ],
+   "dogru": 0,
+   "aciklama": "2⁵ = 32 ve 3³ = 27 olduğundan 32 + 27 = 59 bulunur."
+  },
+  {
+   "konu": "Üslü ve Köklü Sayılar",
+   "zorluk": "Orta",
+   "tip": "Konu Testi",
+   "metin": "√75 + √12 − √27 işlemi veriliyor.",
+   "soru": "Bu işlemin sonucu aşağıdakilerden hangisidir?",
+   "secenekler": [
+    "2√3",
+    "6√3",
+    "4√3",
+    "7√3"
+   ],
+   "dogru": 2,
+   "aciklama": "√75 = 5√3, √12 = 2√3, √27 = 3√3'tür. 5√3 + 2√3 − 3√3 = 4√3 bulunur."
+  },
+  {
+   "konu": "Çarpanlara Ayırma",
+   "zorluk": "Kolay",
+   "tip": "Konu Testi",
+   "metin": "x ≠ −3 olmak üzere (x² − 9) / (x + 3) ifadesi veriliyor.",
+   "soru": "Bu ifadenin en sade biçimi aşağıdakilerden hangisidir?",
+   "secenekler": [
+    "x − 3",
+    "x + 3",
+    "x² − 3",
+    "3 − x"
+   ],
+   "dogru": 0,
+   "aciklama": "x² − 9 = (x − 3)(x + 3) olduğundan ifade (x − 3)(x + 3)/(x + 3) = x − 3 olur."
+  },
+  {
+   "konu": "Çarpanlara Ayırma",
+   "zorluk": "Orta",
+   "tip": "Konu Testi",
+   "metin": "a + b = 7 ve a · b = 10'dur.",
+   "soru": "Buna göre a² + b² toplamı kaçtır?",
+   "secenekler": [
+    "39",
+    "29",
+    "49",
+    "59"
+   ],
+   "dogru": 1,
+   "aciklama": "(a + b)² = a² + 2ab + b² özdeşliği kullanılır: 49 = a² + b² + 2·10, buradan a² + b² = 29 bulunur."
+  },
+  {
+   "konu": "Oran-Orantı",
+   "zorluk": "Kolay",
+   "tip": "Konu Testi",
+   "metin": "a/b = 3/4 ve a + b = 28'dir.",
+   "soru": "Buna göre a kaçtır?",
+   "secenekler": [
+    "9",
+    "16",
+    "21",
+    "12"
+   ],
+   "dogru": 3,
+   "aciklama": "a = 3k, b = 4k yazılır: 3k + 4k = 7k = 28, k = 4. Buradan a = 3·4 = 12'dir."
+  },
+  {
+   "konu": "Oran-Orantı",
+   "zorluk": "Orta",
+   "tip": "Konu Testi",
+   "metin": "Aynı hızla çalışan 3 işçi bir işi 8 günde bitirmektedir.",
+   "soru": "Bu işçilerle aynı hızda çalışan 4 işçi aynı işi kaç günde bitirir?",
+   "secenekler": [
+    "6",
+    "4",
+    "7",
+    "12"
+   ],
+   "dogru": 0,
+   "aciklama": "İşçi sayısı ile süre ters orantılıdır: toplam iş 3·8 = 24 gün-iş'tir. 4 işçi için 24 : 4 = 6 gün gerekir."
+  },
+  {
+   "konu": "Denklemler",
+   "zorluk": "Kolay",
+   "tip": "Konu Testi",
+   "metin": "2x − 3 = 5x + 9 eşitliği veriliyor.",
+   "soru": "Bu eşitliği sağlayan x değeri kaçtır?",
+   "secenekler": [
+    "-1",
+    "-2",
+    "-4",
+    "4"
+   ],
+   "dogru": 2,
+   "aciklama": "2x − 3 = 5x + 9 → −3 − 9 = 5x − 2x → −12 = 3x → x = −4."
+  },
+  {
+   "konu": "Denklemler",
+   "zorluk": "Orta",
+   "tip": "Konu Testi",
+   "metin": "x + y = 10 ve x − y = 4'tür.",
+   "soru": "Buna göre x · y çarpımı kaçtır?",
+   "secenekler": [
+    "16",
+    "24",
+    "25",
+    "21"
+   ],
+   "dogru": 3,
+   "aciklama": "Denklemler taraf tarafa toplanır: 2x = 14, x = 7 ve y = 10 − 7 = 3. x·y = 7·3 = 21."
+  },
+  {
+   "konu": "Problemler",
+   "zorluk": "Orta",
+   "tip": "Konu Testi",
+   "metin": "Bir sınıfta 40 öğrenci vardır. Kız öğrencilerin sayısı, erkek öğrencilerin sayısının 3 katından 4 eksiktir.",
+   "soru": "Buna göre bu sınıftaki erkek öğrenci sayısı kaçtır?",
+   "secenekler": [
+    "9",
+    "11",
+    "13",
+    "15"
+   ],
+   "dogru": 1,
+   "aciklama": "Erkek sayısı x ise kız sayısı 3x − 4'tür. x + 3x − 4 = 40 → 4x = 44 → x = 11'dir (kız sayısı 29'dur)."
+  },
+  {
+   "konu": "Problemler",
+   "zorluk": "Kolay",
+   "tip": "Konu Testi",
+   "metin": "Bir araç 240 km'lik yolu 3 saatte almaktadır.",
+   "soru": "Bu araç aynı hızla 5 saatte kaç kilometre yol alır?",
+   "secenekler": [
+    "360",
+    "320",
+    "450",
+    "400"
+   ],
+   "dogru": 3,
+   "aciklama": "Hız = Yol : Zaman = 240 : 3 = 80 km/sa'tir. 5 saatte alınan yol: 80 · 5 = 400 km."
+  },
+  {
+   "konu": "Kümeler",
+   "zorluk": "Orta",
+   "tip": "Konu Testi",
+   "metin": "A ve B kümeleri için s(A ∪ B) = 20, s(A) = 13 ve s(B) = 11'dir.",
+   "soru": "Buna göre s(A ∩ B) kaçtır?",
+   "secenekler": [
+    "4",
+    "3",
+    "5",
+    "6"
+   ],
+   "dogru": 0,
+   "aciklama": "s(A ∪ B) = s(A) + s(B) − s(A ∩ B) eşitliğinden 20 = 13 + 11 − s(A ∩ B), buradan s(A ∩ B) = 4 bulunur."
+  },
+  {
+   "konu": "Fonksiyonlar",
+   "zorluk": "Kolay",
+   "tip": "Konu Testi",
+   "metin": "Gerçek sayılarda tanımlı f(x) = 3x − 2 fonksiyonu veriliyor.",
+   "soru": "Buna göre f(4) kaçtır?",
+   "secenekler": [
+    "8",
+    "12",
+    "10",
+    "14"
+   ],
+   "dogru": 2,
+   "aciklama": "f(4) = 3·4 − 2 = 12 − 2 = 10'dur."
+  },
+  {
+   "konu": "Permütasyon-Kombinasyon",
+   "zorluk": "Orta",
+   "tip": "Konu Testi",
+   "metin": "Bir yarışmaya katılan 5 sporcu arasından birinci ve ikinci belirlenecektir.",
+   "soru": "Bu belirleme kaç farklı şekilde yapılabilir?",
+   "secenekler": [
+    "10",
+    "20",
+    "25",
+    "120"
+   ],
+   "dogru": 1,
+   "aciklama": "Sıralama önemli olduğundan permütasyon kullanılır: P(5, 2) = 5·4 = 20 farklı şekilde."
+  },
+  {
+   "konu": "Olasılık",
+   "zorluk": "Zor",
+   "tip": "Konu Testi",
+   "metin": "Hilesiz bir zar bir kez atılıyor.",
+   "soru": "Üst yüze gelen sayının tek veya 3'ten büyük olma olasılığı kaçtır?",
+   "secenekler": [
+    "1/2",
+    "2/3",
+    "1/3",
+    "5/6"
+   ],
+   "dogru": 3,
+   "aciklama": "Tek sayılar {1, 3, 5}, 3'ten büyük sayılar {4, 5, 6}'dır. Birleşim {1, 3, 4, 5, 6} olup 5 durumdur; olasılık 5/6'dır."
+  },
+  {
+   "konu": "Olasılık",
+   "zorluk": "Kolay",
+   "tip": "Konu Testi",
+   "metin": "Bir torbada 3 kırmızı ve 5 mavi top vardır. Torbadan rastgele bir top çekiliyor.",
+   "soru": "Çekilen topun mavi olma olasılığı kaçtır?",
+   "secenekler": [
+    "3/8",
+    "5/8",
+    "1/2",
+    "3/5"
+   ],
+   "dogru": 1,
+   "aciklama": "Torbada toplam 3 + 5 = 8 top, bunların 5'i mavidir. İstenen olasılık 5/8'dir."
+  },
+  {
+   "konu": "Tablo ve Grafik",
+   "zorluk": "Orta",
+   "tip": "Konu Testi",
+   "metin": "Aşağıdaki tabloda bir öğrencinin matematik dersinde girdiği sınavlardan aldığı notlar verilmiştir: 1. sınav 70, 2. sınav 80, 3. sınav 60. Öğrenci 4. sınava da girecektir.",
+   "soru": "Dört sınavın ortalamasının 75 olması için öğrencinin 4. sınavdan alması gereken not kaçtır?",
+   "secenekler": [
+    "80",
+    "85",
+    "90",
+    "95"
+   ],
+   "dogru": 2,
+   "aciklama": "Ortalama 75 ise dört sınavın toplamı 4·75 = 300 olmalıdır. İlk üç sınavın toplamı 70 + 80 + 60 = 210'dur; 4. sınav notu 300 − 210 = 90 olur."
+  },
+  {
+   "konu": "Geometri",
+   "zorluk": "Orta",
+   "tip": "Konu Testi",
+   "metin": "Bir dikdörtgenin çevresi 36 cm, uzun kenarı kısa kenarından 4 cm fazladır.",
+   "soru": "Buna göre bu dikdörtgenin alanı kaç santimetrekaredir?",
+   "secenekler": [
+    "77",
+    "63",
+    "72",
+    "80"
+   ],
+   "dogru": 0,
+   "aciklama": "Kısa kenar k, uzun kenar k + 4'tür. Çevre: 2(k + k + 4) = 36 → 2k + 4 = 18 → k = 7, uzun kenar 11'dir. Alan: 7·11 = 77 cm²."
+  },
+  {
+   "konu": "Geometri",
+   "zorluk": "Kolay",
+   "tip": "Konu Testi",
+   "metin": "Bir üçgenin iki iç açısının ölçüsü 55° ve 65°'dir.",
+   "soru": "Buna göre bu üçgenin üçüncü iç açısı kaç derecedir?",
+   "secenekler": [
+    "50",
+    "60",
+    "70",
+    "80"
+   ],
+   "dogru": 1,
+   "aciklama": "Üçgenin iç açılarının ölçüleri toplamı 180°'dir: 180 − (55 + 65) = 180 − 120 = 60°."
+  },
+  {
+   "konu": "Sayısal Mantık",
+   "zorluk": "Orta",
+   "tip": "Konu Testi",
+   "metin": "Bir doğal sayının 3 katının 4 fazlası, aynı sayının 5 katının 6 eksiğine eşittir.",
+   "soru": "Buna göre bu sayı kaçtır?",
+   "secenekler": [
+    "3",
+    "6",
+    "10",
+    "5"
+   ],
+   "dogru": 3,
+   "aciklama": "Sayı x olsun: 3x + 4 = 5x − 6 → 4 + 6 = 5x − 3x → 10 = 2x → x = 5'tir."
+  }
+ ]
+}

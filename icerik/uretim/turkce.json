@@ -1,0 +1,533 @@
+{
+  "ders": "Türkçe",
+  "notlar": [
+    {
+      "baslik": "Sözcükte Anlam",
+      "konu": "Sözcükte Anlam",
+      "ozet": "Bir sözcüğün cümle içinde kazandığı gerçek, mecaz, yan ve terim anlamları ile deyim-atasözü ilişkisini inceler.",
+      "metin": [
+        "Sözcükler tek başına bir anlam taşısa da asıl anlamları cümle içinde belirginleşir. Bir sözcüğün akla ilk gelen, sözlükteki temel karşılığına gerçek (temel) anlam denir. \"Yolun kenarındaki taş yerinden oynamış.\" cümlesinde \"taş\" sözcüğü gerçek anlamıyla kullanılmıştır.",
+        "Bir sözcük gerçek anlamından tamamen uzaklaşarak yeni bir anlam kazanırsa buna mecaz anlam denir. \"Bu ağır sözleri hak etmedim.\" cümlesinde \"ağır\", ağırlıkla ilgili olmayıp \"incitici, kırıcı\" anlamındadır; yani mecazdır. Mecaz anlamda benzetme ilgisi vardır ama benzetme edatı kullanılmaz.",
+        "Yan anlam, bir sözcüğün gerçek anlamıyla ilgisini koruyarak yeni bir varlığa ad olmasıdır. \"Masanın ayağı kırıldı.\" cümlesinde \"ayak\" insanın organı değildir ama biçim ve işlev benzerliğiyle masaya aktarılmıştır. Bu yüzden yan anlam gerçek anlamdan kopmaz, sadece yeni bir kullanım alanı kazanır.",
+        "Terim anlam, bir sözcüğün bilim, sanat, spor veya meslek dalına özgü özel bir kavramı karşılamasıdır. \"Üçgen\", \"köşegen\", \"özne\", \"yüklem\", \"akort\" gibi sözcükler ait oldukları alanda tek anlamlıdır. Bir sözcüğün terim sayılabilmesi için mutlaka bir bilim veya uzmanlık alanında kullanılıyor olması gerekir.",
+        "Deyimler ve atasözleri de sözcükte anlam sorularının sık konusudur. Deyimler en az iki sözcükten oluşur, kalıplaşmıştır ve genellikle mecazlıdır; atasözleri ise bir yargı bildirir, ders verir. Bir deyimin ya da atasözünün cümlede hangi anlamda kullanıldığını bulmak için sözcüklerin tek tek anlamına değil, bütünün verdiği mesaja bakılmalıdır."
+      ],
+      "pufNoktalar": [
+        "Bir sözcüğün mecaz olup olmadığını anlamak için \"gerçek anlamı bu cümlede işliyor mu?\" diye sorun; işlemiyorsa mecazdır.",
+        "Yan anlam ile mecaz anlamı karıştırmayın: yan anlamda gerçek anlamla bir benzerlik ilgisi sürer, mecazda bu ilgi kopmuştur.",
+        "Terim anlam için sözcüğün mutlaka bir bilim, sanat veya meslek alanına ait olması gerekir; günlük kullanım terim sayılmaz.",
+        "Deyimler kalıplaşmıştır, sözcükleri değiştirilemez ve yerleri değiştirilemez."
+      ],
+      "sinavIpucu": "Sözcükte anlam sorularında şıkları tek tek cümle içine yerleştirip anlamın bozulup bozulmadığını kontrol edin; en çok yanlış, mecaz anlamın gerçek anlam sanılmasından çıkar."
+    },
+    {
+      "baslik": "Cümlede Anlam",
+      "konu": "Cümlede Anlam",
+      "ozet": "Cümlelerin taşıdığı neden-sonuç, koşul, amaç, varsayım, olasılık gibi anlam ilişkilerini ve cümle yorumlamayı ele alır.",
+      "metin": [
+        "Bir cümlede iki yargı arasında \"için, -dan dolayı, -dığı için\" gibi ifadelerle kurulan ilişki neden-sonuç ilişkisidir. \"Yağmur yağdığı için maç iptal edildi.\" cümlesinde yağmur neden, maçın iptali sonuçtur. Neden-sonuç cümlelerinde gerçekleşmiş bir durum ile onun doğurduğu sonuç anlatılır; sonuç gerçekleşmiştir.",
+        "Amaç-sonuç ilişkisinde ise henüz gerçekleşmemiş bir amaca yönelme vardır. \"Sınavı kazanmak için çok çalıştı.\" cümlesinde çalışmak gerçekleşmiş, sınavı kazanmak ise hedeflenen amaçtır. Amaç-sonuç ile neden-sonuç arasındaki ayrım, sonucun gerçekleşip gerçekleşmemesine bakılarak yapılır.",
+        "Koşul (şart) anlamı, bir yargının gerçekleşmesinin başka bir yargıya bağlanmasıyla oluşur ve \"-sa/-se, ancak, yeter ki, ise\" gibi ifadelerle kurulur. \"Erken gelirsen birlikte gideriz.\" cümlesinde birlikte gitme, erken gelmeye bağlıdır. Varsayım ise gerçekleşmemiş bir durumun gerçekleşmiş gibi kabul edilmesidir: \"Tut ki sınavı kazandın.\"",
+        "Olasılık (ihtimal) cümleleri kesin olmayan, gerçekleşmesi mümkün görünen yargılar bildirir: \"Belki yarın gelir.\" Kesinlik bildiren cümleler ise hiçbir kuşkuya yer bırakmaz: \"Toplantı kesinlikle bugün yapılacak.\" Uyarı, öz eleştiri, öneri, özlem ve sitem gibi anlamlar da cümleye yüklenen diğer duygulardır.",
+        "Cümle yorumlama sorularında bir cümleden çıkarılabilecek yargı ile çıkarılamayacak yargı ayrılır. Bu tür sorularda cümlede geçmeyen bir bilgiyi doğru şık sanmak en sık yapılan hatadır; doğru cevap, cümlenin sınırları içinde kalan ve metne sadık kalan yargıdır."
+      ],
+      "pufNoktalar": [
+        "Amaç-sonuç ile neden-sonuç ayrımı: sonuç gerçekleşmişse neden-sonuç, sadece hedeflenmişse amaç-sonuçtur.",
+        "\"Tut ki, diyelim ki, farz et ki\" ifadeleri varsayım; \"belki, sanırım, galiba\" ifadeleri olasılık bildirir.",
+        "Cümlekökünden çıkarılamayacak yargılar genellikle cümlede geçmeyen ek bilgi içerir; bu ek bilgiyi seçmeyin.",
+        "Koşul anlamı çoğu zaman \"-sa/-se\" ekini değil, anlamı ile kurulur; ek görünmeden de koşul olabilir."
+      ],
+      "sinavIpucu": "Cümlede anlam sorularında şıkları okurken cümlede olmayan bir ayrıntı eklenip eklenmediğine bakın; cevap genellikle en \"fazla bilgi eklemeyen\" şıkta bulunur."
+    },
+    {
+      "baslik": "Paragraf",
+      "konu": "Paragraf",
+      "ozet": "Paragrafın konusu, ana fikri, yardımcı düşünceleri, anlatım biçimleri ve paragraf tamamlama sorularının çözümünü kapsar.",
+      "metin": [
+        "Paragrafın konusu, parçada üzerinde durulan durum, kişi ya da olaydır; \"yazar neyden söz ediyor?\" sorusunun cevabıdır. Ana fikir ise yazarın bu konu hakkında anlatmak istediği temel mesajdır; \"yazar bunda ne anlatmak istiyor?\" sorusunun cevabıdır. Konu bir kavramken ana fikir bir yargıdır; bu yüzden ana fikir şıkları genellikle tam cümle hâlinde verilir.",
+        "Paragrafın ana fikri çoğu zaman ilk ya da son cümlede açıkça belirtilir. Ancak bazı paragraflarda ana fikir gizli kalır ve okurun parçanın bütününden bu yargıyı çıkarması beklenir. Böyle durumlarda tek bir cümleye takılmak yerine paragrafın tamamının hangi mesaj etrafında toplandığı belirlenmelidir.",
+        "Anlatım biçimleri paragraf sorularının önemli bir ayağıdır. Açıklama bilgi vermeyi, tartışma bir görüşü çürütüp kendi görüşünü kabul ettirmeyi, öyküleme olayları zaman akışı içinde anlatmayı, betimleme ise görüntü oluşturmayı amaçlar. Bir parçada \"önce–sonra, daha sonra\" gibi zaman ifadeleri ve eylemler varsa öyküleme, ayrıntılı görsel ayrıntılar varsa betimleme ağır basar.",
+        "Paragraf tamamlama sorularında boş bırakılan yer, kendisinden önceki ve sonraki cümlelerle anlam ve bağlaç uyumu içinde olmalıdır. Boşluktan önce neden, sonra sonuç veriliyorsa boşluğa neden-sonuç bağlantısı kuran bir cümle gelir. \"Bu nedenle, ancak, öte yandan, kısacası\" gibi bağlaçlar boşluğun işlevi hakkında ipucu verir.",
+        "Paragraf sorularında yanlış şıklar çoğu zaman parçada geçmeyen bir ayrıntıyı ekler, konuyu ana fikirle karıştırır ya da ancak bir bölümü kapsayacak kadar dar kalır. Doğru şık parçanın tamamını kucaklayan ve metnin sınırlarını aşmayan seçenektir."
+      ],
+      "pufNoktalar": [
+        "Konu bir kavram, ana fikir bir yargıdır; ana fikir şıkkı \"...gerekir\", \"...olmalıdır\" gibi tam cümle biçiminde olur.",
+        "Paragrafın tamamını kapsamayan, yalnızca bir bölümünü anlatan şıklar dar kapsamlı olduğu için yanlıştır.",
+        "\"Bu nedenle, kısacası, özetle\" gibi ifadelerden sonra gelen cümle genellikle ana fikirdir.",
+        "Paragraf tamamlama sorularında boşluğun öncesi ve sonrasıyla zaman, kişi ve bağlaç uyumunu mutlaka kontrol edin."
+      ],
+      "sinavIpucu": "Paragraf soruları uzun olduğu için önce soru kökünü okuyup ne istendiğini belirleyin; ardından parçayı bu amaçla, bir kez ve dikkatli okuyun, böylece zaman kazanırsınız."
+    },
+    {
+      "baslik": "Yazım Kuralları",
+      "konu": "Yazım Kuralları",
+      "ozet": "Büyük harf kullanımı, de/da ile ki'nin yazımı, birleşik sözcüklerin yazımı ve sayıların yazımı gibi temel yazım kurallarını içerir.",
+      "metin": [
+        "Büyük harf kullanımı yazım sorularının en çok sorulan konusudur. Cümleler büyük harfle başlar; özel adlar, unvanlar (ad soyadla birlikte), yer adları, ulus ve dil adları, dini ve milli bayram adları, kurum ve kuruluş adları büyük harfle başlatılır. Buna karşılık \"ay ve gün adları\" tek başına kullanıldığında küçük harfle yazılır: \"Bu yıl Kurban Bayramı eylül ayına denk geliyor.\"",
+        "Bağlaç olan \"de/da\" her zaman ayrı yazılır ve cümleden çıkarıldığında anlam tamamen bozulmaz. Bulunma durumu eki olan \"-de/-da\" ise sözcüğe bitişik yazılır ve çıkarıldığında anlam bozulur. \"Sen de gelir misin?\" cümlesinde \"de\" bağlaçtır, ayrı; \"Okulda tören yapıldı.\" cümlesinde \"-da\" hâl ekidir, bitişiktir.",
+        "Bağlaç olan \"ki\" ve \"mi, mı, mu, mü\" her zaman ayrı yazılır: \"Anladım ki bu iş zor.\", \"Yarın gelecek misin?\" Ek olan \"-ki\" ise bitişik yazılır: \"akşamki, benimki, seninki\". \"mi\" ekine gelen kişi ekleri de ayrı yazılır: \"gelecek miyim?\"",
+        "\"Her\" sözcüğüyle kurulan \"her şey, her zaman, her gün, her yer\" ayrı; \"herkes, herhangi, herhangi bir, hiçbir, birçok, birkaç, birtakım, pekâlâ\" gibi kalıplaşmış sözcükler ise bitişik yazılır. \"Birçok insan\", \"hiçbir şey\", \"her şey\" yazımı bu kuralın tipik uygulamasıdır.",
+        "Sayıların yazımında da belli kurallar vardır: \"iki yüz\", \"üç bin\" gibi sayı sözcükleri ayrı yazılır; tarihler \"5 Mayıs 2020\" biçiminde ve ay adı küçük harfle yazılır. Saat, para ve ölçü bildiren rakamlarla kurulan ekler ile kısaltmalara gelen ekler kesme işaretiyle ayrılır: \"2020'de\", \"TDK'nin\"."
+      ],
+      "pufNoktalar": [
+        "Bağlaç olan \"de/da\"yı bulmanın pratik yolu: cümleden çıkarın, anlam bozuluyorsa bitişik, bozulmuyorsa ayrı yazılır.",
+        "\"her şey\" ayrı, \"herkes\" bitişik yazılır; bu ikisi sınavlarda en çok karıştırılan çiftlerdir.",
+        "Ay ve gün adları tek başına küçük, belirli bir tarihle birlikte kullanıldığında büyük harfle başlar.",
+        "\"ki\" bağlaç mı ek mi: sözcükten çıkarıldığında cümle bozulmuyorsa bağlaçtır ve ayrı yazılır."
+      ],
+      "sinavIpucu": "Yazım sorularında şıkları önce büyük harf, sonra de/da ve ki, en son bitişik-ayrı yazım sırasıyla hızlıca tarayın; bu sıra yanlışı en kısa sürede bulmanızı sağlar."
+    }
+  ],
+  "sorular": [
+    {
+      "konu": "Sözcükte Anlam",
+      "zorluk": "Kolay",
+      "tip": "Konu Testi",
+      "metin": "Aşağıdaki cümleleri dikkate alarak soruyu cevaplandırınız.",
+      "soru": "Aşağıdaki cümlelerin hangisinde \"ağır\" sözcüğü mecaz anlamıyla kullanılmıştır?",
+      "secenekler": [
+        "Bavul çok ağır olduğu için tek başıma taşıyamadım.",
+        "Ağır çuvalları kamyonete iki kişi yükledik.",
+        "Bu ağır sözleri duyunca gerçekten çok üzüldüm.",
+        "Sedye ağır geldiği için bir kişi daha çağırdık."
+      ],
+      "dogru": 2,
+      "aciklama": "Mecaz anlamda sözcük gerçek anlamından uzaklaşır; \"ağır söz\" tamlamasında ağır, \"incitici, kırıcı\" anlamındadır."
+    },
+    {
+      "konu": "Sözcükte Anlam",
+      "zorluk": "Kolay",
+      "tip": "Konu Testi",
+      "metin": "Aşağıdaki cümleleri dikkate alarak soruyu cevaplandırınız.",
+      "soru": "Aşağıdaki cümlelerin hangisinde terim anlamlı bir sözcük kullanılmıştır?",
+      "secenekler": [
+        "Öğretmen tahtaya büyük bir üçgen çizdi.",
+        "Bahçedeki güller bu yıl çok güzel açtı.",
+        "Yolda eski bir arkadaşıma rastladım.",
+        "Akşam yemeğinde pilav ile çorba yaptık."
+      ],
+      "dogru": 0,
+      "aciklama": "\"Üçgen\" sözcüğü geometri alanına özgü, tek anlamlı bir kavramı karşıladığı için terimdir; diğer sözcükler günlük anlamında kullanılmıştır."
+    },
+    {
+      "konu": "Sözcükte Anlam",
+      "zorluk": "Orta",
+      "tip": "Konu Testi",
+      "metin": "Aşağıdaki cümleleri dikkate alarak soruyu cevaplandırınız.",
+      "soru": "Aşağıdaki cümlelerin hangisinde \"göz\" sözcüğü temel (gerçek) anlamıyla kullanılmıştır?",
+      "secenekler": [
+        "Bu habere hemen göz koydular.",
+        "Bu işte iyi bir gözü var.",
+        "Onun gözü hep yükseklerde.",
+        "Çocuğun gözüne toz kaçtı."
+      ],
+      "dogru": 3,
+      "aciklama": "\"Gözüne toz kaçtı\" cümlesinde göz, vücuttaki organ anlamıyla, yani temel anlamıyla kullanılmıştır; diğer cümleler mecazdır."
+    },
+    {
+      "konu": "Cümlede Anlam",
+      "zorluk": "Kolay",
+      "tip": "Konu Testi",
+      "metin": "Aşağıdaki cümleleri dikkate alarak soruyu cevaplandırınız.",
+      "soru": "Aşağıdaki cümlelerin hangisinde neden-sonuç ilişkisi vardır?",
+      "secenekler": [
+        "Sabah erken kalktım ama yine de otobüse yetişemedim.",
+        "Yağmur yağdığı için maç iptal edildi.",
+        "Kitabı okudum, sonra da özetini çıkardım.",
+        "İster gel ister git, bu beni ilgilendirmez."
+      ],
+      "dogru": 1,
+      "aciklama": "Yağmurun yağması neden, maçın iptal edilmesi gerçekleşmiş sonuçtur; \"-dığı için\" ifadesi bu ilişkiyi kurar."
+    },
+    {
+      "konu": "Cümlede Anlam",
+      "zorluk": "Orta",
+      "tip": "Konu Testi",
+      "metin": "Aşağıdaki cümleleri dikkate alarak soruyu cevaplandırınız.",
+      "soru": "Aşağıdaki cümlelerin hangisi varsayım anlamı taşır?",
+      "secenekler": [
+        "Tut ki yarın hava kapalı olsun, yine de geziye gideriz.",
+        "Hava bugün oldukça kapalı görünüyor.",
+        "Dün hava epey kapalıydı, hiç açmadı.",
+        "Hava kapalı olduğu için evde kaldık."
+      ],
+      "dogru": 0,
+      "aciklama": "\"Tut ki\" ifadesi gerçekleşmemiş bir durumun gerçekleşmiş gibi kabul edilmesini sağlar; bu da varsayım anlamıdır."
+    },
+    {
+      "konu": "Cümlede Anlam",
+      "zorluk": "Orta",
+      "tip": "Konu Testi",
+      "metin": "Aşağıdaki cümleleri dikkate alarak soruyu cevaplandırınız.",
+      "soru": "Aşağıdaki cümlelerin hangisinde \"öz eleştiri\" anlamı vardır?",
+      "secenekler": [
+        "Bu işte en büyük pay onundur.",
+        "Hatalarımı görmekte çok geç kaldım.",
+        "Sen bu işi benden çok daha iyi bilirsin.",
+        "Bu sorunu hep birlikte çözeceğiz."
+      ],
+      "dogru": 1,
+      "aciklama": "Kişinin kendi kusurunu kabul etmesi, kendini eleştirmesi öz eleştiridir; \"hatalarımı\" sözcüğü bunu gösterir."
+    },
+    {
+      "konu": "Paragraf",
+      "zorluk": "Orta",
+      "tip": "Konu Testi",
+      "metin": "Kitap okumak yalnızca bilgi edinmenin yollarından biri değildir. Okuyan insan, kendini başkalarının yerine koymayı, farklı hayatları anlamayı öğrenir. Bir romanın kahramanıyla üzülüp sevinen okur, aslında insanı ve dünyayı tanır. Bu yüzden düzenli okuma alışkanlığı, kişinin kendisini geliştirmesinin en etkili yollarından biridir.",
+      "soru": "Bu parçanın ana fikri aşağıdakilerden hangisidir?",
+      "secenekler": [
+        "Kitaplar en çok bilgi edinmek amacıyla okunur.",
+        "Okuma alışkanlığı, kişiyi ve dünyayı tanıtarak geliştirir.",
+        "Romanlar, bilimsel kitaplardan her zaman daha faydalıdır.",
+        "Herkes her ay en az bir kitap bitirmelidir."
+      ],
+      "dogru": 1,
+      "aciklama": "Parça, okumanın bilgi vermenin ötesinde insanı ve dünyayı tanıtıp geliştirdiğini savunur; bu yargı tüm parçayı kapsar."
+    },
+    {
+      "konu": "Paragraf",
+      "zorluk": "Kolay",
+      "tip": "Konu Testi",
+      "metin": "Son yıllarda kentlerde bisiklet kullanımı hızla artıyor. Belediyeler yeni bisiklet yolları yapıyor, iş yerleri çalışanlarına bisiklet desteği veriyor. Bu ilgi, trafik sıkışıklığını azalttığı gibi hava kirliliğini de düşürüyor. Sağlığına dikkat eden insanlar için de bisiklet, günlük sporu hayatın içine sokan pratik bir çözüm oluyor.",
+      "soru": "Bu parçada asıl anlatılmak istenen aşağıdakilerden hangisidir?",
+      "secenekler": [
+        "Bisiklet, kent yaşamına pek çok yönden katkı sağlar.",
+        "Belediyeler bisiklet yollarına gereğinden çok para harcıyor.",
+        "Trafik sorunu yalnızca bisiklet kullanımıyla çözülebilir.",
+        "İş yerleri çalışanlarını spor yapmaya zorlamalıdır."
+      ],
+      "dogru": 0,
+      "aciklama": "Parça; ulaşım, çevre ve sağlık başlıklarında bisikletin sağladığı yararları sıralayarak katkısını vurgular."
+    },
+    {
+      "konu": "Paragraf",
+      "zorluk": "Orta",
+      "tip": "Konu Testi",
+      "metin": "Arılar, kovandaki iş bölümüyle tanınır. Kraliçe arı yumurtlar, işçi arılar bal toplar ve kovanı korur, erkek arılar ise kraliçeyle çiftleşme görevini üstlenir. Bu düzen sayesinde kovan, kışı besin sıkıntısı çekmeden geçirir. Arıların bu düzenli çalışması, insan toplumlarına da örnek olacak niteliktedir.",
+      "soru": "Bu parçadan kesin olarak çıkarılabilecek yargı aşağıdakilerden hangisidir?",
+      "secenekler": [
+        "Arılar arasındaki iş bölümü, kovanın kışı sorunsuz geçirmesini sağlar.",
+        "Kovandaki bütün arılar bal toplamakla görevlidir.",
+        "İnsanlar arıların yaşamına hiçbir koşulda müdahale etmemelidir.",
+        "Kraliçe arı, kovandaki en çalışkan bireydir."
+      ],
+      "dogru": 0,
+      "aciklama": "Parçada \"Bu düzen sayesinde kovan kışı besin sıkıntısı çekmeden geçirir.\" ifadesi doğrudan bu yargıyı verir; diğer şıklar parçada geçmeyen bilgilerdir."
+    },
+    {
+      "konu": "Paragraf",
+      "zorluk": "Zor",
+      "tip": "Konu Testi",
+      "metin": "Bir toplumun gelişmişlik düzeyi yalnızca ekonomik göstergelerle ölçülemez. Okuma alışkanlığı, sanata ilgi, bilime merak da bu düzeyin önemli göstergeleridir. ..... Bu nedenle kalkınma planlarında kültür ve eğitime ayrılan pay, geleceğe yapılan yatırım sayılmalıdır.",
+      "soru": "Bu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+      "secenekler": [
+        "Bu alanlara yatırım yapan toplumlar, uzun vadede kalkınmada kalıcı başarı elde eder.",
+        "Ekonomik büyüme, kültürden tamamen bağımsız olarak da gerçekleşebilir.",
+        "Sanat ve bilim yalnızca gelişmiş ülkelerin uğraştığı alanlardır.",
+        "Okuma alışkanlığı dünyanın her toplumunda aynı düzeydedir."
+      ],
+      "dogru": 0,
+      "aciklama": "Boşluktan sonraki \"Bu nedenle kültür ve eğitime yatırım yapılmalıdır.\" cümlesi, boşluğa kültürel yatırımın kalkınmayı kalıcı kıldığını anlatan bir cümlenin gelmesini gerektirir."
+    },
+    {
+      "konu": "Ses Bilgisi",
+      "zorluk": "Kolay",
+      "tip": "Konu Testi",
+      "metin": "Aşağıdaki cümleleri dikkate alarak soruyu cevaplandırınız.",
+      "soru": "Aşağıdaki sözcüklerin hangisinde ünlü daralması vardır?",
+      "secenekler": [
+        "okuyor",
+        "yürüyor",
+        "başlıyor",
+        "yazıyor"
+      ],
+      "dogru": 2,
+      "aciklama": "\"Başla-yor\" biçimindeki fiil, \"-yor\" ekiyle birleşirken kökteki \"a\" ünlüsü \"ı\"ya dönüşmüştür; bu olaya ünlü daralması denir."
+    },
+    {
+      "konu": "Ses Bilgisi",
+      "zorluk": "Orta",
+      "tip": "Konu Testi",
+      "metin": "Aşağıdaki cümleleri dikkate alarak soruyu cevaplandırınız.",
+      "soru": "Aşağıdaki sözcüklerin hangisinde kaynaştırma (yardımcı) ünsüzü vardır?",
+      "secenekler": [
+        "kitabı",
+        "evi",
+        "arabası",
+        "gözü"
+      ],
+      "dogru": 2,
+      "aciklama": "\"Araba\" sözcüğüne iyelik eki getirilirken araya \"s\" yardımcı ünsüzü girmiştir: araba-s-ı. Diğerlerinde ünlü doğrudan ekle birleşmiştir."
+    },
+    {
+      "konu": "Yazım Kuralları",
+      "zorluk": "Kolay",
+      "tip": "Konu Testi",
+      "metin": "Aşağıdaki cümleleri dikkate alarak soruyu cevaplandırınız.",
+      "soru": "Aşağıdaki cümlelerin hangisinde yazım yanlışı vardır?",
+      "secenekler": [
+        "Herkes yarın sabah erkenden gelecek.",
+        "TDK'nin son sözlüğünü geçen hafta aldım.",
+        "Kardeşim 5 Mayıs 2020'de doğdu.",
+        "öğretmenimiz bize yeni bir kitap hediye etti."
+      ],
+      "dogru": 3,
+      "aciklama": "Cümle büyük harfle başlamak zorundadır; \"öğretmenimiz\" sözcüğünün \"Öğretmenimiz\" biçiminde yazılması gerekirdi."
+    },
+    {
+      "konu": "Yazım Kuralları",
+      "zorluk": "Orta",
+      "tip": "Konu Testi",
+      "metin": "Aşağıdaki cümleleri dikkate alarak soruyu cevaplandırınız.",
+      "soru": "Aşağıdaki cümlelerden hangisinde büyük harfin kullanımıyla ilgili bir yazım yanlışı vardır?",
+      "secenekler": [
+        "Doğu Anadolu Bölgesi'ni trenle gezmek istiyoruz.",
+        "Sınıfça Çanakkale Savaşı'nı anlatan bir film izledik.",
+        "Bu yıl kurban bayramı eylül ayına denk geliyor.",
+        "Yeni iş yerimiz Atatürk Bulvarı'nda bulunuyor."
+      ],
+      "dogru": 2,
+      "aciklama": "Belirli dini ve millî bayram adları büyük harfle başlar; \"Kurban Bayramı\" biçiminde yazılmalıydı. Ay adı ise tarihle birlikte olmadığı için küçük harfle kalır."
+    },
+    {
+      "konu": "Yazım Kuralları",
+      "zorluk": "Kolay",
+      "tip": "Konu Testi",
+      "metin": "Aşağıdaki cümleleri dikkate alarak soruyu cevaplandırınız.",
+      "soru": "Aşağıdaki cümlelerin hangisinde \"de/da\"nın yazımıyla ilgili bir yanlışlık vardır?",
+      "secenekler": [
+        "Sen de bizimle gelir misin?",
+        "Okulda dün uzun bir tören yapıldı.",
+        "Kitabı masada bıraktım.",
+        "Kardeşimde bu filmi çok sevdi."
+      ],
+      "dogru": 3,
+      "aciklama": "Buradaki \"de\" bağlaçtır ve cümleden çıkarıldığında anlam bozulmadığı için ayrı yazılmalıydı: \"Kardeşim de bu filmi çok sevdi.\""
+    },
+    {
+      "konu": "Noktalama İşaretleri",
+      "zorluk": "Kolay",
+      "tip": "Konu Testi",
+      "metin": "Aşağıdaki cümleleri dikkate alarak soruyu cevaplandırınız.",
+      "soru": "Aşağıdaki cümlelerin hangisinde kesme işareti (') yanlış kullanılmıştır?",
+      "secenekler": [
+        "Toplantı yarın 9.30'da başlayacak.",
+        "Öğretmenimiz bize Yunus Emre'nin şiirlerini okudu.",
+        "Ahmet'ler bizimle pikniğe geldi.",
+        "Bu yaz ailecek İzmir'e taşınıyoruz."
+      ],
+      "dogru": 2,
+      "aciklama": "Özel adlara çokluk (-ler/-lar) eki getirildiğinde kesme işareti kullanılmaz; doğru yazım \"Ahmetler\" biçimindedir."
+    },
+    {
+      "konu": "Noktalama İşaretleri",
+      "zorluk": "Orta",
+      "tip": "Konu Testi",
+      "metin": "Aşağıdaki cümleleri dikkate alarak soruyu cevaplandırınız.",
+      "soru": "Aşağıdaki cümlelerin hangisinde soru işareti (?) yanlış kullanılmıştır?",
+      "secenekler": [
+        "Sınav sonuçları ne zaman açıklanacak?",
+        "Ona neden kızdığını hâlâ bilmiyorum?",
+        "Bu kitapları sen mi getirdin?",
+        "Yaz tatilinde nerede kalacaksınız?"
+      ],
+      "dogru": 1,
+      "aciklama": "Cümlede soru sözcüğü bulunsa da yüklem \"bilmiyorum\" olduğu için bu bir soru cümlesi değildir; cümlenin sonuna nokta konmalıydı."
+    },
+    {
+      "konu": "Noktalama İşaretleri",
+      "zorluk": "Orta",
+      "tip": "Konu Testi",
+      "metin": "Aşağıdaki cümleleri dikkate alarak soruyu cevaplandırınız.",
+      "soru": "Aşağıdaki cümlelerin hangisinde virgül gereksiz kullanılmıştır?",
+      "secenekler": [
+        "Defteri, kalemi ve silgiyi çantasına koydu.",
+        "Toplantıya Ayşe, Mehmet ve Zeynep katıldı.",
+        "Küçük çocuk ağlayarak annesine koştu.",
+        "Çalışkan öğrenci, sınavı, kolayca kazandı."
+      ],
+      "dogru": 3,
+      "aciklama": "Nesne durumundaki \"sınavı\" sözcüğünden sonra virgül getirilmesi gereksizdir; virgül sıralama veya ayırma amacı taşımadığı için yanlıştır."
+    },
+    {
+      "konu": "Sözcük Türleri",
+      "zorluk": "Orta",
+      "tip": "Konu Testi",
+      "metin": "Aşağıdaki cümleleri dikkate alarak soruyu cevaplandırınız.",
+      "soru": "Aşağıdaki cümlelerin hangisinde \"ancak\" sözcüğü bağlaç olarak kullanılmıştır?",
+      "secenekler": [
+        "Sınava ancak yetişebildim.",
+        "Bu işi ancak sen başarabilirsin.",
+        "Çok çalıştı ancak istediği sonucu alamadı.",
+        "Dün gece ancak bir saat uyuyabildim."
+      ],
+      "dogru": 2,
+      "aciklama": "Bu cümlede \"ancak\" iki cümleyi karşıtlık ilgisiyle bağladığı için bağlaçtır; diğer cümlelerde \"sadece/yalnızca\" anlamında zarftır."
+    },
+    {
+      "konu": "Sözcük Türleri",
+      "zorluk": "Kolay",
+      "tip": "Konu Testi",
+      "metin": "Aşağıdaki cümleleri dikkate alarak soruyu cevaplandırınız.",
+      "soru": "Aşağıdaki cümlelerin hangisinde zamir (adıl) yoktur?",
+      "secenekler": [
+        "Onu dün akşam çarşıda gördüm.",
+        "Bu kitabı kime hediye ettin?",
+        "Kendi işini kendin bitirmelisin.",
+        "Ali, sınavı büyük bir başarıyla kazandı."
+      ],
+      "dogru": 3,
+      "aciklama": "\"Ali\" özel bir addır; bu cümlede zamir yerine ad kullanılmıştır. Diğer cümlelerde onu, kime, kendi, kendin sözcükleri zamirdir."
+    },
+    {
+      "konu": "Sözcük Türleri",
+      "zorluk": "Orta",
+      "tip": "Konu Testi",
+      "metin": "Aşağıdaki cümleleri dikkate alarak soruyu cevaplandırınız.",
+      "soru": "Aşağıdaki cümlelerin hangisinde edat (ilgeç) kullanılmamıştır?",
+      "secenekler": [
+        "Sabaha kadar ders çalıştı.",
+        "Bu iş için çok uğraştı.",
+        "Konuşmak üzere yola çıktı.",
+        "Dün akşam güzel bir kitap aldım."
+      ],
+      "dogru": 3,
+      "aciklama": "\"Güzel\" sözcüğü \"kitap\" adını niteleyen bir sıfattır. Diğer cümlelerdeki kadar, için, üzere sözcükleri ise edattır."
+    },
+    {
+      "konu": "Sözcük Yapısı",
+      "zorluk": "Kolay",
+      "tip": "Konu Testi",
+      "metin": "Aşağıdaki cümleleri dikkate alarak soruyu cevaplandırınız.",
+      "soru": "Aşağıdaki sözcüklerden hangisi yapım eki almış (türemiş) bir sözcüktür?",
+      "secenekler": [
+        "kitap",
+        "yolcu",
+        "deniz",
+        "masa"
+      ],
+      "dogru": 1,
+      "aciklama": "Yolcu sözcüğü \"yol\" köküne \"-cu\" yapım eki getirilerek oluşmuştur; diğer sözcükler kök durumundadır."
+    },
+    {
+      "konu": "Sözcük Yapısı",
+      "zorluk": "Kolay",
+      "tip": "Konu Testi",
+      "metin": "Aşağıdaki cümleleri dikkate alarak soruyu cevaplandırınız.",
+      "soru": "Aşağıdaki sözcüklerden hangisi basit yapılıdır (kök durumundadır)?",
+      "secenekler": [
+        "bilgi",
+        "sevinç",
+        "sıcak",
+        "gözlük"
+      ],
+      "dogru": 2,
+      "aciklama": "\"Sıcak\" sözcüğü bölünemeyen, yapım eki almamış bir köktür. Bilgi (bil-gi), sevinç (sevin-ç), gözlük (göz-lük) ise yapım eki almış türemiş sözcüklerdir."
+    },
+    {
+      "konu": "Cümlenin Ögeleri",
+      "zorluk": "Orta",
+      "tip": "Konu Testi",
+      "metin": "Aşağıdaki cümleleri dikkate alarak soruyu cevaplandırınız.",
+      "soru": "Aşağıdaki cümlelerin hangisinde belirtili nesne vardır?",
+      "secenekler": [
+        "Bahçede çocuklar neşeyle oynuyor.",
+        "Kitabı masanın üstüne bıraktım.",
+        "Yarın sabah okula gideceğim.",
+        "Ağaçtaki kuşlar durmadan cıvıldıyor."
+      ],
+      "dogru": 1,
+      "aciklama": "\"Kitabı\" sözcüğü belirtme durumu eki (-ı) aldığı ve yükleme \"neyi bıraktım?\" sorusuyla bağlandığı için belirtili nesnedir."
+    },
+    {
+      "konu": "Cümlenin Ögeleri",
+      "zorluk": "Zor",
+      "tip": "Konu Testi",
+      "metin": "Aşağıdaki cümleleri dikkate alarak soruyu cevaplandırınız.",
+      "soru": "Aşağıdaki cümlelerin hangisinde belirtisiz nesne vardır?",
+      "secenekler": [
+        "Kalemi dün akşam masaya bıraktım.",
+        "Öğretmen sınavı gereğinden zor yaptı.",
+        "Ali, dün akşam uzun süre kitap okudu.",
+        "Yolcular trene büyük bir sabırla bindi."
+      ],
+      "dogru": 2,
+      "aciklama": "\"Kitap\" sözcüğü belirtme eki almadığı ve yükleme \"ne okudu?\" sorusuyla bağlandığı için belirtisiz nesnedir. Kalemi ve sınavı belirtili nesne, trene ise dolaylı tümleçtir."
+    },
+    {
+      "konu": "Cümle Türleri",
+      "zorluk": "Kolay",
+      "tip": "Konu Testi",
+      "metin": "Aşağıdaki cümleleri dikkate alarak soruyu cevaplandırınız.",
+      "soru": "Aşağıdaki cümlelerden hangisi yapısına göre birleşik bir cümledir?",
+      "secenekler": [
+        "Hava birden karardı.",
+        "Herkes evine doğru gitti.",
+        "Çocuklar bahçede oynuyordu.",
+        "Yağmur yağdığı için maç iptal edildi."
+      ],
+      "dogru": 3,
+      "aciklama": "Cümle, \"yağdığı için\" yan cümlesi ile ana cümleden oluştuğu için girişik birleşik cümledir; diğerleri tek yüklemli basit cümlelerdir."
+    },
+    {
+      "konu": "Cümle Türleri",
+      "zorluk": "Orta",
+      "tip": "Konu Testi",
+      "metin": "Aşağıdaki cümleleri dikkate alarak soruyu cevaplandırınız.",
+      "soru": "Aşağıdaki cümlelerden hangisi yükleminin türüne göre fiil cümlesidir?",
+      "secenekler": [
+        "Yarın hava çok güzel olacak.",
+        "Bu kitap gerçekten çok ilginç.",
+        "Bahçemiz geçen yıl çok genişti.",
+        "Bu konular öğrenciler için hiç zor değildi."
+      ],
+      "dogru": 0,
+      "aciklama": "Yüklemi \"olacak\" sözcüğü çekimli bir fiil olduğu için cümle fiil cümlesidir; diğer cümlelerin yüklemleri isim soyludur."
+    },
+    {
+      "konu": "Anlatım Bozuklukları",
+      "zorluk": "Orta",
+      "tip": "Konu Testi",
+      "metin": "Aşağıdaki cümleleri dikkate alarak soruyu cevaplandırınız.",
+      "soru": "Aşağıdaki cümlelerin hangisinde gereksiz sözcük kullanımından kaynaklanan anlatım bozukluğu vardır?",
+      "secenekler": [
+        "Yarın sabah erkenden size geleceğim.",
+        "Yaklaşık iki saat kadar yol yürüdük.",
+        "Kitabı okudum ve özetini çıkardım.",
+        "Akşam yemeğini saat sekizde yedik."
+      ],
+      "dogru": 1,
+      "aciklama": "\"Yaklaşık\" ve \"kadar\" sözcükleri aynı anlamı (tahminîlik) verdiği için cümlede ikisinden biri gereksizdir."
+    },
+    {
+      "konu": "Anlatım Bozuklukları",
+      "zorluk": "Zor",
+      "tip": "Konu Testi",
+      "metin": "Aşağıdaki cümleleri dikkate alarak soruyu cevaplandırınız.",
+      "soru": "Aşağıdaki cümlelerin hangisinde özne eksikliğinden kaynaklanan anlatım bozukluğu vardır?",
+      "secenekler": [
+        "Sabah erken kalkıp güzel bir kahvaltı yaptım.",
+        "Ali'ye yardım ettim ve bana çok teşekkür etti.",
+        "Kitabı okudum ve sonra arkadaşıma verdim.",
+        "Dün akşam erken yattım, sabah dinç kalktım."
+      ],
+      "dogru": 1,
+      "aciklama": "İlk cümlenin öznesi \"ben\", ikinci cümlenin öznesi \"Ali\"dir; cümle okunduğunda her iki yargı da aynı özneye bağlanır, bu da özne eksikliği bozukluğu yaratır."
+    },
+    {
+      "konu": "Sözel Mantık",
+      "zorluk": "Kolay",
+      "tip": "Konu Testi",
+      "metin": "A, B ve C adlı üç öğrenci matematik, fizik ve kimya derslerinden birer kez sözlüye kalkmıştır. Bilinenler şunlardır:\n• A, matematikten sözlüye kalkmıştır.\n• Kimyadan sözlüye kalkan öğrenci B değildir.",
+      "soru": "Buna göre aşağıdakilerden hangisi kesin olarak doğrudur?",
+      "secenekler": [
+        "B, fizikten sözlüye kalkmıştır.",
+        "C, fizikten sözlüye kalkmıştır.",
+        "A, kimyadan sözlüye kalkmıştır.",
+        "B, kimyadan sözlüye kalkmıştır."
+      ],
+      "dogru": 0,
+      "aciklama": "A matematikten kalktığına göre fizik ve kimya B ile C arasında paylaşılır. Kimyadan kalkan B olmadığına göre kimyadan C, fizikten B kalkmıştır."
+    }
+  ]
+}

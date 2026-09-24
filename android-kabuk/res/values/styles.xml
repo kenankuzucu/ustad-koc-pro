@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="UygulamaTemasi" parent="@android:style/Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@color/zemin</item>
+        <item name="android:colorPrimary">@color/ana</item>
+        <item name="android:colorPrimaryDark">@color/ana_koyu</item>
+        <item name="android:colorAccent">@color/ana</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+</resources>
