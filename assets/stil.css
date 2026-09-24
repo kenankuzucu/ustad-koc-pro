@@ -50,6 +50,11 @@ html[data-renk="deniz"]   { --zemin:#e9f2f7; --zemin2:#dbeaf3; --kart:#fafdff; -
   --ezber:#a21caf;    --ezber2:#86198f;
   --rozet:#ea580c;    --rozet2:#c2410c;
   --karne:#166534;    --karne2:#14532d;
+  --sozluk:#7c3aed;   --sozluk2:#5b21b6;
+  --sinav:#1d4ed8;    --sinav2:#1e3a8a;
+  --denemeler:#0f766e;--denemeler2:#115e59;
+  --arama:#b45309;    --arama2:#92400e;
+  --aracek:#0369a1;   --aracek2:#075985;
   --r:16px;
 }
 

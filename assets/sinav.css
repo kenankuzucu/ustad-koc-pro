@@ -1,0 +1,146 @@
+/* © 2026 Kenan Kuzucu · ÜSTAD KPSS-B KOÇ PRO · TAM SINAV SİMÜLASYONU stilleri · TÜM HAKLARI SAKLIDIR (5846 FSEK).
+   Bölümün kendi rengi: var(--sinav) / var(--sinav2) (#1d4ed8 mavi). Tema değişse de bu renk sabittir.
+   Sınıf öneki: `sinav-` · Ortak sınıflar kullanılır: .kart .sayfa-baslik .buyuk-dugme .ikincil-dugme .rakam .aciklama */
+
+:root { --sinav: #1d4ed8; --sinav2: #1e3a8a; --sinav3: #93c5fd; --sinav-turuncu: #ea580c; }
+
+/* ── bölüm şeridi + başlık rengi ── */
+#ekran-sinav { max-width: 1180px; margin: 0 auto; padding: 16px 14px 60px; }
+[data-bolum="sinav"] .kart { border-top: 4px solid var(--sinav); }
+[data-bolum="sinav"] .sayfa-baslik, #ekran-sinav .sayfa-baslik { color: var(--sinav); }
+
+/* ── iskelet ── */
+.sinav-bolum { border-top: 1px solid var(--cizgi); padding-top: 14px; margin-top: 16px; }
+.sinav-bolum.sinav-ilk, .sinav-bolum:first-child { border-top: 0; padding-top: 0; margin-top: 0; }
+.sinav-baslik { margin: 0 0 9px; font-size: 15.5px; color: var(--sinav); letter-spacing: .2px; }
+.sinav-hata { color: #b91c1c; font-size: 12.5px; margin: 6px 0 0; }
+.sinav-kotu { color: #b91c1c; font-weight: 600; }
+.sinav-iyi { color: #0b8a44; font-weight: 600; }
+.sinav-orta { color: #b06f00; font-weight: 600; }
+.sinav-iyi-yazi { color: #0b8a44; font-size: 13px; margin: 8px 0 0; }
+.sinav-sayi { font-size: 12.5px; color: var(--soluk); margin: 8px 0 0; }
+.sinav-gizli { display: none !important; }
+
+/* ── 1) gösterge kutuları ── */
+.sinav-kutular { display: grid; grid-template-columns: repeat(6, 1fr); gap: 9px; margin: 6px 0 4px; }
+.sinav-kutu { background: linear-gradient(160deg, var(--sinav), var(--sinav2)); color: #fff; border-radius: 14px;
+  padding: 12px 6px; text-align: center; box-shadow: 0 6px 16px rgba(29, 78, 216, .25); }
+.sinav-kutu b { display: block; font-size: clamp(15px, 3.6vw, 22px); line-height: 1.15; font-variant-numeric: tabular-nums; }
+.sinav-kutu span { display: block; font-size: 9.4px; letter-spacing: .1em; opacity: .93; margin-top: 3px; }
+.sinav-kutu i { display: block; font-style: normal; font-size: 10px; opacity: .82; margin-top: 1px; }
+
+/* ── düğme satırı ── */
+.sinav-butonlar { display: flex; flex-wrap: wrap; gap: 9px; margin: 12px 0 0; }
+.sinav-butonlar .buyuk-dugme, .sinav-butonlar .ikincil-dugme { margin: 0; }
+.sinav-onay-dugme { background: linear-gradient(160deg, var(--sinav), var(--sinav2)) !important; }
+
+/* ── tablolar ── */
+.sinav-tablo { width: 100%; border-collapse: collapse; font-size: 13px; margin: 6px 0 0; }
+.sinav-tablo th, .sinav-tablo td { padding: 7px 8px; border-bottom: 1px solid var(--cizgi); text-align: left; }
+.sinav-tablo th { background: var(--zemin2); color: var(--soluk); font-size: 11.4px; letter-spacing: .05em; }
+.sinav-tablo tr.toplam td { background: rgba(29, 78, 216, .07); font-weight: 700; }
+.sinav-tablo .rakam { font-variant-numeric: tabular-nums; }
+
+/* ── uyarılar / listeler ── */
+.sinav-uyari-liste { margin: 8px 0 0; padding-left: 20px; font-size: 13px; line-height: 1.7; }
+.sinav-uyari-liste li { margin-bottom: 2px; }
+.sinav-adimlar { margin: 6px 0 0; padding-left: 20px; font-size: 13.3px; line-height: 1.75; }
+.sinav-dokum { margin: 6px 0 0; padding-left: 20px; font-size: 13.3px; line-height: 1.75; }
+.sinav-banka-uyari { background: #fff7ed; border: 1px solid #fed7aa; border-left: 5px solid #ea580c;
+  border-radius: 12px; padding: 10px 12px; margin: 12px 0 0; font-size: 12.8px; }
+
+/* ── 10) sınav üst şeridi ── */
+.sinav-ust { position: sticky; top: 0; z-index: 30; display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
+  background: var(--kart); border: 1px solid var(--cizgi); border-top: 4px solid var(--sinav); border-radius: 14px;
+  padding: 9px 12px; margin-bottom: 10px; box-shadow: 0 6px 18px rgba(0, 0, 0, .07); }
+.sinav-sayac-kap { display: flex; flex-direction: column; line-height: 1.1; }
+.sinav-sayac-etiket { font-size: 9.4px; letter-spacing: .11em; color: var(--soluk); }
+.sinav-sayac { font-size: clamp(20px, 5vw, 27px); font-variant-numeric: tabular-nums; font-weight: 800; color: var(--sinav); }
+.sinav-sayac-az { color: #dc2626; animation: sinavNabiz 1.1s ease-in-out infinite; }
+@keyframes sinavNabiz { 50% { opacity: .45; } }
+.sinav-ilerleme { flex: 1 1 200px; font-size: 12.4px; color: var(--soluk); }
+.sinav-ust-dugmeler { display: flex; gap: 7px; flex-wrap: wrap; }
+.sinav-uyari-bandi { background: #fef2f2; border: 1px solid #fecaca; border-left: 5px solid #dc2626; color: #991b1b;
+  border-radius: 12px; padding: 9px 12px; margin-bottom: 10px; font-size: 13px; }
+
+/* ── gövde: kâğıt + optik ── */
+.sinav-govde { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 12px; align-items: start; }
+.sinav-kagit { position: relative; background: var(--kart); border: 1px solid var(--cizgi); border-radius: 15px; padding: 14px; }
+.sinav-soru-ust { display: flex; flex-wrap: wrap; gap: 7px; align-items: center; margin-bottom: 10px; }
+.sinav-soru-no { font-size: 12px; font-weight: 800; letter-spacing: .08em; color: #fff; background: var(--sinav);
+  border-radius: 9px; padding: 3px 9px; }
+.sinav-rozet-ders, .sinav-rozet-konu, .sinav-rozet-zorluk, .sinav-rozet-bayrak { font-size: 11.4px; border-radius: 9px;
+  padding: 3px 9px; background: var(--zemin2); color: var(--soluk); border: 1px solid var(--cizgi); }
+.sinav-rozet-bayrak { background: #fff7ed; color: #c2410c; border-color: #fed7aa; }
+.sinav-soru-metin { font-size: 13px; color: var(--soluk); border-left: 4px solid var(--sinav3); padding-left: 10px; margin: 0 0 10px; }
+.sinav-soru-govde { font-size: 15.4px; line-height: 1.6; margin: 0 0 12px; }
+.sinav-secenekler { display: flex; flex-direction: column; gap: 8px; }
+.sinav-secenek { display: flex; gap: 9px; align-items: flex-start; text-align: left; width: 100%; cursor: pointer;
+  background: var(--zemin2); border: 1.6px solid var(--cizgi); border-radius: 12px; padding: 10px 12px;
+  font-size: 13.6px; line-height: 1.5; color: var(--metin); transition: border-color .15s, background .15s, transform .1s; }
+.sinav-secenek:hover { border-color: var(--sinav3); }
+.sinav-secenek:active { transform: scale(.995); }
+.sinav-secenek b { color: var(--sinav); flex: 0 0 auto; }
+.sinav-secenek.secili { background: rgba(29, 78, 216, .09); border-color: var(--sinav); box-shadow: inset 0 0 0 1px var(--sinav); }
+.sinav-secili-bilgi { font-size: 12.6px; color: var(--soluk); margin: 10px 0 0; }
+.sinav-soru-dugmeler { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.sinav-durakla-maske { position: absolute; inset: 0; background: rgba(255, 255, 255, .96); border-radius: 15px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 10px;
+  padding: 24px; z-index: 20; }
+.sinav-durakla-maske b { font-size: 20px; color: var(--sinav); }
+.sinav-durakla-maske p { font-size: 13px; color: var(--soluk); max-width: 380px; margin: 0; }
+
+/* ── optik cevap kâğıdı ── */
+.sinav-optik-kap { background: var(--kart); border: 1px solid var(--cizgi); border-radius: 15px; padding: 12px; }
+.sinav-optik { display: grid; grid-template-columns: repeat(10, 1fr); gap: 5px; }
+.sinav-optik-kutu { font-size: 11px; font-weight: 700; font-variant-numeric: tabular-nums; cursor: pointer;
+  border-radius: 8px; padding: 6px 0; border: 1.5px solid var(--cizgi); background: var(--zemin2); color: var(--soluk);
+  transition: transform .1s, box-shadow .15s, background .15s, color .15s; }
+.sinav-optik-kutu:hover { transform: translateY(-1px); }
+.sinav-optik-bos { background: #f1f3f6; color: #8b95a5; }
+.sinav-optik-cevapli { background: var(--sinav); border-color: var(--sinav2); color: #fff; }
+.sinav-optik-isaretli { box-shadow: 0 0 0 2.5px var(--sinav-turuncu); }
+.sinav-optik-sorulan { outline: 3px solid var(--sinav); outline-offset: 1px; }
+.sinav-optik-dogru { background: #12a150; border-color: #0b8a44; color: #fff; }
+.sinav-optik-yanlis { background: #dc2626; border-color: #b91c1c; color: #fff; }
+.sinav-optik-aciklama { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; font-size: 11.4px;
+  color: var(--soluk); margin-top: 10px; }
+.sinav-ornek { display: inline-block; width: 14px; height: 14px; border-radius: 4px; vertical-align: -2px;
+  border: 1.5px solid var(--cizgi); background: var(--zemin2); margin-right: 4px; }
+.sinav-ornek.sinav-optik-cevapli { background: var(--sinav); border-color: var(--sinav2); }
+.sinav-ornek.sinav-optik-bos { background: #f1f3f6; }
+.sinav-ornek.sinav-optik-dogru { background: #12a150; border-color: #0b8a44; }
+.sinav-ornek.sinav-optik-yanlis { background: #dc2626; border-color: #b91c1c; }
+.sinav-ornek.sinav-optik-isaretli { background: var(--zemin2); box-shadow: 0 0 0 2.5px var(--sinav-turuncu); }
+.sinav-ornek.sinav-optik-sorulan { background: var(--zemin2); outline: 3px solid var(--sinav); outline-offset: 1px; }
+.sinav-optik-sonuc .sinav-optik-kutu { cursor: pointer; }
+
+/* ── soru inceleme ── */
+.sinav-incele { background: #f8fafc; border: 1px solid var(--cizgi); border-left: 5px solid var(--sinav);
+  border-radius: 12px; padding: 12px 14px; margin-top: 14px; font-size: 13.3px; line-height: 1.6; }
+.sinav-incele-liste { margin: 8px 0; padding-left: 20px; }
+
+/* ── çıkış onayı penceresi ── */
+.sinav-modal { position: fixed; inset: 0; background: rgba(15, 23, 42, .55); z-index: 99998;
+  display: flex; align-items: center; justify-content: center; padding: 18px; }
+.sinav-modal-ic { background: #fff; color: #111827; border-radius: 16px; padding: 18px 18px 16px; max-width: 430px;
+  width: 100%; box-shadow: 0 24px 60px rgba(0, 0, 0, .35); border-top: 5px solid var(--sinav); }
+.sinav-modal-ic b { font-size: 17px; color: var(--sinav); display: block; margin-bottom: 6px; }
+.sinav-modal-ic p { font-size: 13.3px; line-height: 1.65; margin: 0 0 14px; }
+.sinav-modal-dugmeler { display: flex; flex-direction: column; gap: 9px; }
+.sinav-modal-dugmeler .ikincil-dugme, .sinav-modal-dugmeler .buyuk-dugme { width: 100%; margin: 0; }
+
+/* ── dar ekran ── */
+@media (max-width: 900px) {
+  .sinav-kutular { grid-template-columns: repeat(3, 1fr); }
+  .sinav-govde { grid-template-columns: minmax(0, 1fr); }
+  .sinav-optik-kap { order: 2; }
+  .sinav-optik { grid-template-columns: repeat(10, 1fr); }
+  .sinav-ust { position: static; }
+}
+@media (max-width: 520px) {
+  .sinav-kutular { grid-template-columns: repeat(2, 1fr); }
+  .sinav-soru-govde { font-size: 14.6px; }
+  .sinav-optik { grid-template-columns: repeat(8, 1fr); gap: 4px; }
+  .sinav-optik-kutu { font-size: 10.4px; padding: 5px 0; }
+}

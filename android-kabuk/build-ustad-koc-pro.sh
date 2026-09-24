@@ -38,7 +38,7 @@ echo "=== 1) aapt2 compile ==="
 echo "=== 2) aapt2 link ==="
 "$BT/aapt2.exe" link -o build/base.apk -I "$AJAR_W" --manifest AndroidManifest.xml \
   -A "C:/Users/kenan/AndroidBuild/ustad-koc-pro-app/assets" \
-  -R build/res.zip --java build/gen --min-sdk-version 21 --target-sdk-version 30 --auto-add-overlay
+  -R build/res.zip --java build/gen --min-sdk-version 21 --target-sdk-version 36 --auto-add-overlay
 
 echo "=== 3) javac ==="
 "$JDK/bin/javac.exe" -encoding UTF-8 -source 1.8 -target 1.8 -bootclasspath "$AJAR_W" -cp "$AJAR_W" \

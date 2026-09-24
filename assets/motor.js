@@ -33,6 +33,11 @@
     { kod: "ezber",      ad: "Ezber Kartları",  simg: "🧠", renk: "var(--ezber)",     renk2: "#a21caf" },
     { kod: "rozet",      ad: "Seri & Rozet",    simg: "🔥", renk: "var(--rozet)",     renk2: "#ea580c" },
     { kod: "karne",      ad: "Haftalık Karne",  simg: "🏆", renk: "var(--karne)",     renk2: "#166534" },
+    { kod: "sozluk",     ad: "Terim Sözlüğü",   simg: "📖", renk: "var(--sozluk)",    renk2: "#5b21b6" },
+    { kod: "sinav",      ad: "Tam Sınav",       simg: "🎯", renk: "var(--sinav)",     renk2: "#1e3a8a" },
+    { kod: "denemeler",  ad: "Denemeler",       simg: "📝", renk: "var(--denemeler)", renk2: "#115e59" },
+    { kod: "arama",      ad: "Ara",             simg: "🔎", renk: "var(--arama)",     renk2: "#92400e" },
+    { kod: "araclar-ekstra", ad: "Çalışma Araçları", simg: "⏳", renk: "var(--aracek)", renk2: "#075985" },
     { kod: "notlar",     ad: "Ders Notları",    simg: "📚", renk: "var(--notlar)",     renk2: "#7c3aed" },
     { kod: "istatistik", ad: "İstatistik",      simg: "📊", renk: "var(--istatistik)", renk2: "#1d6fe0" },
     { kod: "ayarlar",    ad: "Ayarlar",         simg: "⚙️", renk: "var(--ayarlar)",    renk2: "#556070" },
@@ -137,6 +142,12 @@
     if (window.EZBER && window.EZBER.bolumAc) window.EZBER.bolumAc(kod);
     if (window.ROZET && window.ROZET.bolumAc) window.ROZET.bolumAc(kod);
     if (window.KARNE && window.KARNE.bolumAc) window.KARNE.bolumAc(kod);
+    // v3.0: terim sözlüğü · tam sınav · denemeler · tek arama · çalışma araçları
+    if (window.SOZLUK && window.SOZLUK.bolumAc) window.SOZLUK.bolumAc(kod);
+    if (window.SINAV && window.SINAV.bolumAc) window.SINAV.bolumAc(kod);
+    if (window.DENEMELER && window.DENEMELER.bolumAc) window.DENEMELER.bolumAc(kod);
+    if (window.ARAMA && window.ARAMA.bolumAc) window.ARAMA.bolumAc(kod);
+    if (window.ARAC_EK && window.ARAC_EK.bolumAc) window.ARAC_EK.bolumAc(kod);
     // Bölüm bağlantısı (derin link): index.html#sayim gibi
     try { if (history.replaceState) history.replaceState(null, "", "#" + kod); } catch (e) {}
   }
