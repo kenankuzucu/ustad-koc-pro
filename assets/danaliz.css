@@ -1,0 +1,94 @@
+/* © 2026 Kenan Kuzucu · ÜSTAD KPSS-B KOÇ PRO · Deneme Analizi bölümü stilleri · TÜM HAKLARI SAKLIDIR (5846 FSEK).
+   Bölümün kendi rengi: var(--danaliz) / var(--danaliz2) (#a16207 altın-kahve). Tema değişse de bu renk sabittir.
+   Sınıf öneki: `da-` · Ortak sınıflar kullanılır: .kart .sayfa-baslik .ka-dugme .ka-mini .ka-etiket .oyun-tablo .aciklama .rakam */
+
+/* bölüm başlığı kendi renginde şerit alsın */
+[data-bolum="danaliz"] .kart { border-top:4px solid var(--danaliz); }
+[data-bolum="danaliz"] .sayfa-baslik { color:var(--danaliz); }
+
+/* ── bölüm iskeleti ── */
+.da-bolum { border-top:1px solid var(--cizgi); padding-top:14px; margin-top:16px; }
+.da-bolum.da-ilk, .da-bolum:first-child { border-top:0; padding-top:0; margin-top:0; }
+.da-baslik { margin:0 0 9px; font-size:15.5px; color:var(--danaliz); letter-spacing:.2px; }
+.da-not { color:var(--soluk); font-size:12px; margin:8px 0 0; line-height:1.6; }
+
+/* ── 1) gösterge kutuları ── */
+.da-kutular { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:4px 0 4px; }
+.da-kutu { background:linear-gradient(160deg, var(--danaliz), var(--danaliz2)); color:#fff; border-radius:14px;
+  padding:13px 7px; text-align:center; box-shadow:0 6px 16px rgba(161,98,7,.25); }
+.da-kutu b { display:block; font-size:clamp(16px,4.4vw,23px); line-height:1.15; font-variant-numeric:tabular-nums; }
+.da-kutu span { display:block; font-size:9.6px; letter-spacing:.11em; opacity:.92; margin-top:3px; }
+.da-kutu i { display:block; font-style:normal; font-size:10.5px; opacity:.8; margin-top:1px; }
+
+/* ── 2) net gelişim grafiği (elle çizilmiş SVG) ── */
+.da-grafik-kap { overflow-x:auto; -webkit-overflow-scrolling:touch; }
+.da-grafik { width:100%; height:auto; display:block; background:rgba(161,98,7,.05);
+  border:1px solid var(--cizgi); border-radius:13px; padding:6px 4px; }
+.da-izgara { stroke:var(--cizgi); stroke-width:1; }
+.da-eksen { fill:var(--soluk); font-size:11px; }
+.da-hedef { stroke:var(--deneme); stroke-width:1.6; stroke-dasharray:6 5; opacity:.85; }
+.da-hedef-yazi { fill:var(--deneme); font-size:11px; font-weight:700; }
+.da-cizgi { fill:none; stroke:var(--danaliz); stroke-width:2.6; stroke-linejoin:round; stroke-linecap:round; }
+.da-nokta { fill:var(--kart); stroke:var(--danaliz); stroke-width:2.4; }
+.da-nokta.son { fill:var(--danaliz); stroke:var(--kart); stroke-width:3; }
+.da-deger { fill:var(--danaliz2); font-size:11.5px; font-weight:700; }
+.da-deger.son { fill:var(--danaliz); font-size:14px; }
+.da-tarih { fill:var(--soluk); font-size:10.5px; }
+
+/* ── 3) deneme tablosu ── */
+.da-tablo tr.toplam td { border-top:2px solid var(--danaliz); font-weight:700; }
+.da-tablo td.rakam, .da-tablo .rakam, .da-mini-tablo .rakam { font-variant-numeric:tabular-nums; }
+.da-arti { color:#12a150; font-weight:700; }
+.da-eksi { color:#dc2626; font-weight:700; }
+.da-sayi { color:var(--soluk); font-size:12.5px; margin:6px 0 0; font-weight:700; }
+
+/* ── 4) ders bazlı yanlış dağılımı (yatay çubuklar) ── */
+.da-cubuklar { list-style:none; margin:6px 0 0; padding:0; }
+.da-cubuklar > li { counter-increment:daSayac; }
+.da-cubuk-satir { margin:0 0 12px; }
+.da-cubuk-ust { display:flex; justify-content:space-between; align-items:baseline; gap:8px; font-size:13.5px; margin-bottom:5px; }
+.da-cubuk-ust b { font-weight:700; }
+.da-cubuk-ust span { color:var(--soluk); font-weight:700; font-variant-numeric:tabular-nums; white-space:nowrap; }
+.da-cubuk { height:12px; background:rgba(0,0,0,.075); border-radius:999px; overflow:hidden; }
+.da-cubuk i { display:block; height:100%; border-radius:999px;
+  background:linear-gradient(90deg, var(--danaliz2), var(--danaliz)); transition:width .3s ease; }
+.da-cubuk-satir.da-en-cok .da-cubuk i { background:linear-gradient(90deg, #dc2626, #a16207); }
+.da-cubuk-alt { margin:4px 0 0; font-size:12px; color:var(--soluk); }
+
+/* ── 5) mini test geçmişi ── */
+.da-mini-tablo tr.da-zayif td { background:rgba(220,38,38,.07); }
+.da-zayif-etiket { background:#dc2626; color:#fff; border-radius:999px; padding:1px 7px; font-size:10.5px;
+  white-space:nowrap; margin-left:4px; }
+.da-mini-ders { color:var(--soluk); font-size:11.5px; }
+
+/* ── 6) otomatik yorum ── */
+.da-yorum { border:1px solid var(--cizgi); border-left:4px solid var(--danaliz); border-radius:12px;
+  padding:12px 14px; background:linear-gradient(180deg, rgba(161,98,7,.08), rgba(161,98,7,.02)); }
+.da-yorum p { margin:0; font-size:14px; line-height:1.7; }
+.da-butonlar { display:flex; flex-wrap:wrap; gap:8px; margin-top:11px; }
+.da-butonlar .ka-dugme { background:var(--danaliz); }
+.da-butonlar .ka-dugme.ka-ikincil { background:var(--kart); color:var(--metin); border:1px solid var(--cizgi); }
+
+/* ── 7) boş durum ── */
+.da-bos { border:1px dashed var(--danaliz); border-radius:14px; padding:14px 16px; background:rgba(161,98,7,.07); }
+.da-bos p { margin:4px 0 8px; font-size:13.5px; line-height:1.6; }
+.da-adimlar { margin:6px 0 10px 18px; padding:0; font-size:13.5px; line-height:1.75; }
+.da-bos code { background:rgba(0,0,0,.08); border-radius:6px; padding:1px 6px; font-size:12.5px; }
+.da-bos-yazi { color:var(--soluk); font-size:13px; margin:4px 0; line-height:1.6; }
+
+/* ── duyarlı ── */
+@media (max-width:600px) {
+  .da-kutular { grid-template-columns:repeat(2,1fr); }
+  .da-kutu b { font-size:21px; }
+  .da-cubuk-ust { font-size:13px; }
+}
+
+/* ── yazdırma: menü/düğmeler gizlenir (PDF gibi paylaş) ── */
+@media print {
+  .ust, .menu, .menu-perde, .da-butonlar, .menu-dugme { display:none !important; }
+  .ekran:not(.acik) { display:none !important; }
+  .icerik { padding:0 !important; max-width:none !important; }
+  .kart { box-shadow:none !important; border:0 !important; padding:0 !important; }
+  .da-kutu { box-shadow:none !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .da-cubuk i, .da-cizgi, .da-nokta { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+}

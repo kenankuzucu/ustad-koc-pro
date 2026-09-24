@@ -373,6 +373,8 @@
         yanlis++; dersler[ad].yanlis++;
         var anahtar = (s.konu || "Konu") + "|" + ad;
         yanlisKonu[anahtar] = (yanlisKonu[anahtar] || 0) + 1;
+        // v2.7: yanlış soruyu kart tekrarı hafızasına ve yanlış defterine de yaz
+        try { if (window.KARTLAR && window.KARTLAR.yanlisaEkle) window.KARTLAR.yanlisaEkle(s, c); } catch (e) {}
       }
     });
     koy("yanlisKonu", yanlisKonu);

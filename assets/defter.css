@@ -1,0 +1,101 @@
+/* © 2026 Kenan Kuzucu · ÜSTAD KOÇ PRO · Yanlış Defterim stilleri · TÜM HAKLARI SAKLIDIR (5846 FSEK).
+   Bölümün kendi rengi: var(--defter) #b91c1c / var(--defter2) #991b1b (stil.css'te tanımlı).
+   Bütün sınıflar df- önekli; ortak sınıflar (.kart, .sayfa-baslik, .ka-dugme, .ka-mini,
+   .ka-etiket, .oyun-tablo, .aciklama, .rakam) yeniden tanımlanmaz, yalnızca kullanılır. */
+
+/* bölüm rengi: sayfanın üst şeridi */
+[data-bolum="defter"] .kart { border-top:4px solid var(--defter); }
+
+/* bu bölümdeki ana düğmeler her zaman defter kırmızısı (--bolum gecikse bile) */
+#defterAlan .ka-dugme { background:var(--defter); color:#fff; }
+#defterAlan .ka-dugme.ka-ikincil { background:var(--kart); color:var(--metin); border:1px solid var(--cizgi); }
+#defterAlan .ka-mini b { font-variant-numeric:tabular-nums; font-weight:700; }
+
+/* ── üst satır: tanıtım + rozet ── */
+.df-ust { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin:2px 0 12px; }
+.df-tanitim { display:flex; flex-direction:column; gap:2px; }
+.df-tanitim b { font-size:16px; }
+.df-tanitim span { font-size:11.5px; color:var(--soluk); line-height:1.5; }
+.df-rozet { margin-left:auto; background:var(--kart); border:1px solid var(--cizgi); border-left:4px solid var(--defter);
+  border-radius:999px; padding:6px 14px; font-size:12.5px; font-weight:700; color:var(--metin); }
+.df-rozet.var { background:linear-gradient(160deg, var(--defter), var(--defter2)); border-color:transparent; color:#fff;
+  box-shadow:0 6px 15px rgba(185,28,28,.25); }
+
+/* ── 1) gösterge kutuları ── */
+.df-kutular { display:grid; grid-template-columns:repeat(auto-fit,minmax(132px,1fr)); gap:9px; margin:10px 0 14px; }
+.df-kutu { background:linear-gradient(160deg, var(--defter), var(--defter2)); color:#fff; border-radius:13px;
+  padding:11px 9px; text-align:center; box-shadow:0 6px 15px rgba(185,28,28,.22); }
+.df-kutu b { display:block; font-size:19px; font-variant-numeric:tabular-nums; line-height:1.25; }
+.df-kutu span { font-size:10px; letter-spacing:.09em; opacity:.92; }
+
+/* ── 2) ders filtresi ── */
+.df-filtre-satir { border:1px solid var(--cizgi); border-left:4px solid var(--defter); border-radius:12px;
+  padding:11px 12px; background:var(--kart); margin:12px 0; }
+.df-filtre-satir h4 { margin:0 0 9px; font-size:15px; display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+.df-filtre { display:flex; flex-wrap:wrap; gap:7px; }
+.df-filtre .ka-mini.df-secili { background:var(--defter); border-color:var(--defter); color:#fff; }
+
+/* ── 3) yanlış soru listesi ── */
+.df-liste-baslik { margin:16px 0 10px; }
+.df-liste-baslik h4 { margin:0 0 2px; font-size:15px; display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+.df-liste { display:flex; flex-direction:column; gap:11px; margin:10px 0 16px; }
+.df-kart { border:1px solid var(--cizgi); border-left:4px solid var(--defter); border-radius:13px; padding:12px 13px;
+  background:var(--kart); }
+.df-kart-ust { display:flex; gap:10px; align-items:flex-start; margin-bottom:8px; }
+.df-no { flex:0 0 34px; width:34px; height:34px; border-radius:10px; background:linear-gradient(160deg, var(--defter), var(--defter2));
+  color:#fff; font-weight:700; font-size:15px; display:flex; align-items:center; justify-content:center;
+  font-variant-numeric:tabular-nums; }
+.df-kart-ad { flex:1 1 auto; display:flex; flex-direction:column; gap:2px; }
+.df-kart-ad b { font-size:14.5px; }
+.df-kart-ad span { font-size:11.5px; color:var(--soluk); }
+.df-soru { font-size:13.5px; line-height:1.6; margin:6px 0 10px; }
+.df-siklar { display:flex; flex-direction:column; gap:6px; }
+.df-sik { display:flex; gap:8px; align-items:flex-start; border:1px solid var(--cizgi); border-radius:10px;
+  padding:8px 11px; font-size:13px; background:rgba(0,0,0,.02); color:var(--metin); line-height:1.5; }
+.df-sik i { font-style:normal; font-weight:700; color:var(--soluk); flex:0 0 auto; }
+.df-sik span { flex:1 1 auto; }
+.df-sik.dogru { background:rgba(18,161,80,.12); border-color:#12a150; }
+.df-sik.dogru .df-im { color:#12a150; }
+.df-sik.yanlis { background:rgba(220,38,38,.10); border-color:#dc2626; }
+.df-sik.yanlis .df-im { color:#dc2626; }
+.df-sik .df-im { font-weight:700; }
+.df-sik.tiklana { cursor:pointer; }
+.df-sik.tiklana:hover { border-color:var(--defter); background:rgba(185,28,28,.06); }
+.df-ozet-satir { margin:9px 0 0; font-size:12.5px; color:var(--metin); line-height:1.7; }
+.df-ayrac { color:var(--soluk); margin:0 5px; }
+.df-dogru { color:#12a150; }
+.df-yanlis { color:#dc2626; }
+.df-islem { display:flex; flex-wrap:wrap; gap:7px; margin:10px 0 0; }
+.df-islem .ka-mini.df-sil { border-color:#dc2626; color:#dc2626; }
+.df-geri { border-radius:10px; padding:9px 12px; margin-top:9px; font-size:12.5px; border-left:4px solid var(--soluk);
+  background:rgba(0,0,0,.03); line-height:1.6; }
+.df-geri.iyi { border-left-color:#12a150; background:rgba(18,161,80,.08); }
+.df-geri.kotu { border-left-color:#dc2626; background:rgba(220,38,38,.07); }
+.df-cozum { border:1px dashed var(--defter); border-radius:11px; padding:10px 12px; margin-top:10px;
+  background:rgba(185,28,28,.05); }
+.df-cozum h5 { margin:0 0 6px; font-size:13.5px; color:var(--defter); }
+.df-cozum p { margin:0 0 6px; font-size:13px; line-height:1.6; }
+.df-cozum p:last-child { margin-bottom:0; }
+
+/* ── 4) konu bazlı yanlış sayacı ── */
+.df-sayac { border:1px solid var(--cizgi); border-left:4px solid var(--defter); border-radius:12px; padding:12px;
+  background:var(--kart); margin:14px 0 6px; overflow-x:auto; }
+.df-sayac h4 { margin:0 0 8px; font-size:15px; display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+.df-sayac .oyun-tablo { margin:6px 0 8px; }
+.df-sayac .oyun-tablo .rakam { font-variant-numeric:tabular-nums; }
+.df-toplam td { border-top:2px solid var(--defter); background:rgba(185,28,28,.06); }
+.df-bilgi { background:rgba(185,28,28,.12); border-color:var(--defter); }
+
+/* ── 5) boş durum ── */
+.df-bos { border:1px dashed var(--defter); border-radius:13px; padding:16px 14px; background:rgba(185,28,28,.05);
+  text-align:left; margin:12px 0; }
+.df-bos h4 { margin:0 0 6px; font-size:16px; color:var(--defter); }
+.df-bos .df-islem { margin-top:12px; }
+
+/* küçük ekran / Android WebView */
+@media (max-width:520px) {
+  .df-kutular { grid-template-columns:repeat(2,1fr); }
+  .df-rozet { margin-left:0; width:100%; text-align:center; }
+  .df-no { flex:0 0 28px; width:28px; height:28px; font-size:13px; }
+  .df-islem .ka-mini { flex:1 1 44%; text-align:center; }
+}

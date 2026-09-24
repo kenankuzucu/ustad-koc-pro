@@ -1,0 +1,80 @@
+/* © 2026 Kenan Kuzucu · ÜSTAD KOÇ PRO · Mini Test stilleri · TÜM HAKLARI SAKLIDIR (5846 FSEK).
+   Bölüm rengi: var(--minitest) / var(--minitest2) — #0369a1 mavi. Tüm sınıflar `mt-` önekli. */
+
+/* ─────────── gösterge kutuları ─────────── */
+.mt-kutular { display:grid; grid-template-columns:repeat(auto-fit,minmax(122px,1fr)); gap:10px; margin:6px 0 16px; }
+.mt-kutu { background:linear-gradient(160deg, var(--minitest), var(--minitest2)); color:#fff; border-radius:13px;
+  padding:11px 9px; text-align:center; box-shadow:0 6px 15px rgba(3,105,161,.22); }
+.mt-kutu b { display:block; font-size:21px; line-height:1.25; font-variant-numeric:tabular-nums; }
+.mt-kutu span { display:block; font-size:10px; letter-spacing:.09em; opacity:.93; margin-top:3px; }
+.mt-kutu.mt-genis b { font-size:14px; line-height:1.35; word-break:break-word; }
+
+/* ─────────── kurulum ─────────── */
+.mt-kurulum { display:block; }
+.mt-adim { border-top:1px solid var(--cizgi); padding:12px 0 4px; }
+.mt-adim:first-child { border-top:0; padding-top:2px; }
+.mt-adim > b { display:block; font-size:13.5px; margin-bottom:8px; color:var(--minitest); }
+.mt-secim { display:flex; flex-wrap:wrap; gap:8px; }
+.mt-sec { display:flex; align-items:center; gap:7px; padding:9px 13px; border-radius:11px; border:1px solid var(--cizgi);
+  background:var(--kart); color:var(--metin); font-size:13.5px; cursor:pointer; text-align:left; }
+.mt-sec:hover { border-color:var(--minitest); }
+.mt-sec.mt-secili { background:var(--minitest); border-color:var(--minitest); color:#fff; }
+.mt-sec .mt-sayi { font-size:11px; opacity:.8; padding:1px 7px; border-radius:999px; background:rgba(0,0,0,.07); }
+.mt-sec.mt-secili .mt-sayi { background:rgba(255,255,255,.22); opacity:1; }
+.mt-anahtar { display:inline-flex; align-items:center; gap:9px; padding:9px 13px; border-radius:11px; border:1px solid var(--cizgi);
+  background:var(--kart); color:var(--metin); font-size:13.5px; cursor:pointer; }
+.mt-anahtar.mt-acik { background:var(--minitest); border-color:var(--minitest); color:#fff; }
+.mt-anahtar i { display:inline-block; width:34px; height:18px; border-radius:999px; background:rgba(0,0,0,.18); position:relative; }
+.mt-anahtar i:after { content:""; position:absolute; top:2px; left:2px; width:14px; height:14px; border-radius:50%; background:#fff;
+  transition:left .18s ease; }
+.mt-anahtar.mt-acik i { background:rgba(255,255,255,.35); }
+.mt-anahtar.mt-acik i:after { left:18px; }
+.mt-alt { margin-top:14px; display:flex; flex-wrap:wrap; gap:9px; align-items:center; }
+.mt-not { border-radius:11px; border:1px solid var(--cizgi); border-left:4px solid var(--minitest); padding:9px 12px;
+  background:var(--kart); font-size:12.5px; color:var(--soluk); margin:10px 0 2px; }
+
+/* ─────────── test ─────────── */
+.mt-test { display:block; }
+.mt-ust { display:flex; flex-wrap:wrap; gap:7px; align-items:center; margin-bottom:10px; }
+.mt-kronometre { font-variant-numeric:tabular-nums; font-weight:700; }
+.mt-kronometre.mt-asim { color:#dc2626; border-color:#dc2626; }
+.mt-cubuk { height:8px; border-radius:999px; background:rgba(0,0,0,.09); overflow:hidden; margin:0 0 13px; }
+.mt-cubuk i { display:block; height:100%; background:linear-gradient(90deg, var(--minitest), var(--minitest2)); transition:width .25s ease; }
+.mt-soru { border:1px solid var(--cizgi); border-left:4px solid var(--minitest); border-radius:13px; padding:13px; background:var(--kart); }
+.mt-metin { margin:0 0 9px; padding:8px 11px; border-radius:9px; background:rgba(3,105,161,.07); color:var(--soluk);
+  font-size:12.5px; line-height:1.5; }
+.mt-soru h4 { margin:0 0 11px; font-size:15px; line-height:1.55; }
+.mt-sik { display:flex; gap:9px; align-items:flex-start; width:100%; text-align:left; padding:10px 12px; margin-bottom:7px;
+  border-radius:10px; border:1px solid var(--cizgi); background:var(--kart); color:var(--metin); font-size:13.5px; cursor:pointer;
+  line-height:1.45; }
+.mt-sik:hover { border-color:var(--minitest); }
+.mt-sik b { flex:0 0 20px; height:20px; border-radius:50%; background:rgba(3,105,161,.12); color:var(--minitest);
+  text-align:center; font-size:11.5px; line-height:20px; }
+.mt-sik.mt-dogru { background:#12a150; border-color:#12a150; color:#fff; }
+.mt-sik.mt-dogru b { background:rgba(255,255,255,.28); color:#fff; }
+.mt-sik.mt-yanlis { background:#dc2626; border-color:#dc2626; color:#fff; }
+.mt-sik.mt-yanlis b { background:rgba(255,255,255,.28); color:#fff; }
+.mt-sik.mt-soluk { opacity:.62; }
+.mt-sik:disabled { cursor:default; }
+.mt-geri { border-radius:11px; padding:10px 12px; margin:10px 0 2px; font-size:13px; line-height:1.55; }
+.mt-geri.mt-ok { background:rgba(18,161,80,.11); border:1px solid rgba(18,161,80,.4); }
+.mt-geri.mt-hata { background:rgba(220,38,38,.09); border:1px solid rgba(220,38,38,.35); }
+.mt-geri b { display:block; margin-bottom:4px; }
+.mt-asim-uyari { color:#dc2626; font-weight:600; }
+
+/* ─────────── sonuç ─────────── */
+.mt-sonuc { display:block; }
+.mt-sonuc-baslik { margin:0 0 6px; font-size:16px; }
+.mt-buyuk { font-size:17px; font-weight:700; }
+.mt-yavasl { border:1px solid var(--cizgi); border-radius:11px; padding:10px 12px; background:var(--kart); margin:8px 0 14px; }
+.mt-yavasl ol { margin:6px 0 0 18px; padding:0; }
+.mt-yavasl li { font-size:13px; line-height:1.7; }
+.mt-yanlis-bir { border:1px solid var(--cizgi); border-left:4px solid #dc2626; border-radius:11px; padding:10px 12px;
+  background:var(--kart); margin-bottom:9px; font-size:13px; line-height:1.55; }
+.mt-yanlis-bir b { display:block; margin-bottom:5px; }
+.mt-dogru-sik { color:#12a150; font-weight:600; }
+
+/* ─────────── geçmiş ─────────── */
+.mt-gecmis { margin-top:20px; border-top:1px solid var(--cizgi); padding-top:14px; }
+.mt-gecmis h3 { margin:0 0 4px; font-size:15.5px; }
+.mt-gizli { display:none !important; }

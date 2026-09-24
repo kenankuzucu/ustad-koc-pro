@@ -387,6 +387,8 @@
       if (ok) dogru++; else {
         yanlis++;
         var yk = D.al("yanlisKonu", {}); yk[s.konu + "|" + s.ders] = (yk[s.konu + "|" + s.ders] || 0) + 1; D.koy("yanlisKonu", yk);
+        // v2.7: kart tekrarı + yanlış defteri
+        try { if (window.KARTLAR && window.KARTLAR.yanlisaEkle) window.KARTLAR.yanlisaEkle(s, ST.klasik ? null : c); } catch (e) {}
       }
     });
     var ist = D.al("ist", { cozulen: 0, dogru: 0, yanlis: 0, bos: 0 });

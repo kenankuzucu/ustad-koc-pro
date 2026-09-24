@@ -5,7 +5,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="surum" content="2.6">
+<meta name="surum" content="2.7">
 <title>ÜSTAD KPSS-B KOÇ PRO · Sınav Koçu</title>
 <link rel="stylesheet" href="assets/stil.css">
 <link rel="stylesheet" href="assets/koc.css">
@@ -13,6 +13,10 @@
 <link rel="stylesheet" href="assets/ses.css">
 <link rel="stylesheet" href="assets/oyunlar.css">
 <link rel="stylesheet" href="assets/koc-ai.css">
+<link rel="stylesheet" href="assets/kartlar.css">
+<link rel="stylesheet" href="assets/defter.css">
+<link rel="stylesheet" href="assets/minitest.css">
+<link rel="stylesheet" href="assets/danaliz.css">
 </head>
 <body>
 
@@ -226,6 +230,12 @@
     <div class="kart" id="oyunAlan"></div>
   </section>
 
+  <!-- v2.7 -->
+  <section id="ekran-kart" class="ekran" data-bolum="kart"><h2 class="sayfa-baslik">🃏 Kart Tekrarı</h2><div class="kart" id="kartAlan"></div></section>
+  <section id="ekran-defter" class="ekran" data-bolum="defter"><h2 class="sayfa-baslik">📕 Yanlış Defterim</h2><div class="kart" id="defterAlan"></div></section>
+  <section id="ekran-minitest" class="ekran" data-bolum="minitest"><h2 class="sayfa-baslik">⏱️ Mini Test</h2><div class="kart" id="minitestAlan"></div></section>
+  <section id="ekran-danaliz" class="ekran" data-bolum="danaliz"><h2 class="sayfa-baslik">📈 Deneme Analizi</h2><div class="kart" id="danalizAlan"></div></section>
+
   <!-- ÜSTAD KOÇ AI (v2.6) -->
   <section id="ekran-kocai" class="ekran" data-bolum="kocai">
     <h2 class="sayfa-baslik">🤖 ÜSTAD KOÇ AI</h2>
@@ -330,6 +340,10 @@
 <script src="assets/kpss-araclar.js"></script>
 <script src="assets/ses.js"></script>
 <script src="assets/oyunlar.js"></script>
+<script src="assets/kartlar.js"></script>
+<script src="assets/defter.js"></script>
+<script src="assets/minitest.js"></script>
+<script src="assets/danaliz.js"></script>
 <script src="assets/koc-ai.js"></script>
 </body>
 </html>

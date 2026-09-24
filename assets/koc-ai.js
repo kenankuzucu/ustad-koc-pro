@@ -38,6 +38,8 @@
       denemeler: depoAl("ka.denemeler", []),
       hedef: depoAl("ka.hedef", 85),
       oyun: depoAl("oyunEnIyi", {}),
+      kartlar: depoAl("kartlar", {}),
+      miniTest: depoAl("minitest", []),
       dersler: dersler(),
       soruSayisi: sorular().length,
       takvim: takvim(),
@@ -56,6 +58,17 @@
     });
     if (!en) return null;
     return { gun: Math.floor((en.t - simdi) / 86400000), ad: en.ad, tarih: en.tarih };
+  };
+  A.kartDurum = function (v) {
+    v = v || A.veriOku();
+    var bug = bugun(), d = Object.keys(v.kartlar || {}).map(function (k) { return v.kartlar[k]; });
+    return {
+      toplam: d.length,
+      bugun: d.filter(function (k) { return (k.sonraki || "") <= bug && (k.kutu || 1) < 5; }).length,
+      ezber: d.filter(function (k) { return (k.kutu || 1) >= 5; }).length,
+      miniTest: (v.miniTest || []).length,
+      sonMini: (v.miniTest || []).slice(-1)[0] || null
+    };
   };
   A.evre = function (gun) {
     if (gun === null || gun === undefined) return "bilinmiyor";
@@ -144,6 +157,11 @@
       plan.push({ baslik: "Gün aşırı deneme", dk: 45, bolum: "deneme", aciklama: "Deneme aralarında mutlaka dinlen; uykuyu bozma." });
       plan.push({ baslik: "Kısa oyun (zihin açıcı)", dk: 10, bolum: "oyun", aciklama: "Eşleştirme iyi bir ısınma." });
     }
+    var kd = A.kartDurum();
+    if (kd.bugun > 0) plan.splice(0, 0, { baslik: "Kart tekrarı: " + kd.bugun + " kart", dk: Math.min(30, 3 + kd.bugun * 3), bolum: "kart",
+      aciklama: "Aralıklı tekrar: bugünün kartlarını bitir, yarın önüne daha az kart çıkar." });
+    if (kd.toplam > 0 && (evre === "deneme" || evre === "son hafta")) plan.push({ baslik: "Yanlış defterini gözden geçir (" + kd.toplam + " soru)",
+      dk: 20, bolum: "defter", aciklama: "Yanlışlarını tekrar çöz; anladıklarını sil, kalanlar kartlarda döner." });
     var acil = ["testler", "sesli", "deneme", "guncel"];
     return plan.map(function (p, i) {
       return { sira: i + 1, baslik: p.baslik, aciklama: p.aciklama || "", dk: p.dk, bolum: p.bolum || (acil[i % acil.length]) };
@@ -192,16 +210,22 @@
     { id: "test", anahtar: ["test", "soru çöz", "soru bankası"] },
     { id: "sesli", anahtar: ["sesli", "dinle", "kulak", "sesli ders"] },
     { id: "oyun", anahtar: ["oyun", "eğlen", "mola"] },
+    { id: "kart", anahtar: ["kart", "tekrar kartı", "aralıklı tekrar"] },
+    { id: "defter", anahtar: ["yanlış defter", "defterim", "yanlışlarım nerede"] },
+    { id: "minitest", anahtar: ["mini test", "kısa test", "konu testi"] },
+    { id: "danaliz", anahtar: ["deneme analiz", "analiz", "grafik", "gelişim tablosu"] },
     { id: "tesekkur", anahtar: ["teşekkür", "sağ ol", "eyvallah"] }
   ];
   A.niyetBul = function (metin) {
-    var m = kucuk(metin);
+    var m = kucuk(metin), enIyi = null, enUzun = 0;
     for (var i = 0; i < NIYETLER.length; i++) {
       for (var j = 0; j < NIYETLER[i].anahtar.length; j++) {
-        if (m.indexOf(NIYETLER[i].anahtar[j]) >= 0) return NIYETLER[i].id;
+        var k = NIYETLER[i].anahtar[j];
+        // en uzun (en özel) anahtar kazanır: "yanlış defter" > "yanlış", "mini test" > "test"
+        if (m.indexOf(k) >= 0 && k.length > enUzun) { enUzun = k.length; enIyi = NIYETLER[i].id; }
       }
     }
-    return "bilinmiyor";
+    return enIyi || "bilinmiyor";
   };
   A.sohbet = function (metin) {
     var niyet = A.niyetBul(metin), a = A.analiz(), cevap = "", yonlendir = null;
@@ -245,6 +269,28 @@
     } else if (niyet === "oyun") {
       cevap = "Eğitici oyunlar bölümünü açıyorum. 10 dakikalık mola zihni açar.";
       yonlendir = "oyun";
+    } else if (niyet === "kart") {
+      var kd = A.kartDurum();
+      cevap = kd.toplam ? "Kart hafızanda " + kd.toplam + " kart var: bugün " + kd.bugun + " kart tekrar edilmeli, " +
+        kd.ezber + " kartı ezberledin. Kartlar yanlış yaptığın sorulardan otomatik oluşur ve 1-3-7-21-60 gün aralığıyla döner." :
+        "Henüz kart yok. Test veya denemede yanlış yaptığın sorular kendiliğinden karta dönüşür.";
+      yonlendir = "kart";
+    } else if (niyet === "defter") {
+      var kd2 = A.kartDurum();
+      cevap = kd2.toplam ? "Yanlış defterinde " + kd2.toplam + " soru var; " + a.zayif.length + " konuda eksik görünüyorsun. " +
+        (a.zayif[0] ? "En çok: " + a.zayif[0].konu + " (" + a.zayif[0].ders + ")." : "") :
+        "Yanlış defterin şu an boş; test çözdükçe yanlışların oraya düşer.";
+      yonlendir = "defter";
+    } else if (niyet === "minitest") {
+      var kd3 = A.kartDurum();
+      cevap = "Mini Test bölümünü açıyorum: " + (a.zayif[0] ? "zayıf konun " + a.zayif[0].konu + " ile başlamanı öneririm." : "bir ders ve konu seç, süreli modda gerçek sınav temposunda çöz.") +
+        (kd3.miniTest ? " Şimdiye kadar " + kd3.miniTest + " mini test çözdün." : "");
+      yonlendir = "minitest";
+    } else if (niyet === "danaliz") {
+      var nd = a.net;
+      cevap = nd ? "Deneme Analizi bölümünü açıyorum: " + nd.adet + " deneme kaydın var, son doğrun " + nd.son +
+        ", eğilim " + a.egilim + "." : "Deneme Analizi bölümünü açıyorum; henüz kayıtlı deneme yok, Net & Puan bölümünde kaydedince grafik oluşur.";
+      yonlendir = "danaliz";
     } else if (niyet === "tesekkur") {
       cevap = "Rica ederim " + ad() + ". Birlikte başaracağız.";
     } else {
@@ -326,7 +372,7 @@
       "</div>" +
       '<div class="kai-blok"><h4>💬 Koça sor</h4>' +
         '<div class="ka-butonlar">' +
-          ["bugün ne çalışsam", "sınava kaç gün kaldı", "netim kaç", "zayıf konularım", "haftalık plan", "güncel bilgi ver", "motivasyon", "test çöz"].map(function (q) {
+          ["bugün ne çalışsam", "sınava kaç gün kaldı", "netim kaç", "zayıf konularım", "kart tekrarı", "yanlış defterim", "mini test çözeyim", "deneme analizi", "haftalık plan", "güncel bilgi ver", "motivasyon", "test çöz"].map(function (q) {
             return '<button class="ka-mini" data-kai-sor="' + kacis(q) + '">' + kacis(q) + "</button>";
           }).join("") +
         "</div>" +
@@ -341,6 +387,7 @@
           "<li><b>Günlük süre:</b> " + a.sure + " dk (evre + başarı yüzdesine göre; 60-210 dk arası sınırlı)</li>" +
           "<li><b>En riskli ders:</b> " + (a.risk[0] ? kacis(a.risk[0].ders) + " (" + a.risk[0].yanlis + " yanlış)" : "veri yok") + "</li>" +
           "<li><b>Net eğilimi:</b> " + kacis(a.egilim) + (a.net ? " · son 3 deneme: " + a.net.seri.join(", ") : "") + "</li>" +
+          "<li><b>Kart hafızası:</b> " + (function () { var k = A.kartDurum(); return k.toplam ? k.toplam + " kart · bugün " + k.bugun + " tekrar · " + k.ezber + " ezberlenen" : "henüz kart yok (yanlış yapılan sorular otomatik kart olur)"; })() + "</li>" +
           "<li><b>Veri kaynakları:</b> " + a.veri.ist.cozulen + " çözülen soru · " + a.veri.denemeler.length +
             " hızlı deneme · " + Object.keys(a.veri.yanlisKonu).length + " konu kaydı · " + a.veri.guncelSayisi + " güncel madde · " +
             a.veri.notSayisi + " ders notu</li>" +
@@ -453,18 +500,21 @@
         ok("sohbet: yönlendirme çalışıyor", c4.yonlendir === "testler", String(c4.yonlendir));
         // görev işaretleme
         var simdi = bugun();
+        var eskiGunluk = depoAl("kocGunluk", null);   // test idempotent: günün kaydını geçici sıfırla
+        depoKoy("kocGunluk", {});
         A.gorevTamamla(1);
         ok("kayıt: görev tamamlandı", A.tamamlananlar().indexOf(1) >= 0, JSON.stringify(A.tamamlananlar()));
         A.gorevTamamla(1);
         ok("kayıt: geri alma", A.tamamlananlar().indexOf(1) < 0);
         A.gorevTamamla(2);
         ok("kayıt: seri ≥ 1", A.seri() >= 1, String(A.seri()));
+        if (eskiGunluk === null) { try { localStorage.removeItem("ustad.kocGunluk"); } catch (e) {} } else depoKoy("kocGunluk", eskiGunluk);
         // arayüz
         ciz();
         ok("arayüz: 6 kutu", $$("#kocAiAlan .kai-kutu").length === 6, $$("#kocAiAlan .kai-kutu").length + " kutu");
         ok("arayüz: görev kartları", $$("#kocAiAlan .kai-gorev").length === p.length, $$("#kocAiAlan .kai-gorev").length + " kart");
         ok("arayüz: haftalık tablo satırı", $$("#kocAiAlan .oyun-tablo tbody tr").length === 7, $$("#kocAiAlan .oyun-tablo tbody tr").length + " satır");
-        ok("arayüz: hazır soru düğmeleri", $$("#kocAiAlan [data-kai-sor]").length === 8, $$("#kocAiAlan [data-kai-sor]").length + " düğme");
+        ok("arayüz: hazır soru düğmeleri", $$("#kocAiAlan [data-kai-sor]").length === 12, $$("#kocAiAlan [data-kai-sor]").length + " düğme");
         $("#kaiGirdi").value = "durumum nasıl";
         $("#kaiGonder").click();
         ok("arayüz: sohbet balonu eklendi", $$("#kocAiAlan .kai-mesaj").length >= 2, $$("#kocAiAlan .kai-mesaj").length + " balon");
@@ -473,6 +523,23 @@
         ok("ağ: koç hiç istek yapmadı", istekSayisi === 0, istekSayisi + " istek");
         ok("geçmiş: kayıt tutuluyor", A.sohbetGecmisi().length >= 2, A.sohbetGecmisi().length + " kayıt");
         ok("motivasyon metni", A.motivasyon().length > 60, A.motivasyon().slice(0, 50));
+        // v2.7: kart / defter / mini test / analiz bağlantıları
+        var eskiKart = depoAl("kartlar", null);
+        depoKoy("kartlar", { "x|y|z": { id: "x|y|z", ders: "Türkçe", konu: "Paragraf", kutu: 1, sonraki: bugun(), kez: 1 },
+                             "a|b|c": { id: "a|b|c", ders: "Matematik", konu: "Problemler", kutu: 5, sonraki: "2000-01-01", kez: 3 } });
+        var kd = A.kartDurum();
+        ok("kart: toplam 2", kd.toplam === 2, kd.toplam + " kart");
+        ok("kart: bugün tekrar 1", kd.bugun === 1, kd.bugun + " kart");
+        ok("kart: ezberlenen 1", kd.ezber === 1, kd.ezber + " kart");
+        ok("kart: niyet eşleşti", A.niyetBul("kart tekrarı") === "kart");
+        ok("defter: niyet eşleşti", A.niyetBul("yanlış defterim") === "defter");
+        ok("minitest: niyet eşleşti", A.niyetBul("mini test çözeyim") === "minitest");
+        ok("danaliz: niyet eşleşti", A.niyetBul("deneme analizi") === "danaliz");
+        ok("sohbet: kart cevabı veriden", /2 kart/.test(A.sohbet("kart tekrarı").cevap), A.sohbet("kart tekrarı").cevap.slice(0, 60));
+        ok("sohbet: defter yönlendirmesi", A.sohbet("yanlış defterim").yonlendir === "defter");
+        ok("plan: kart görevi başa geldi", A.gunlukPlan()[0].bolum === "kart", A.gunlukPlan()[0].baslik);
+        ok("plan: görev sayısı hâlâ 3-8", A.gunlukPlan().length >= 3 && A.gunlukPlan().length <= 8, A.gunlukPlan().length + " görev");
+        if (eskiKart === null) { try { localStorage.removeItem("ustad.kartlar"); } catch (e) {} } else depoKoy("kartlar", eskiKart);
 
         // sentetik veriyi geri al
         if (eskiIst === null) { try { localStorage.removeItem("ustad.ist"); } catch (e) {} } else depoKoy("ist", eskiIst);

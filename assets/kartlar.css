@@ -1,0 +1,95 @@
+/* © 2026 Kenan Kuzucu · ÜSTAD KOÇ PRO · Kart Tekrarı stilleri · TÜM HAKLARI SAKLIDIR (5846 FSEK).
+   Bölüm rengi: var(--kartbol2) (#5b21b6) → #4c1d95 mor degrade. Yalnızca kt- sınıfları burada tanımlanır;
+   .kart / .ka-dugme / .oyun-tablo / .ka-etiket / .aciklama / .rakam ortak sınıflarıdır, yeniden tanımlanmaz. */
+
+.kt-kok { --kt-tur:var(--kart2,#5b21b6); --kt-koyu:#4c1d95; }
+
+/* ── üst şerit: bölümün kendi rengi ── */
+.kt-ust { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin:2px 0 12px; padding:12px 14px;
+  border-radius:14px; background:linear-gradient(160deg, var(--kt-tur), var(--kt-koyu)); color:#fff;
+  box-shadow:0 8px 20px rgba(91,33,182,.24); }
+.kt-rozet { background:rgba(255,255,255,.18); border:1px solid rgba(255,255,255,.34); border-radius:999px;
+  padding:4px 12px; font-size:12px; font-weight:700; white-space:nowrap; }
+.kt-ust-yazi { display:flex; flex-direction:column; gap:3px; min-width:0; }
+.kt-ust-yazi b { font-size:16.5px; letter-spacing:.3px; }
+.kt-ust-yazi span { font-size:12px; line-height:1.5; opacity:.93; }
+
+/* ── gösterge kutuları ── */
+.kt-kutular { display:grid; grid-template-columns:repeat(auto-fit,minmax(132px,1fr)); gap:10px; margin:12px 0; }
+.kt-kutu { background:linear-gradient(160deg, var(--kt-tur), var(--kt-koyu)); color:#fff; border-radius:13px;
+  padding:11px 8px; text-align:center; box-shadow:0 6px 15px rgba(91,33,182,.22); }
+.kt-kutu b { display:block; font-size:20px; font-variant-numeric:tabular-nums; }
+.kt-kutu span { font-size:10px; letter-spacing:.09em; opacity:.92; }
+
+/* ── bloklar ve başlıklar ── */
+.kt-blok { border:1px solid var(--cizgi); border-left:4px solid var(--kt-tur); border-radius:13px;
+  padding:12px 13px; background:rgba(0,0,0,.02); margin:10px 0; }
+.kt-blok:empty { display:none; }
+.kt-bas { margin:0 0 10px; font-size:15px; }
+.kt-sayi { color:var(--soluk); font-weight:600; font-size:12.5px; }
+
+/* ── kart listesi ── */
+.kt-liste { display:flex; flex-direction:column; gap:10px; }
+.kt-kart { border:1px solid var(--cizgi); border-top:3px solid var(--kt-tur); border-radius:13px;
+  padding:12px 13px; background:var(--kartbol); }
+.kt-kart.kt-cevaplandi { border-top-color:var(--soluk); }
+.kt-kart-ust { display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin-bottom:7px; }
+.kt-sira { width:24px; height:24px; flex:0 0 24px; display:flex; align-items:center; justify-content:center;
+  border-radius:8px; background:linear-gradient(160deg, var(--kt-tur), var(--kt-koyu)); color:#fff;
+  font-size:12px; font-weight:700; font-variant-numeric:tabular-nums; }
+.kt-kutu-bilgi { font-size:11.5px; font-weight:700; color:var(--kt-tur);
+  background:rgba(91,33,182,.10); border:1px solid rgba(91,33,182,.22); border-radius:999px; padding:2px 9px; }
+.kt-metin { margin:2px 0 6px; }
+.kt-soru { margin:6px 0 10px; font-size:14.5px; line-height:1.6; }
+
+/* ── şıklar ── */
+.kt-siklar { display:flex; flex-direction:column; gap:7px; }
+.kt-sik { display:block; width:100%; text-align:left; padding:10px 12px; border-radius:10px; cursor:pointer;
+  border:1px solid var(--cizgi); background:var(--kartbol); color:var(--metin); font-size:13.5px; line-height:1.5; }
+.kt-sik:hover { border-color:var(--kt-tur); }
+.kt-sik:disabled { cursor:default; }
+.kt-harf { font-weight:700; color:var(--kt-tur); margin-right:4px; }
+.kt-sik.kt-dogru { background:#12a150; border-color:#12a150; color:#fff; }
+.kt-sik.kt-dogru .kt-harf { color:#fff; }
+.kt-sik.kt-yanlis { background:#dc2626; border-color:#dc2626; color:#fff; }
+.kt-sik.kt-yanlis .kt-harf { color:#fff; }
+.kt-sik.kt-soluk { opacity:.55; }
+
+/* ── geri bildirim ── */
+.kt-geri:empty { display:none; }
+.kt-geri { border-radius:10px; padding:9px 12px; margin-top:10px; font-size:13.5px; line-height:1.55;
+  border-left:4px solid var(--soluk); background:rgba(0,0,0,.03); }
+.kt-geri.kt-iyi { border-left-color:#12a150; }
+.kt-geri.kt-kotu { border-left-color:#dc2626; }
+.kt-geri p { margin:6px 0 0; }
+.kt-geri .aciklama { margin:6px 0 0; }
+
+/* ── boş durum ── */
+.kt-bos { border:1px dashed var(--cizgi); border-left:4px solid var(--kartbol2); border-radius:12px; padding:14px; background:var(--kart); }
+.kt-bos b { font-size:15px; }
+.kt-bos p { margin:7px 0 11px; font-size:13px; line-height:1.6; color:var(--soluk); }
+.kt-bos-az { border-style:solid; border-left:4px solid #12a150; }
+
+/* ── düğme satırı ── */
+.kt-butonlar { margin:12px 0 4px; }
+.kt-butonlar .ka-dugme { background:linear-gradient(160deg, var(--kt-tur), var(--kt-koyu)); }
+.kt-butonlar .ka-dugme.ka-ikincil { background:var(--kartbol); color:var(--metin); }
+
+/* ── tüm kartlar paneli ── */
+.kt-tum { margin-top:12px; border-top:1px solid var(--cizgi); padding-top:12px; }
+.kt-tum[hidden] { display:none; }
+.kt-tum-satir { border:1px solid var(--cizgi); border-radius:11px; padding:10px 12px; background:var(--kartbol);
+  margin-bottom:9px; }
+.kt-tum-ust { display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin-bottom:6px; }
+.kt-tum-satir .kt-soru { margin:4px 0 9px; }
+
+/* ── ders özeti tablosu ── */
+.kt-tablo { margin:6px 0 0; }
+.kt-tablo tfoot .kt-toplam td { font-weight:700; border-top:2px solid var(--cizgi); border-bottom:0; }
+.kt-tablo .rakam { font-variant-numeric:tabular-nums; }
+
+@media (max-width:520px) {
+  .kt-kutular { grid-template-columns:repeat(2,1fr); }
+  .kt-kutu b { font-size:17px; }
+  .kt-soru { font-size:13.5px; }
+}

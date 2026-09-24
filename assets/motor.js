@@ -25,6 +25,10 @@
     { kod: "sesli",      ad: "Sesli Dersler",   simg: "🎧", renk: "var(--sesli)",     renk2: "#1d4ed8" },
     { kod: "oyun",       ad: "Eğitici Oyunlar", simg: "🎮", renk: "var(--oyun)",      renk2: "#be185d" },
     { kod: "kocai",      ad: "ÜSTAD KOÇ AI",    simg: "🤖", renk: "var(--kocai)",     renk2: "#0f766e" },
+    { kod: "kart",       ad: "Kart Tekrarı",    simg: "🃏", renk: "var(--kartbol)",   renk2: "#6d28d9" },
+    { kod: "defter",     ad: "Yanlış Defterim", simg: "📕", renk: "var(--defter)",    renk2: "#b91c1c" },
+    { kod: "minitest",   ad: "Mini Test",       simg: "⏱️", renk: "var(--minitest)",  renk2: "#0369a1" },
+    { kod: "danaliz",    ad: "Deneme Analizi",  simg: "📈", renk: "var(--danaliz)",   renk2: "#a16207" },
     { kod: "notlar",     ad: "Ders Notları",    simg: "📚", renk: "var(--notlar)",     renk2: "#7c3aed" },
     { kod: "istatistik", ad: "İstatistik",      simg: "📊", renk: "var(--istatistik)", renk2: "#1d6fe0" },
     { kod: "ayarlar",    ad: "Ayarlar",         simg: "⚙️", renk: "var(--ayarlar)",    renk2: "#556070" },
@@ -119,6 +123,12 @@
     if (window.KPSS_OYUN && window.KPSS_OYUN.bolumAc) window.KPSS_OYUN.bolumAc(kod);
     // ÜSTAD KOÇ AI (v2.6): çevrimdışı koç
     if (window.KOC_AI && window.KOC_AI.bolumAc) window.KOC_AI.bolumAc(kod);
+
+    // v2.7: kart tekrarı · yanlış defterim · mini test · deneme analizi
+    if (window.KARTLAR && window.KARTLAR.bolumAc) window.KARTLAR.bolumAc(kod);
+    if (window.DEFTER && window.DEFTER.bolumAc) window.DEFTER.bolumAc(kod);
+    if (window.MINITEST && window.MINITEST.bolumAc) window.MINITEST.bolumAc(kod);
+    if (window.DANALIZ && window.DANALIZ.bolumAc) window.DANALIZ.bolumAc(kod);
     // Bölüm bağlantısı (derin link): index.html#sayim gibi
     try { if (history.replaceState) history.replaceState(null, "", "#" + kod); } catch (e) {}
   }

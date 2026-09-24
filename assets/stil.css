@@ -42,6 +42,10 @@ html[data-renk="deniz"]   { --zemin:#e9f2f7; --zemin2:#dbeaf3; --kart:#fafdff; -
   --sesli:#1d4ed8;    --sesli2:#1e3a8a;
   --oyun:#be185d;     --oyun2:#9d174d;
   --kocai:#0f766e;    --kocai2:#115e59;
+  --kartbol:#6d28d9;  --kartbol2:#5b21b6;
+  --defter:#b91c1c;   --defter2:#991b1b;
+  --minitest:#0369a1; --minitest2:#075985;
+  --danaliz:#a16207;  --danaliz2:#854d0e;
   --r:16px;
 }
 
